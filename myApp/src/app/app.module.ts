@@ -11,6 +11,14 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { ErreurComponent } from './erreur/erreur.component';
 import { Interface1Component } from './interface1/interface1.component';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
+import {MDCDialog} from '@material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,11 +32,17 @@ import { Interface1Component } from './interface1/interface1.component';
     FormsModule,
     ReactiveFormsModule, // pour formGroup
     BrowserAnimationsModule,
-    // MatIconModule,
     HttpClientModule, // pour le backend
-    // MatDialogModule, // popup
+
     AppRoutingModule,
 
+    MatSlideToggleModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatDialogModule, // popup : npm install @material/dialog
+    // MDCDialog
   ],
   providers: [],
   bootstrap: [AppComponent]
