@@ -97,32 +97,32 @@
               </mat-expansion-panel>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton" href="#">
+              <a mat-raised-button class="nav-link mon-bouton" href="#">
                 <mat-icon> local_shipping</mat-icon> Gestion des fournisseurs
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton align-middle my-auto" href="#">
+              <a mat-raised-button class="nav-link mon-bouton align-middle my-auto" href="#">
                 <mat-icon>shopping_cart</mat-icon> Gestion des commandes
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton" href="#">
+              <a mat-raised-button class="nav-link mon-bouton" href="#">
                 <mat-icon>poll</mat-icon> Analyse et rapports
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton" href="#">
+              <a mat-raised-button class="nav-link mon-bouton" href="#">
                 <mat-icon>assignment</mat-icon> Gestion des demandes
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton" href="#">
+              <a mat-raised-button class="nav-link mon-bouton" href="#">
                 <mat-icon>open_in_new</mat-icon> retours et réparations
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mon-bouton" href="#">
+              <a mat-raised-button class="nav-link mon-bouton" href="#">
                 <mat-icon>send</mat-icon> Transactions
               </a>
             </li>
@@ -140,29 +140,22 @@
             </div>
 
             <div class="col-md-4 p-4">
-              <div class="row p-0">
-                <div class="d-flex justify-content-end">
-
-                    <div class="row bg-mygrey" style="width: 160px;">
-
-                        <div class="col-1 my-auto p-0 mx-0">
-                            <mat-icon class="text-success">search</mat-icon>
-                        </div>
-
-                        <div class="col-11">
-                            <input class="form-control input-sm bg-mygrey border-mygrey"
-                                type="search" placeholder="Rechercher" aria-label="Search">
-                        </div>
-
-                    </div>
+              <div class="input-group shadow">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <mat-icon>search</mat-icon>
+                  </span>
                 </div>
-            </div>
+                <input class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher" aria-label="Search" style="box-shadow: none; outline: none;">
+              </div>
+
             </div>
 
             <div class="col-md-5 my-auto">
-              <button class="btn btn-mygrey rounded-pill align-middle mx-2 fw-bold my-2"><mat-icon>arrow_upward</mat-icon> Exporter</button>
 
-              <button (click)="popupAjouter()" class="btn btn-mygrey rounded-pill align-middle mx-2 fw-bold my-2"><mat-icon>add</mat-icon> Ajouter</button>
+              <button mat-raised-button class="shadow fw-bold mx-2"><mat-icon>arrow_upward</mat-icon> Exporter</button>
+
+              <button (click)="popupAjouter()" mat-raised-button class="shadow fw-bold mx-2"><mat-icon>add</mat-icon> Ajouter</button>
             </div>
 
             <div class="col-md-1">
@@ -171,7 +164,7 @@
           </div>
         </div>
 
-        <h3>Utilsisateurs</h3>
+        <h3>Utilsateurs</h3>
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource">
 

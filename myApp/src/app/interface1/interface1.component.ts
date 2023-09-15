@@ -21,7 +21,7 @@ export class Interface1Component {
       AjouterComponent,
       {
         width:'80%',
-        height:'90%',
+
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
