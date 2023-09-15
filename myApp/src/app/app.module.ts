@@ -17,14 +17,22 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MDCDialog} from '@material/dialog';
+
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AjouterComponent } from './ajouter/ajouter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnexionComponent,
     ErreurComponent,
-    Interface1Component
+    Interface1Component,
+    AjouterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +44,11 @@ import {MDCDialog} from '@material/dialog';
 
     AppRoutingModule,
 
+    NgbModule, // dropdown
+
+    MatTableModule, MatPaginatorModule,
+
+    MatExpansionModule,
     MatSlideToggleModule,
     MatToolbarModule,
     MatButtonModule,
