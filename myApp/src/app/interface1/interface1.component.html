@@ -1,9 +1,9 @@
 <header class="sticky-top" style="border-bottom: 2px solid gray;">
-  <nav class="container-fluid bg-mygrey">
+  <nav class="container-fluid bg-mywhite">
 
     <div class="row">
-      <div class="col-1 p-0">
-        <img src="../../assets/douanes.jpeg" width="90px" alt="logo douanes sénégalaise"
+      <div class="col-1 p-1">
+        <img src="../../assets/douanes.jpeg" width="90" alt="logo douanes sénégalaise"
           class="img-fluid img-thumbnail rounded">
       </div>
 
@@ -13,7 +13,7 @@
 
       <div class="col-2 my-auto text-center">
 
-        <div ngbDropdown class="d-inline-block bg-mywhite rounded-pill">
+        <div ngbDropdown class="d-inline-block bg-mywhite rounded-pill" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
 
           <button class="btn btn-primary rounded-pill" ngbDropdownToggle id="dropdownMenuButton1">
             <img src="../../assets/user.png" alt="User" style="max-height: 40px; max-width: 40px;">
@@ -29,7 +29,8 @@
 
       </div>
 
-      <!-- <div class="col-2 my-auto text-center">
+      <!--
+        <div class="col-2 my-auto text-center">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <div class="text-center align-middle">
@@ -46,7 +47,8 @@
                 </div>
               </ng-template>
             </mat-expansion-panel>
-          </div> -->
+          </div>
+        -->
 
     </div>
 
@@ -56,10 +58,10 @@
 
 <main>
 
-  <div class="container-fluid" style="height: 100%;">
+  <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <nav id="sidebar" class="col-md-4 col-lg-3 d-md-block bg-mywhite sidebar">
+      <nav id="sidebar" class="col-md-4 col-lg-3 d-md-block bg-mywhite sidebar" style="border-bottom: 2px solid gray;">
         <div class="position-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
@@ -140,23 +142,23 @@
             </div>
 
             <div class="col-md-4 p-4">
-              <div class="input-group shadow">
+              <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">
+                  <span class="input-group-text"  style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
                     <mat-icon>search</mat-icon>
                   </span>
                 </div>
-                <input class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher" aria-label="Search" style="box-shadow: none; outline: none;">
+                <input class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher" aria-label="Search" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
               </div>
 
             </div>
 
-            <div class="col-md-5 my-auto">
+            <!-- <div class="col-md-5 my-auto">
 
-              <button mat-raised-button class="shadow fw-bold mx-2"><mat-icon>arrow_upward</mat-icon> Exporter</button>
+              <button mat-raised-button class="fw-bold mx-2" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;"><mat-icon>arrow_upward</mat-icon> Exporter</button>
 
-              <button (click)="popupAjouter()" mat-raised-button class="shadow fw-bold mx-2"><mat-icon>add</mat-icon> Ajouter</button>
-            </div>
+              <button (click)="popupAjouter()" mat-raised-button class="fw-bold mx-2" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;"><mat-icon>add</mat-icon> Ajouter</button>
+            </div> -->
 
             <div class="col-md-1">
 
@@ -164,7 +166,26 @@
           </div>
         </div>
 
-        <h3>Utilsateurs</h3>
+        <div class="container-fluid">
+          <div class="row d-flex p-3 align-middle">
+            <div class="col-4">
+              <h5 class="fw-bolder">Liste des utilsateurs</h5>
+            </div>
+
+            <div class="col-5">
+              <span class="fw-bolder">Téléchargement :
+                <button class="fw-bold mx-1 bg-mywhite" style="border: none;"><i class="fa-regular fa-file-pdf fs-3"></i></button>
+                <button class="fw-bold mx-1 bg-mywhite" style="border: none;"><i class="fa-regular fa-file-excel fs-3"></i></button>
+              </span>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <button class="fw-bold bg-mywhite" style="border: 2x solid black; border-radius: 50%;"><i class="fa-solid fa-plus fs-3"></i></button>
+            </div>
+          </div>
+        </div>
+
+
+
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource">
 
