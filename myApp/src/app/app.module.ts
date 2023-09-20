@@ -25,6 +25,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AjouterComponent } from './ajouter/ajouter.component';
+import { DetailComponent } from './detail/detail.component';
+import { ModifierComponent } from './modifier/modifier.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AjouterComponent } from './ajouter/ajouter.component';
     ConnexionComponent,
     ErreurComponent,
     Interface1Component,
-    AjouterComponent
+    AjouterComponent,
+    DetailComponent,
+    ModifierComponent
   ],
   imports: [
     BrowserModule,
