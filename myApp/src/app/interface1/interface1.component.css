@@ -88,6 +88,8 @@ li a {
 
 
 
+
+
 /* Stylisation du menu déroulant */
 .dropdown-menu1 {
   width: 100%;
@@ -110,6 +112,6 @@ li a {
 
 /* Style au survol des éléments */
 .dropdown-item1:hover {
-  background-color: #007bff; /* Couleur de fond au survol */
+  background-color: #E7C133; /* Couleur de fond au survol */
   color: #fff; /* Couleur du texte au survol */
 }
