@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+public class UtilisateurVehiculeController {
 
     @Autowired
     UtilisateurVehiculeRepository userVehiculeRepository;
