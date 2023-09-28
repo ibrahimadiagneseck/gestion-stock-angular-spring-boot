@@ -9,9 +9,9 @@
 
         </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 text-end align-middle">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 d-flex justify-content-end">
 
-          <div ngbDropdown class="bg-mywhite rounded-pill" style="box-shadow: #E7C133 0px 50px 100px -20px, #E7C133 0px 30px 60px -30px, #E7C133 0px -2px 6px 0px inset; outline: none;">
+          <div ngbDropdown class="bg-mywhite rounded-pill" style="width: 30%; height: 80%; right: 5px; box-shadow: #E7C133 0px 10px 20px -10px, #E7C133 0px 10px 20px -15px, #E7C133 0px -2px 6px 0px inset; outline: none;">
             <button class="btn btn-primary rounded-pill" ngbDropdownToggle id="dropdownMenuButton1">
               <img src="../../assets/user.png" alt="User">
               <span class="fw-bold mx-2">Administrateur</span>
@@ -40,7 +40,7 @@
 
           <li class="nav-item mx-2">
             <a mat-raised-button class="collapsible nav-link d-flex justify-content-start" style="position: relative;">
-              <mat-icon class="me-4">calendar_today</mat-icon> Gestion des stocks <span class="fa-solid fa-chevron-down ms-4"></span>
+              <mat-icon class="me-4">calendar_today</mat-icon> Gestion des stocks <span class="fa-solid fa-chevron-down"></span>
             </a>
             <div class="content">
               <a mat-raised-button class="nav-link d-flex justify-content-start" href="#">
@@ -89,7 +89,7 @@
 
           <li class="nav-item mx-2">
             <a mat-raised-button class="collapsible nav-link d-flex justify-content-start">
-              <mat-icon class="me-4">assignment_ind</mat-icon> Gestion des utilisateurs <i class="fa-solid fa-chevron-down ms-4"></i>
+              <mat-icon class="me-4">assignment_ind</mat-icon> Gestion des utilisateurs <i class="fa-solid fa-chevron-down"></i>
             </a>
             <div class="content">
               <a mat-raised-button class="nav-link d-flex justify-content-start" href="#">
@@ -114,7 +114,7 @@
 
   <main class="bg-mywhite">
 
-    <div class="container bg-myprimary bg-gradient my-3 py-2" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
+    <div class="container bg-myprimary bg-gradient mb-3 py-2" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
       <div class="row">
         <div class="col-12 text-center fw-bolder fs-5">
           Gestion des utilisateurs
@@ -124,8 +124,25 @@
 
     <div class="container">
       <div class="row">
+<!--
+        <div class="col-md-12 my-2">
+          <div class="input-group" style=" width: 300px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
+            <div class="input-group-prepend">
+              <span class="input-group-text" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
+                <mat-icon>search</mat-icon>
+              </span>
+            </div>
+            <input class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher" aria-label="Search" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
+          </div>
+        </div> -->
 
-        <div class="col-md-12">
+      </div>
+    </div>
+
+    <div class="container" style="text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
+      <div class="row d-flex py-4 align-middle">
+
+        <div class="col-4">
           <div class="input-group" style=" width: 300px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
             <div class="input-group-prepend">
               <span class="input-group-text" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
@@ -136,25 +153,16 @@
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <div class="container" style="text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
-      <div class="row d-flex p-3 align-middle">
-
-        <div class="col-4">
-          <h5 class="fw-bolder">Liste des utilsateurs</h5>
-        </div>
-
-        <div class="col-5">
-          <span class="fw-bolder">Téléchargement :
-            <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-pdf fs-3"></i></button>
-            <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-excel fs-3"></i></button>
+        <div class="col-5 text-center">
+          <span class="fw-bolder">
           </span>
         </div>
 
         <div class="col-3 d-flex justify-content-end">
           <button (click)="popupAjouter()" class="fw-bold bg-mywhite" style="border: 2x solid black; border-radius: 50%;"><i class="fa-solid fa-plus fs-3"></i></button>
+          <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-pdf fs-3"></i></button>
+          <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-excel fs-3"></i></button>
+
         </div>
       </div>
     </div>
