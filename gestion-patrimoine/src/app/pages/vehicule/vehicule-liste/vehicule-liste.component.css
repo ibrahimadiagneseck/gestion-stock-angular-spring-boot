@@ -107,6 +107,9 @@ li a {
   transition: background-color 0.3s ease; /* Transition de couleur de fond */
 }
 
+
+
+
 /* Style the collapsible content. Note: hidden by default */
 .content {
   display: none;
