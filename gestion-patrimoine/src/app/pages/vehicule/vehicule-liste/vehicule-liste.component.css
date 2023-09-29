@@ -35,6 +35,8 @@ main {
   overflow-y: auto;
   grid-area: sidebar; /* Occupe la zone "sidebar" de la grille */
   font-size: 1.2rem; /* Taille de police pour la barre latérale */
+  margin: 0;
+  padding: 0;
 }
 
 /* Styles pour les liens */
@@ -70,8 +72,19 @@ li a {
 
 
 
-
-
+.menu-button {
+  background-color: #3498db; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Supprime la bordure */
+  text-align: left; /* Alignement du texte à gauche */
+  width: 100%; /* Largeur du bouton à 100% */
+  cursor: pointer; /* Curseur en forme de main pour indiquer qu'il est cliquable */
+  display: flex; /* Affiche le contenu en tant que flexbox */
+  justify-content: space-between; /* Place le contenu à l'extrémité droite du bouton */
+  align-items: center; /* Centre verticalement le contenu */
+  transition: background-color 0.3s ease; /* Transition de couleur de fond */
+}
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
@@ -84,6 +97,9 @@ li a {
   margin: 0 20px 0 20px;
   padding: 10px;
 }
+
+
+
 
 
 
