@@ -14,10 +14,10 @@ public class Vehicule {
     private Long id;
 
     @Column(name = "numero_chassis")
-    private Integer numero_chassis;
+    private Integer numeroChassis;
 
     @Column(name = "numero_matricule")
-    private Integer numero_matricule;
+    private Integer numeroMatricule;
 
     @Column(name = "modele")
     private String modele;
@@ -26,13 +26,13 @@ public class Vehicule {
     private String transmission;
 
     @Column(name = "date_fabrication")
-    private Date  date_fabrication;
+    private Date  dateFabrication;
 
     @Column(name = "date_commande")
-    private String  date_commande;
+    private String  dateCommande;
 
     @Column(name = "date_livraison")
-    private Date date_livraison;
+    private Date dateLivraison;
 
     @Column(name = "energie")
     private String energie;
@@ -41,20 +41,20 @@ public class Vehicule {
     private String  etat;
 
     @Column(name = "type_vehicule")
-    private String type_vehicule;
+    private String typeVehicule;
 
-    public Vehicule(Long id, Integer numero_chassis, Integer numero_matricule, String modele, String transmission, Date date_fabrication, String date_commande, Date date_livraison, String energie, String etat, String type_vehicule) {
+    public Vehicule(Long id, Integer numeroChassis, Integer numeroMatricule, String modele, String transmission, Date dateFabrication, String dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
         this.id = id;
-        this.numero_chassis = numero_chassis;
-        this.numero_matricule = numero_matricule;
+        this.numeroChassis = numeroChassis;
+        this.numeroMatricule = numeroMatricule;
         this.modele = modele;
         this.transmission = transmission;
-        this.date_fabrication = date_fabrication;
-        this.date_commande = date_commande;
-        this.date_livraison = date_livraison;
+        this.dateFabrication = dateFabrication;
+        this.dateCommande = dateCommande;
+        this.dateLivraison = dateLivraison;
         this.energie = energie;
         this.etat = etat;
-        this.type_vehicule = type_vehicule;
+        this.typeVehicule = typeVehicule;
     }
 
     public Vehicule() {
@@ -68,20 +68,20 @@ public class Vehicule {
         this.id = id;
     }
 
-    public Integer getNumero_chassis() {
-        return numero_chassis;
+    public Integer getNumeroChassis() {
+        return numeroChassis;
     }
 
-    public void setNumero_chassis(Integer numero_chassis) {
-        this.numero_chassis = numero_chassis;
+    public void setNumeroChassis(Integer numeroChassis) {
+        this.numeroChassis = numeroChassis;
     }
 
-    public Integer getNumero_matricule() {
-        return numero_matricule;
+    public Integer getNumeroMatricule() {
+        return numeroMatricule;
     }
 
-    public void setNumero_matricule(Integer numero_matricule) {
-        this.numero_matricule = numero_matricule;
+    public void setNumeroMatricule(Integer numeroMatricule) {
+        this.numeroMatricule = numeroMatricule;
     }
 
     public String getModele() {
@@ -100,28 +100,28 @@ public class Vehicule {
         this.transmission = transmission;
     }
 
-    public Date getDate_fabrication() {
-        return date_fabrication;
+    public Date getDateFabrication() {
+        return dateFabrication;
     }
 
-    public void setDate_fabrication(Date date_fabrication) {
-        this.date_fabrication = date_fabrication;
+    public void setDateFabrication(Date dateFabrication) {
+        this.dateFabrication = dateFabrication;
     }
 
-    public String getDate_commande() {
-        return date_commande;
+    public String getDateCommande() {
+        return dateCommande;
     }
 
-    public void setDate_commande(String date_commande) {
-        this.date_commande = date_commande;
+    public void setDateCommande(String dateCommande) {
+        this.dateCommande = dateCommande;
     }
 
-    public Date getDate_livraison() {
-        return date_livraison;
+    public Date getDateLivraison() {
+        return dateLivraison;
     }
 
-    public void setDate_livraison(Date date_livraison) {
-        this.date_livraison = date_livraison;
+    public void setDateLivraison(Date dateLivraison) {
+        this.dateLivraison = dateLivraison;
     }
 
     public String getEnergie() {
@@ -140,11 +140,11 @@ public class Vehicule {
         this.etat = etat;
     }
 
-    public String getType_vehicule() {
-        return type_vehicule;
+    public String getTypeVehicule() {
+        return typeVehicule;
     }
 
-    public void setType_vehicule(String type_vehicule) {
-        this.type_vehicule = type_vehicule;
+    public void setTypeVehicule(String typeVehicule) {
+        this.typeVehicule = typeVehicule;
     }
 }
