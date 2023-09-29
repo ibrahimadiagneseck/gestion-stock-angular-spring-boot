@@ -22,7 +22,7 @@ nav {
 
 /* Styles pour la section principale */
 main {
-  padding: 1rem;
+  padding: 0.8rem;
   overflow-y: auto;
   grid-area: main; /* Occupe la zone "main" de la grille */
   font-size: 1rem; /* Taille de police pour la section principale */
@@ -73,7 +73,8 @@ li a {
 
 
 .menu-button {
-  margin-top: 5px;
+  font-size: 1.2rem;
+  margin: 3px 0 3px 0;
   background-color: #fff; /* Couleur de fond du bouton */
   color: black; /* Couleur du texte */
   padding: 10px 20px; /* Espacement interne */
@@ -90,21 +91,8 @@ li a {
 }
 
 .menu-button:hover {
-  margin-top: 5px;
-  background-color: #fff; /* Couleur de fond du bouton */
-  color: black; /* Couleur du texte */
-  padding: 10px 20px; /* Espacement interne */
-  /* border: none; */
   border: 1px solid #e7e7e7;
   border-radius: 5px;
-  text-align: left; /* Alignement du texte à gauche */
-  width: 100%; /* Largeur du bouton à 100% */
-  cursor: pointer; /* Curseur en forme de main pour indiquer qu'il est cliquable */
-  display: flex; /* Affiche le contenu en tant que flexbox */
-  /* justify-content: space-between; */
-  justify-content: start;
-  align-items: center; /* Centre verticalement le contenu */
-  transition: background-color 0.3s ease; /* Transition de couleur de fond */
 }
 
 
@@ -114,12 +102,13 @@ li a {
 .content {
   display: none;
   overflow: hidden;
-  background-color: #ffffff;
-  border: 1px solid #e7e7e7;
-  box-shadow: 0 4px 6px rgba(231, 231, 231, 1);
-  border-radius: 5px;
-  margin: 0 20px 0 20px;
-  padding: 10px;
+  background-color: #e7e7e7;
+  border: none;
+  /* border: 1px solid #e7e7e7; */
+  /* box-shadow: 0 4px 6px rgba(231, 231, 231, 1); */
+  /* border-radius: 5px; */
+  /* margin: 0 20px 0 20px; */
+  /* padding: 10px; */
 }
 
 
