@@ -73,15 +73,36 @@ li a {
 
 
 .menu-button {
-  background-color: #3498db; /* Couleur de fond du bouton */
-  color: white; /* Couleur du texte */
+  margin-top: 5px;
+  background-color: #fff; /* Couleur de fond du bouton */
+  color: black; /* Couleur du texte */
   padding: 10px 20px; /* Espacement interne */
-  border: none; /* Supprime la bordure */
+  border: none;
+  /* border: 1px solid #e7e7e7; */
+  /* border-radius: 5px; */
   text-align: left; /* Alignement du texte à gauche */
   width: 100%; /* Largeur du bouton à 100% */
   cursor: pointer; /* Curseur en forme de main pour indiquer qu'il est cliquable */
   display: flex; /* Affiche le contenu en tant que flexbox */
-  justify-content: space-between; /* Place le contenu à l'extrémité droite du bouton */
+  justify-content: start; /* Place le contenu à l'extrémité droite du bouton */
+  align-items: center; /* Centre verticalement le contenu */
+  transition: background-color 0.3s ease; /* Transition de couleur de fond */
+}
+
+.menu-button:hover {
+  margin-top: 5px;
+  background-color: #fff; /* Couleur de fond du bouton */
+  color: black; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  /* border: none; */
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  text-align: left; /* Alignement du texte à gauche */
+  width: 100%; /* Largeur du bouton à 100% */
+  cursor: pointer; /* Curseur en forme de main pour indiquer qu'il est cliquable */
+  display: flex; /* Affiche le contenu en tant que flexbox */
+  /* justify-content: space-between; */
+  justify-content: start;
   align-items: center; /* Centre verticalement le contenu */
   transition: background-color 0.3s ease; /* Transition de couleur de fond */
 }
