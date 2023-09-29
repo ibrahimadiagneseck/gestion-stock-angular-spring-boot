@@ -4,15 +4,14 @@
     <div class="container-fluid">
       <div class="row">
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2">
-          <img src="../../assets/douanes.jpeg" alt="logo douanes sénégalaise" class="img-fluid img-thumbnail rounded" width="15%">
-
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 d-flex align-items-center">
+          <img src="../../assets/douanes.jpeg" alt="logo douanes sénégalaise" class="img-fluid" width="15%">
         </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 d-flex justify-content-end">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 d-flex align-items-center justify-content-end">
+          <div ngbDropdown class="bg-mywhite rounded-pill" style="width: 30%; height: 80%; box-shadow: #E7C133 0px 10px 20px -10px, #E7C133 0px 10px 20px -15px, #E7C133 0px -2px 6px 0px inset;">
 
-          <!-- <div ngbDropdown class="bg-mywhite rounded-pill" style="width: 30%; height: 80%; right: 5px; box-shadow: #E7C133 0px 10px 20px -10px, #E7C133 0px 10px 20px -15px, #E7C133 0px -2px 6px 0px inset; outline: none;">
-            <button class="btn btn-primary rounded-pill" ngbDropdownToggle id="dropdownMenuButton1">
+            <button class="btn btn-primary rounded-pill w-100 dropdown-button" ngbDropdownToggle id="dropdownMenuButton1">
               <img src="../../assets/user.png" alt="User">
               <span class="fw-bold mx-2">Administrateur</span>
             </button>
@@ -22,7 +21,8 @@
               <li><button class="dropdown-item1 fw-bold" type="button">Paramètres</button></li>
               <li><button class="dropdown-item1 fw-bold" type="button">Déconnexion</button></li>
             </ul>
-          </div> -->
+
+          </div>
         </div>
 
       </div>
@@ -89,8 +89,7 @@
 
           <li class="nav-item mx-2">
             <a mat-raised-button class="collapsible nav-link d-flex justify-content-start">
-              <mat-icon class="me-4">assignment_ind</mat-icon> Gestion des utilisateurs
-              <!-- <i class="fa-solid fa-chevron-down"></i> -->
+              <mat-icon class="me-4">assignment_ind</mat-icon> Gestion des utilisateurs <i class="fa-solid fa-chevron-down"></i>
             </a>
             <div class="content">
               <a mat-raised-button class="nav-link d-flex justify-content-start" href="#">
