@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { VehiculeModifierComponent } from '../vehicule-modifier/vehicule-modifier.component';
 import { IVehicule } from 'src/app/models/vehicule';
+import { ServicesService } from 'src/app/services/services.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-detail',
@@ -14,6 +16,7 @@ export class VehiculeDetailComponent implements OnInit {
 
   constructor(
     // private dialogService: DialogService,
+    private servicesService: ServicesService,
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
     private matDialog: MatDialog
@@ -24,11 +27,24 @@ export class VehiculeDetailComponent implements OnInit {
     this.vehicule = this.data;
   }
 
+  supprimerVehiculeById(idVehicule: number) {
+    this.servicesService.deleteVehicule(idVehicule).subscribe({
+      next: () => {
+        this.fermerPopup();
+      },
+      error: (erreurs: HttpErrorResponse) => {
+        console.log(erreurs);
+      }
+    });
+  }
+
+
+
   popupModifier() {
     this.matDialog.open(
       VehiculeModifierComponent,
       {
-        width:'80%',
+        width:'70%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {

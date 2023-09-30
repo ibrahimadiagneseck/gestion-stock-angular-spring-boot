@@ -78,7 +78,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       VehiculeAjouterComponent,
       {
         width:'70%',
-
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {

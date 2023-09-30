@@ -1,7 +1,6 @@
 <div class="card shadow">
 
-  <div class="card-header d-flex justify-content-center fw-bold bg-myprimary fs-4">
-
+  <div class="card-header d-flex justify-content-center fw-bold bg-myprimary fs-5">
     Ajouter un vehicule
   </div>
 
@@ -290,23 +289,19 @@
 
       <div class="row mt-5">
         <div class="col-12 text-end">
-          <button (click)="popupFermer()" type="submit" [disabled]="vehiculeForm.invalid"
-            class="btn btn-myprimary fw-bold w-25 mx-1" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+          <button (click)="ajouterVehicule()" type="submit" [disabled]="vehiculeForm.invalid"
+            class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
             Valider
           </button>
 
-          <button (click)="popupFermer()" class="btn btn-mysecondary fw-bold w-25 mx-3" data-bs-toggle="tooltip"
-            title="cliquer ici pour ajouter">
-            Retour
+          <button (click)="fermerPopup()" class="btn btn-mysecondary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+            RETOUR
           </button>
         </div>
       </div>
 
     </form>
 
-      
-      
-      
   </div>
 
 </div>
