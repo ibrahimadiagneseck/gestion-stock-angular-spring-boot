@@ -1,6 +1,6 @@
 <div class="card">
 
-  <div class="card-header text-center fw-bold bg-myprimary fs-4">
+  <div class="card-header text-center fw-bold bg-myprimary fs-5">
     Détail du véhicule
   </div>
 
@@ -9,54 +9,54 @@
 
       <div class="row g-4 mb-3">
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2  fw-bold">N° de chassis:</span></div>
-          <div class="text-input mx-2"> {{ vehicule.element.numeroChassis }} </div>
+          <span class="fw-bold">N° de chassis:</span>
+          <div class="text-input"> {{ vehicule.element.numeroChassis }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2  fw-bold">Couleur:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.couleur }} </div>
+          <span class="fw-bold">Couleur:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.couleur }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Date livraison:</span></div>
-          <div class="text-input mx-2"> {{ vehicule.element.dateLivraison | date: 'dd MMM yy' }} </div>
-        </div>
-      </div>
-
-
-      <div class="row g-4 mb-3">
-        <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">N° matricule:</span></div>
-          <div class="text-input mx-2"> {{ vehicule.element.numeroMatricule }} </div>
-        </div>
-
-        <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Transmission:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.transmission }} </div>
-        </div>
-
-        <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Energies:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.energie }} </div>
+          <span class="fw-bold">Date livraison:</span>
+          <div class="text-input"> {{ vehicule.element.dateLivraison | date: 'dd MMM yy' }} </div>
         </div>
       </div>
 
 
       <div class="row g-4 mb-3">
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Modèle:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.modele }} </div>
+          <span class="fw-bold">N° matricule:</span>
+          <div class="text-input"> {{ vehicule.element.numeroMatricule }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Date fabrication:</span></div>
-          <div class="text-input mx-2"> {{ vehicule.element.dateFabrication | date: 'dd MMM yy' }} </div>
+          <span class="fw-bold">Transmission:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.transmission }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Etat:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.etat }} </div>
+          <span class="fw-bold">Energies:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.energie }} </div>
+        </div>
+      </div>
+
+
+      <div class="row g-4 mb-3">
+        <div class="col-3 mx-auto">
+          <span class="fw-bold">Modèle:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.modele }} </div>
+        </div>
+
+        <div class="col-3 mx-auto">
+          <span class="fw-bold">Date fabrication:</span>
+          <div class="text-input"> {{ vehicule.element.dateFabrication | date: 'dd MMM yy' }} </div>
+        </div>
+
+        <div class="col-3 mx-auto">
+          <span class="fw-bold">Etat:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.etat }} </div>
         </div>
       </div>
 
@@ -64,36 +64,35 @@
 
       <div class="row g-4 mb-3">
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Marque:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.marque }} </div>
+          <span class="fw-bold">Marque:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.marque }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Date commande:</span></div>
-          <div class="text-input mx-2"> {{ vehicule.element.dateCommande | date: 'dd MMM yy' }} </div>
+          <span class="fw-bold">Date commande:</span>
+          <div class="text-input"> {{ vehicule.element.dateCommande | date: 'dd MMM yy' }} </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <div class="text-success"><span class="mx-2 fw-bold">Type vehicule:</span></div>
-          <div class="text-input mx-2 text-uppercase"> {{ vehicule.element.typeVehicule }} </div>
+          <span class="fw-bold">Type vehicule:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.typeVehicule }} </div>
         </div>
       </div>
 
       <div class="row mt-5">
         <div class="col-12 text-end">
-          <button type="submit" class="btn btn-myprimary fw-bold w-25 mx-1" data-bs-toggle="tooltip"
+          <button type="submit" class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip"
             title="cliquer ici pour ajouter">
-            Supprimer
+            SUPPRIMER
           </button>
 
-          <button (click)="popupModifier()" class="btn btn-myprimary fw-bold w-25 mx-3" data-bs-toggle="tooltip"
+          <button (click)="popupModifier()" class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip"
             title="cliquer ici pour ajouter">
-            Modifier
+            MODIFIER
           </button>
 
-          <button class="btn btn-mysecondary fw-bold w-25 mx-1" data-bs-toggle="tooltip"
-            title="cliquer ici pour ajouter">
-            Annuler
+          <button (click)="fermerPopup()" class="btn btn-mysecondary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+            RETOUR
           </button>
         </div>
       </div>

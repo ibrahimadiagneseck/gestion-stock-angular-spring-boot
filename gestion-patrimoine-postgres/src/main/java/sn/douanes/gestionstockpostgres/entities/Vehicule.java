@@ -35,7 +35,7 @@ public class Vehicule {
     private Date  dateFabrication;
 
     @Column(name = "date_commande")
-    private String  dateCommande;
+    private Date  dateCommande;
 
     @Column(name = "date_livraison")
     private Date dateLivraison;
@@ -49,7 +49,7 @@ public class Vehicule {
     @Column(name = "type_vehicule")
     private String typeVehicule;
 
-    public Vehicule(Long id, Integer numeroChassis, Integer numeroMatricule, String modele, String marque, String transmission, String couleur, Date dateFabrication, String dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
+    public Vehicule(Long id, Integer numeroChassis, Integer numeroMatricule, String modele, String marque, String transmission, String couleur, Date dateFabrication, Date dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
         this.id = id;
         this.numeroChassis = numeroChassis;
         this.numeroMatricule = numeroMatricule;
@@ -132,11 +132,11 @@ public class Vehicule {
         this.dateFabrication = dateFabrication;
     }
 
-    public String getDateCommande() {
+    public Date getDateCommande() {
         return dateCommande;
     }
 
-    public void setDateCommande(String dateCommande) {
+    public void setDateCommande(Date dateCommande) {
         this.dateCommande = dateCommande;
     }
 

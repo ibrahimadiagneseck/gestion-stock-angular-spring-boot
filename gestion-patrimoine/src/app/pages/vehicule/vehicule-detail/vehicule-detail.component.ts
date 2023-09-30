@@ -29,7 +29,6 @@ export class VehiculeDetailComponent implements OnInit {
       VehiculeModifierComponent,
       {
         width:'80%',
-
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
@@ -37,6 +36,10 @@ export class VehiculeDetailComponent implements OnInit {
         }
       }
     );
+  }
+
+  fermerPopup() {
+    this.dialogRef.close();
   }
 
 }
