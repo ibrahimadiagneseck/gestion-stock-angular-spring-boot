@@ -139,10 +139,16 @@
                 <mat-icon>search</mat-icon>
               </span>
             </div>
-            <input class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
-              aria-label="Search"
-              style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
+            <input #searchBox (input)="search(searchBox.value)" class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
+              aria-label="Search" style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
+
+            </div>
+            <div style="position: absolute; background-color: #e7e7e7;">
+              <a *ngFor="let vehicle of vehicules$ | async" (click)="popupDetail(vehicle)" style="cursor: pointer; display: block; color: #f0dd99; background-color: #fff; margin: 5px; text-decoration: none;">
+                  {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
+              </a>
           </div>
+
         </div>
 
         <div class="col-5 text-center">

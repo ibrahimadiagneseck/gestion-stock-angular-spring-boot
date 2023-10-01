@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ServicesService } from 'src/app/services/services.service';
 import { IVehicule } from 'src/app/models/vehicule';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-interface1',
@@ -16,8 +17,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
+  // rechercher
+  searchTerms = new Subject<string>();
+  vehicules$!: Observable<IVehicule[]>;
+
+
   vehicules: IVehicule[] = [];
 
+  // tableau
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -48,7 +55,25 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.recupererVehicules();
+
+    // rechercher
+    this.vehicules$ = this.searchTerms.pipe(
+      // {...."ab"..."abz"."ab"...."abc"......}
+      debounceTime(300),
+      // {......"ab"...."ab"...."abc"......}
+      distinctUntilChanged(),
+      // {......"ab"..........."abc"......}
+      switchMap((term) => this.servicesService.searchVehiculeList(term, this.vehicules))
+      // {.....List(ab)............List(abc)......}
+    );
+
   }
+
+  // rechercher
+  search(term: string) {
+    this.searchTerms.next(term);
+  }
+
 
 
   ngAfterViewInit() {
@@ -77,7 +102,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.matDialog.open(
       VehiculeAjouterComponent,
       {
-        width:'70%',
+        width:'75%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
@@ -91,7 +116,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.matDialog.open(
       VehiculeDetailComponent,
       {
-        width:'70%',
+        width:'75%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
