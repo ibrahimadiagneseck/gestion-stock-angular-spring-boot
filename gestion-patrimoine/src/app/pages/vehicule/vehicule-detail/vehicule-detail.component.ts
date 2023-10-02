@@ -40,7 +40,7 @@ export class VehiculeDetailComponent implements OnInit {
 
 
 
-  popupModifier() {
+  popupModifier(element: any) {
     this.matDialog.open(
       VehiculeModifierComponent,
       {
@@ -48,7 +48,7 @@ export class VehiculeDetailComponent implements OnInit {
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
-          concat: []
+          element
         }
       }
     );

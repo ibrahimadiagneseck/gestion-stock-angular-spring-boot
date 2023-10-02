@@ -1,6 +1,7 @@
 <div class="card shadow">
 
-  <div class="card-header d-flex justify-content-center fw-bold bg-myprimary fs-5">
+  <div class="card-header d-flex justify-content-center fw-bold bg-myprimary fs-4">
+
     Ajouter un vehicule
   </div>
 
@@ -34,7 +35,7 @@
 
           <select formControlName="couleur"
             class="text-input form-select bg-mywhite border border-myprimary px-1 text-uppercase">
-            <option selected>Selectionner une couleur</option>
+            <option  value="Selectionner une couleur"selected>Selectionner une couleur</option>
             <option value="Blanche">Blanche</option>
             <option value="Noire">Noire</option>
             <option value="Grise">Gris</option>
@@ -98,8 +99,8 @@
             Transmission
           </label>
           <select formControlName="transmission"
-            class="text-input form-select display-4 bg-mywhite border border-myprimary px-0 text-uppercase">
-            <option selected>Selectionner une transmission</option>
+            class="text-input form-select display-4 bg-mywhite border border-myprimary px-1 text-uppercase">
+            <option value="Selectionner une transmission" selected>Selectionner une transmission</option>
             <option value="Automatique">Automatique</option>
             <option value="Semi Automatique"> Semi Automatique</option>
             <option value="Manuel">Manuelle</option>
@@ -119,7 +120,7 @@
           </label>
           <select formControlName="energie"
             class="text-input form-select bg-mywhite border border-myprimary px-1 text-uppercase">
-            <option selected>Selectionner une energie</option>
+            <option value="Selectionner une energie" selected>Selectionner une energie</option>
             <option value="Essence">Essence</option>
             <option value="Diesel">Diesel</option>
             <option value="Électricitée">Électricitée</option>
@@ -183,7 +184,7 @@
           </label>
           <select formControlName="etat"
             class="text-input form-select bg-mywhite border border-myprimary px-1 text-uppercase">
-            <option selected>Selectionner un etat</option>
+            <option value="Selectionner un etat" selected>Selectionner un etat</option>
             <option value="Usagé">Usagé</option>
             <option value="Neuf">Neuf</option>
             <option value="Accidenté">Accidenté</option>
@@ -209,7 +210,7 @@
           </label>
           <select formControlName="marque"
             class="text-input form-select bg-mywhite border border-myprimary px-1 text-uppercase">
-            <option selected>Selectionner une marque </option>
+            <option  value="Selectionner une marque"selected>Selectionner une marque </option>
             <option value="Toyota">Toyota</option>
             <option value="Volkswagen">Volkswagen</option>
             <option value="Ford">Ford</option>
@@ -263,7 +264,7 @@
           </label>
           <select formControlName="typeVehicule"
             class="text-input form-select px-1 bg-mywhite border border-myprimary text-uppercase">
-            <option selected>Selectionner un type vehicule</option>
+            <option value="Selectionner un type vehicule" selected>Selectionner un type vehicule</option>
             <option value="Voiture">Voiture</option>
             <option value="Camion">Camion</option>
             <option value="Moto">Moto</option>
@@ -289,12 +290,13 @@
 
       <div class="row mt-5">
         <div class="col-12 text-end">
-          <button (click)="ajouterVehicule()" type="submit" [disabled]="vehiculeForm.invalid"
-            class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
-            Valider
+          <button type="submit" [disabled]="vehiculeForm.invalid"
+            class="btn btn-myprimary fw-bold w-25 mx-1" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+            VALIDER
           </button>
 
-          <button (click)="fermerPopup()" class="btn btn-mysecondary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+          <button (click)="popupFermer()" type="reset" class="btn btn-mysecondary fw-bold w-25 mx-3" data-bs-toggle="tooltip"
+            title="cliquer ici pour retourner">
             RETOUR
           </button>
         </div>
@@ -302,6 +304,9 @@
 
     </form>
 
+      
+      
+      
   </div>
 
 </div>
