@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { VehiculeModifierComponent } from '../vehicule-modifier/vehicule-modifier.component';
 import { ServicesService } from 'src/app/services/services.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -14,6 +15,7 @@ export class VehiculeDetailComponent implements OnInit {
   vehicule: any;
 
   constructor(
+    private router: Router,
     // private dialogService: DialogService,
     private servicesService: ServicesService,
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
@@ -30,6 +32,7 @@ export class VehiculeDetailComponent implements OnInit {
     this.servicesService.deleteVehicule(idVehicule).subscribe({
       next: () => {
         this.fermerPopup();
+        this.actualiserPage();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
@@ -55,6 +58,13 @@ export class VehiculeDetailComponent implements OnInit {
 
   fermerPopup() {
     this.dialogRef.close();
+  }
+
+  actualiserPage() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['gestion-vehicule']);
+
   }
 
 }

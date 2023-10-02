@@ -128,7 +128,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
         this.dataSource.paginator = this.paginator;
 
-        this.actualiserPage();
+        // this.actualiserPage();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
