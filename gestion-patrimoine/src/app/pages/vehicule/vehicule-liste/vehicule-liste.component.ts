@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,8 +17,31 @@ import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap 
 })
 export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
-  focusOnInput: boolean = true;
-  dataAvailable: boolean = true;
+  focusOnInput: boolean = false;
+
+
+
+  @ViewChild('monDiv', { static: true }) monDiv: ElementRef | undefined;
+
+  divClique() {
+    // Code à exécuter lorsque l'élément <div> est cliqué
+    // Par exemple, vous pouvez modifier une variable ou déclencher une action
+    // console.log('L\'élément <div> a été cliqué !');
+
+    this.focusOnInput = true;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    // Vérifie si le clic a eu lieu en dehors de l'élément monDiv
+    if (!this.monDiv?.nativeElement.contains(event.target)) {
+      // Code à exécuter lorsque le clic est en dehors de monDiv
+      // console.log('Clic en dehors de monDiv détecté.');
+
+      this.focusOnInput = false;
+    }
+  }
+
 
 
 
@@ -32,12 +55,18 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   // tableau
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = [
+    "id",
+    "numeroChassis",
+    "numeroMatricule",
+    "modele",
+    "couleur"
+  ];
 
   constructor(
     // private router: Router,
     // private route: ActivatedRoute,
     private servicesService: ServicesService,
-    // private dialogService: DialogService,
     private matDialog: MatDialog,
     private el: ElementRef, private renderer: Renderer2
   ) { }
@@ -87,61 +116,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    const searchInput = document.getElementById('searchInput') as HTMLInputElement;
-    const suggestionList = document.getElementById('suggestionList');
-
-    // Liste de suggestions (peut être dynamique en fonction de votre application)
-    const suggestions = [
-      'Proposition 1',
-      'Proposition 2',
-      'Proposition 3',
-      'Proposition 4',
-      'Proposition 5',
-    ];
-
-    // Fonction pour mettre à jour la liste de suggestions
-    function updateSuggestions() {
-      const inputValue = searchInput.value.toLowerCase();
-      suggestionList!.innerHTML = '';
-
-      // suggestions.forEach(suggestion => {
-      //   if (suggestion.toLowerCase().includes(inputValue)) {
-      //     const li = document.createElement('li');
-      //     li.textContent = suggestion;
-      //     suggestionList!.appendChild(li);
-      //   }
-      // });
-
-      // if (suggestionList !== null) {
-      //   if (suggestionList.childElementCount === 0) {
-      //     suggestionList!.style.display = 'none';
-      //   } else {
-      //     suggestionList!.style.display = 'block';
-      //   }
-      // }
-
-
-      // Si la zone de recherche est vide, masquer la liste de suggestions
-      if (inputValue === '') {
-        suggestionList!.style.display = 'none';
-      } else {
-        suggestionList!.style.display = 'block';
-      }
-    }
-
-    // Écouteur d'événement pour la saisie dans la zone de recherche
-    searchInput.addEventListener('input', updateSuggestions);
-
-    // Écouteur d'événement pour le blur de la zone de recherche
-    searchInput.addEventListener('blur', () => {
-      // Masquer la liste de suggestions lorsque l'input perd le focus
-      suggestionList!.style.display = 'none';
-    });
-
-
-
-
-
     // menu
     const coll = this.el.nativeElement.getElementsByClassName("collapsible");
     for (let i = 0; i < coll.length; i++) {
@@ -157,6 +131,8 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+
 
   popupAjouter() {
     this.matDialog.open(
@@ -187,17 +163,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   }
 
 
-
-
-  // tableau
-
-  displayedColumns: string[] = [
-    "id",
-    "numeroChassis",
-    "numeroMatricule",
-    "modele",
-    "couleur"
-  ];
 
 
 }

@@ -131,9 +131,9 @@
     <div class="container py-4" style="text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
       <div class="row">
 
-        <div class="col-4">
+        <div #monDiv (click)="divClique()" class="col-4">
 
-          <!-- <div class="input-group" style=" width: 100%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
+          <div class="input-group" style=" width: 100%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
             <div class="input-group-prepend">
               <span class="input-group-text"
                 style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
@@ -141,35 +141,23 @@
               </span>
             </div>
 
-            <input matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
+            <!-- <input (focus)="focusOnInput = true" (blur)="focusOnInput = false" matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
+              class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
+              aria-label="Search"
+              style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;"> -->
+
+              <input matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
               class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
               aria-label="Search"
               style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
           </div>
 
-          <div style="position: absolute; background-color: #e7e7e7;">
+          <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
             <a *ngFor="let vehicle of vehicules$ | async" (click)="popupDetail(vehicle)"
               style="cursor: pointer; display: block; color: #f0dd99; background-color: #fff; margin: 5px; text-decoration: none;">
               {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
             </a>
-          </div> -->
-
-
-          <!-- <div>
-            <input type="text" id="searchInput" placeholder="Rechercher...">
-            <ul id="suggestionList"></ul>
-          </div> -->
-
-          <div>
-            <input matInput (focus)="focusOnInput = true" (blur)="focusOnInput = false" (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
-                   type="text" id="searchInput" placeholder="Rechercher...">
-            <ul *ngIf="dataAvailable && !focusOnInput" id="suggestionList">
-              <li *ngFor="let vehicle of vehicules$ | async">
-                {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
-              </li>
-            </ul>
           </div>
-
 
 
 
