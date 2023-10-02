@@ -47,8 +47,6 @@ export class VehiculeDetailComponent implements OnInit {
       VehiculeModifierComponent,
       {
         width:'75%',
-        enterAnimationDuration:'1000ms',
-        exitAnimationDuration:'2000ms',
         data: {
           element
         }
