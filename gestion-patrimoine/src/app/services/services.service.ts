@@ -16,30 +16,6 @@ export class ServicesService {
   ) { }
 
 
-  searchVehiculeList(term: string, listeVehicules: IVehicule[]): Observable<IVehicule[]> {
-    if (term.length <= 1) {
-      return of([]);
-    }
-
-    // Filtrer la liste de vehicule en fonction du terme de recherche
-    const filteredVehicule = listeVehicules.filter((vehicule) =>
-      this.doesVehiculeMatchTerm(vehicule, term)
-    );
-
-    return of(filteredVehicule);
-  }
-
-  private doesVehiculeMatchTerm(vehicule: IVehicule, term: string): boolean {
-    // Vérifier si le terme de recherche correspond à n'importe lequel des attributs du Pokémon
-    const termLowerCase = term.toLowerCase();
-    return (
-      vehicule.couleur.toLowerCase().includes(termLowerCase) ||
-      vehicule.transmission.toLowerCase().includes(termLowerCase) ||
-      vehicule.modele.toLowerCase().includes(termLowerCase)
-      // Ajoutez d'autres attributs à vérifier si nécessaire
-    );
-  }
-
 
 
   //  CRUD UTILISATEUR

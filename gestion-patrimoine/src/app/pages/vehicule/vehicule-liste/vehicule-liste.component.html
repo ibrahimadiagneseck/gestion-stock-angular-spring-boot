@@ -9,8 +9,7 @@
         </div>
 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 p-2 d-flex align-items-center justify-content-end">
-          <div ngbDropdown class="bg-mywhite rounded-pill"
-            style="width: 30%; height: 80%; box-shadow: #E7C133 0px 10px 20px -10px, #E7C133 0px 10px 20px -15px, #E7C133 0px -2px 6px 0px inset;">
+          <div ngbDropdown class="bg-mywhite rounded-pill" style="width: 30%; height: 80%; box-shadow: #E7C133 0px 10px 20px -10px, #E7C133 0px 10px 20px -15px, #E7C133 0px -2px 6px 0px inset;">
 
             <button class="btn btn-primary rounded-pill w-100 dropdown-button" ngbDropdownToggle
               id="dropdownMenuButton1">
@@ -38,13 +37,14 @@
   <div id="sidebar">
     <div class="container-fluid bg-mywhite h-100">
       <div class="row">
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
 
+        <ul style="list-style-type: none; margin: 0; padding: 0;">
           <li>
             <button class="collapsible menu-button">
               <mat-icon class="me-4">assignment</mat-icon> Gestion des stocks <span
                 class="fa-solid fa-chevron-down ms-auto"></span>
             </button>
+
             <div class="content">
               <button class="menu-button" href="#">
                 Gestion des véhicules
@@ -58,33 +58,36 @@
             </div>
           </li>
 
-
-
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">assignment</mat-icon> Gestion des fournisseurs
             </button>
           </li>
+
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">assignment</mat-icon> Gestion des commandes
             </button>
           </li>
+
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">poll</mat-icon> Analyse et rapports
             </button>
           </li>
+
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">assignment</mat-icon> Gestion des demandes
             </button>
           </li>
+
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">open_in_new</mat-icon> retours et réparations
             </button>
           </li>
+
           <li>
             <button class="menu-button" href="#">
               <mat-icon class="me-4">send</mat-icon> Transactions
@@ -96,6 +99,7 @@
               <mat-icon class="me-4">assignment</mat-icon> Gestion des utilisateurs <i
                 class="fa-solid fa-chevron-down ms-auto"></i>
             </button>
+
             <div class="content">
               <button class="menu-button" href="#">
                 Gestion des ...
@@ -108,12 +112,11 @@
               </button>
             </div>
           </li>
-
         </ul>
+
       </div>
     </div>
   </div>
-
 
 
 
@@ -132,7 +135,6 @@
       <div class="row">
 
         <div #monDiv (click)="divClique()" class="col-4">
-
           <div class="input-group" style=" width: 100%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
             <div class="input-group-prepend">
               <span class="input-group-text"
@@ -146,7 +148,7 @@
               aria-label="Search"
               style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;"> -->
 
-              <input matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
+            <input matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
               class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
               aria-label="Search"
               style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
@@ -158,26 +160,18 @@
               {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
             </a>
           </div>
-
-
-
         </div>
 
         <div class="col-5 text-center">
-          <span class="fw-bolder">
-          </span>
+
         </div>
 
         <div class="col-3 d-flex justify-content-end">
-
           <span (click)="popupAjouter()" class="material-icons icon-button">add_circle_outline</span>
           <i class="fa-regular fa-file-excel icon-button ms-3"></i>
           <i class="fa-regular fa-file-pdf icon-button ms-2"></i>
-          <!-- <span class="material-icons icon-button">picture_as_pdf</span> -->
-          <!-- <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-pdf fs-3"></i></button>
-          <button class="fw-bold mx-1 bg-mywhite shadow" style="border: none;"><i class="fa-regular fa-file-excel fs-3"></i></button> -->
-
         </div>
+
       </div>
     </div>
 
@@ -202,7 +196,6 @@
         </mat-paginator>
       </div>
     </div>
-
 
   </main>
 

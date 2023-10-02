@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { VehiculeModifierComponent } from '../vehicule-modifier/vehicule-modifier.component';
-import { IVehicule } from 'src/app/models/vehicule';
 import { ServicesService } from 'src/app/services/services.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -44,7 +43,7 @@ export class VehiculeDetailComponent implements OnInit {
     this.matDialog.open(
       VehiculeModifierComponent,
       {
-        width:'70%',
+        width:'75%',
         enterAnimationDuration:'1000ms',
         exitAnimationDuration:'2000ms',
         data: {
