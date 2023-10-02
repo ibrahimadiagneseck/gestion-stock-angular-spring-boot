@@ -25,7 +25,7 @@ export class VehiculeAjouterComponent implements OnInit {
   public vehiculeForm!: FormGroup;
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private serviceService: ServicesService,
     private validationsService: ValidationsService,
     public dialogRef: MatDialogRef<VehiculeAjouterComponent>
@@ -35,6 +35,7 @@ export class VehiculeAjouterComponent implements OnInit {
     this.serviceService.postVehicule(this.vehiculeForm.value).subscribe({
       next: (donnee: IVehicule) => {
         this.popupFermer();
+        this.actualiserPage();
       },
       error: (erreurs: any) => {
         console.log(erreurs);
@@ -103,5 +104,12 @@ export class VehiculeAjouterComponent implements OnInit {
 
   popupFermer() {
     this.dialogRef.close();
+  }
+
+  actualiserPage() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['gestion-vehicule']);
+
   }
 }

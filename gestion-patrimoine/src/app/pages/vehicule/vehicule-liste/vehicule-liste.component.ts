@@ -10,6 +10,7 @@ import { IVehicule } from 'src/app/models/vehicule';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { ValidationsService } from 'src/app/services/validations.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interface1',
@@ -67,7 +68,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   /* ----------------------------------------------------------------------------------------- */
 
   constructor(
-    // private router: Router,
+    private router: Router,
     // private route: ActivatedRoute,
     private validationsService: ValidationsService,
     private servicesService: ServicesService,
@@ -126,6 +127,8 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
         this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
         this.dataSource.paginator = this.paginator;
+
+        this.actualiserPage();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
@@ -164,7 +167,12 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   }
 
 
+  actualiserPage() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['gestion-vehicule']);
 
+  }
 
 }
 
