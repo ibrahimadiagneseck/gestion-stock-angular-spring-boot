@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champ de recherche avec suggestions</title>
+
+    <style>
+        
+
+#toggleMenu:focus {
+  outline: none;
+}
+button:focus + .menu {
+  display: block;
+}
+.menu {
+  display: none;
+}
+.menu:focus {
+  display: none;
+}
+
+
+
+
+#focus-example > .extra {
+  display: none;
+}
+#focus-example:focus > .extra {
+  display: block;
+}
+    </style>
+</head>
+<body>
+
+
+
+    <div id="toggleMenu" tabindex="0">
+            <button type="button">Menu</button>
+            <ul class="menu" tabindex="1">
+              <li>Home</li>
+              <li>About Me</li>
+              <li>Contacts</li>
+            </ul>
+          </div>
+
+          <div id="focus-example" tabindex="0">
+            <div>Focus me!</div>
+            <div class="extra">Hooray!</div>
+          </div>
+
+
+
+
+
+
+    <div>
+        <input type="text" id="searchInput" placeholder="Rechercher...">
+        <ul id="suggestionList"></ul>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+const suggestionList = document.getElementById('suggestionList');
+
+// Liste de suggestions (peut être dynamique en fonction de votre application)
+const suggestions = [
+    'Proposition 1',
+    'Proposition 2',
+    'Proposition 3',
+    'Proposition 4',
+    'Proposition 5',
+];
+
+// Fonction pour mettre à jour la liste de suggestions
+function updateSuggestions() {
+    const inputValue = searchInput.value.toLowerCase();
+    suggestionList.innerHTML = '';
+
+    suggestions.forEach(suggestion => {
+        if (suggestion.toLowerCase().includes(inputValue)) {
+            const li = document.createElement('li');
+            li.textContent = suggestion;
+            suggestionList.appendChild(li);
+        }
+    });
+
+    // Si la zone de recherche est vide, masquer la liste de suggestions
+    if (inputValue === '') {
+        suggestionList.style.display = 'none';
+    } else {
+        suggestionList.style.display = 'block';
+    }
+}
+
+// Écouteur d'événement pour la saisie dans la zone de recherche
+searchInput.addEventListener('input', updateSuggestions);
+
+// Écouteur d'événement pour le blur de la zone de recherche
+searchInput.addEventListener('blur', () => {
+    // Masquer la liste de suggestions lorsque l'input perd le focus
+    suggestionList.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+<!-- import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
+@Component({
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
+})
+export class SearchComponent implements OnInit {
+  @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
+  @ViewChild('suggestionList') suggestionList: ElementRef<HTMLUListElement>;
+
+  // Liste de suggestions (peut être dynamique en fonction de votre application)
+  suggestions: string[] = [
+    'Proposition 1',
+    'Proposition 2',
+    'Proposition 3',
+    'Proposition 4',
+    'Proposition 5',
+  ];
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  // Fonction pour mettre à jour la liste de suggestions
+  updateSuggestions(): void {
+    const inputValue = this.searchInput.nativeElement.value.toLowerCase();
+    this.suggestionList.nativeElement.innerHTML = '';
+
+    this.suggestions.forEach((suggestion) => {
+      if (suggestion.toLowerCase().includes(inputValue)) {
+        const li = document.createElement('li');
+        li.textContent = suggestion;
+        this.suggestionList.nativeElement.appendChild(li);
+      }
+    });
+
+    // Si la zone de recherche est vide, masquer la liste de suggestions
+    if (inputValue === '') {
+      this.suggestionList.nativeElement.style.display = 'none';
+    } else {
+      this.suggestionList.nativeElement.style.display = 'block';
+    }
+  }
+
+  // Écouteur d'événement pour la saisie dans la zone de recherche
+  onInput(event: Event): void {
+    this.updateSuggestions();
+  }
+
+  // Écouteur d'événement pour le blur de la zone de recherche
+  onBlur(): void {
+    // Masquer la liste de suggestions lorsque l'input perd le focus
+    this.suggestionList.nativeElement.style.display='none';
+}
+}
+
+
+<div>
+            <input type="text" id="searchInput" placeholder="Rechercher...">
+            <ul id="suggestionList"></ul>
+</div> -->
