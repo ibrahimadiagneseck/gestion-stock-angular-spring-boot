@@ -189,7 +189,9 @@ li a {
 /* ----------------------------------------------------------------------------------------- */
 .icon-button {
   cursor: pointer;
-  font-size: 48px;
+  width: 52px;
+  height: 52px;
+  /* font-size: 48px; */
   background-color: white;
   color: #000;
 }

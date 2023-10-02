@@ -65,6 +65,13 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     "modele",
     "couleur"
   ];
+  displayedColumnsCustom: string[] = [
+    "N°",
+    "N° châssis",
+    "N° matricule",
+    "Modele",
+    "Couleur"
+  ];
   /* ----------------------------------------------------------------------------------------- */
 
   constructor(

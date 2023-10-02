@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ErreurComponent } from './pages/erreur/erreur.component';
-import { VehiculeListeComponent } from './pages/vehicule/vehicule-liste/vehicule-liste.component';
+import { VehiculeListeComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-liste/vehicule-liste.component';
 
 const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },

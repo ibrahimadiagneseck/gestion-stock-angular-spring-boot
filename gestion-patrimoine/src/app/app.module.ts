@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ErreurComponent } from './pages/erreur/erreur.component';
-import { VehiculeListeComponent } from './pages/vehicule/vehicule-liste/vehicule-liste.component';
-import { VehiculeAjouterComponent } from './pages/vehicule/vehicule-ajouter/vehicule-ajouter.component';
-import { VehiculeDetailComponent } from './pages/vehicule/vehicule-detail/vehicule-detail.component';
-import { VehiculeModifierComponent } from './pages/vehicule/vehicule-modifier/vehicule-modifier.component';
+import { VehiculeListeComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-liste/vehicule-liste.component';
+import { VehiculeAjouterComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-ajouter/vehicule-ajouter.component';
+import { VehiculeDetailComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-detail/vehicule-detail.component';
+import { VehiculeModifierComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-modifier/vehicule-modifier.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import localeFr from '@angular/common/locales/fr';
+
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
