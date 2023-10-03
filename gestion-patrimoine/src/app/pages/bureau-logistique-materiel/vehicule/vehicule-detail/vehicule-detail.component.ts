@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { VehiculeModifierComponent } from '../vehicule-modifier/vehicule-modifier.component';
-import { ServicesService } from 'src/app/services/services.service';
+import { VehiculeService } from 'src/app/services/vehicule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -15,9 +15,9 @@ export class VehiculeDetailComponent implements OnInit {
   vehicule: any;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     // private dialogService: DialogService,
-    private servicesService: ServicesService,
+    private vehiculeService: VehiculeService,
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
     private matDialog: MatDialog
@@ -29,10 +29,9 @@ export class VehiculeDetailComponent implements OnInit {
   }
 
   supprimerVehiculeById(idVehicule: number) {
-    this.servicesService.deleteVehicule(idVehicule).subscribe({
+    this.vehiculeService.deleteVehicule(idVehicule).subscribe({
       next: () => {
         this.fermerPopup();
-        this.actualiserPage();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
@@ -46,7 +45,7 @@ export class VehiculeDetailComponent implements OnInit {
     this.matDialog.open(
       VehiculeModifierComponent,
       {
-        width:'75%',
+        width:'80%',
         data: {
           element
         }
@@ -56,13 +55,6 @@ export class VehiculeDetailComponent implements OnInit {
 
   fermerPopup() {
     this.dialogRef.close();
-  }
-
-  actualiserPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['gestion-vehicule']);
-
   }
 
 }

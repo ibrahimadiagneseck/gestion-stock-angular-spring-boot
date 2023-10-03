@@ -17,11 +17,14 @@
 
           <input id="numeroChassis" name="numeroChassis" type="number" formControlName="numeroChassis" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroChassis')?.touched || vehiculeForm.get('numeroChassis')?.dirty) && !vehiculeForm.get('numeroChassis')?.valid,
           'is-valid': vehiculeForm.get('numeroChassis')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase" placeholder="Entrer le N° de châssis">
 
             <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('numeroChassis')?.errors?.['required']">
-              N° de châssis (Obligatoire)
+              <sup class="fw-bold">*</sup> N° de châssis (Obligatoire)
+            </span>
+            <span *ngIf="vehiculeForm.get('numeroChassis')?.hasError('pattern')">
+              <sup class="fw-bold">*</sup> 5 chiffres au minimum
             </span>
           </div>
         </div>
@@ -36,11 +39,11 @@
             <option [value]="selectCouleur" selected>{{ selectCouleur }}</option>
             <option value="Blanche">Blanche</option>
             <option value="Noire">Noire</option>
-            <option value="Grise">Gris</option>
+            <option value="Grise">Grise</option>
             <option value="Rouge">Rouge</option>
             <option value="Orange">Orange</option>
             <option value="Verte">Verte</option>
-            <option value="Bleu">Bleu</option>
+            <option value="Bleue">Bleue</option>
             <option value="Rose">Rose</option>
             <option value="Marron">Marron</option>
             <option value="Jaune">Jaune</option>
@@ -49,12 +52,12 @@
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('couleur')?.hasError('required')">
-              Couleur (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('couleur')?.hasError('invalideCouleurSelection')">
-              Veuillez sélectionner une couleur
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('couleur')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Couleur (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('couleur')?.hasError('invalideCouleurSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner une couleur
+            </span> -->
           </div>
         </div>
 
@@ -69,7 +72,7 @@
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateLivraison')?.errors?.['required']">
-              Date livraison (Obligatoire)
+              <sup class="fw-bold">*</sup> Date livraison (Obligatoire)
             </span>
           </div>
         </div>
@@ -86,11 +89,14 @@
 
           <input id="numeroMatricule" name="numeroMatricule" type="number" formControlName="numeroMatricule" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroMatricule')?.touched || vehiculeForm.get('numeroMatricule')?.dirty) && !vehiculeForm.get('numeroMatricule')?.valid,
           'is-valid': vehiculeForm.get('numeroMatricule')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase" placeholder="Entrer le N° de matricule">
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('numeroMatricule')?.errors?.['required']">
-              N° matricule (Obligatoire)
+              <sup class="fw-bold">*</sup> N° matricule (Obligatoire)
+            </span>
+            <span *ngIf="vehiculeForm.get('numeroMatricule')?.hasError('pattern')">
+              <sup class="fw-bold">*</sup> 5 chiffres au minimum
             </span>
           </div>
         </div>
@@ -101,20 +107,20 @@
           </label>
 
           <select formControlName="transmission" id="transmission"
-            class="text-input form-select display-4 bg-mywhite border border-myprimary px-1 text-uppercase">
-            <option [value]="selectTransmission" selected>{{ selectTransmission}}</option>
+            class="text-input form-select bg-mywhite border border-myprimary px-1 text-uppercase">
+            <option [value]="selectTransmission" selected>{{ selectTransmission }}</option>
             <option value="Automatique">Automatique</option>
-            <option value="Semi Automatique"> Semi Automatique</option>
-            <option value="Manuel">Manuelle</option>
+            <option value="Semi-Automatique">Semi-Automatique</option>
+            <option value="Manuelle">Manuelle</option>
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('transmission')?.hasError('required')">
-              Transmission (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('transmission')?.hasError('invalideTransmissionSelection')">
-              Veuillez sélectionner une transmission
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('transmission')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Transmission (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('transmission')?.hasError('invalideTransmissionSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner une transmission
+            </span> -->
           </div>
         </div>
 
@@ -139,12 +145,12 @@
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('energie')?.hasError('required')">
-              Energie (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('energie')?.hasError('invalideEnergieSelection')">
-              Veuillez sélectionner une energie
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('energie')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Energie (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('energie')?.hasError('invalideEnergieSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner une energie
+            </span> -->
           </div>
         </div>
 
@@ -160,11 +166,11 @@
 
           <input id="modele" name="modele" type="text" formControlName="modele" [ngClass]="{'is-invalid': (vehiculeForm.get('modele')?.touched || vehiculeForm.get('modele')?.dirty) && !vehiculeForm.get('modele')?.valid,
           'is-valid': vehiculeForm.get('modele')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase" placeholder="Entrer le modele">
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('modele')?.errors?.['required']">
-              Modèle (Obligatoire)
+              <sup class="fw-bold">*</sup> Modèle (Obligatoire)
             </span>
           </div>
         </div>
@@ -180,7 +186,7 @@
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateFabrication')?.errors?.['required']">
-              Date fabrication (Obligatoire)
+              <sup class="fw-bold">*</sup> Date fabrication (Obligatoire)
             </span>
           </div>
         </div>
@@ -199,12 +205,12 @@
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('etat')?.hasError('required')">
-              Etat (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('etat')?.hasError('invalideEtatSelection')">
-              Veuillez sélectionner un etat
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('etat')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Etat (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('etat')?.hasError('invalideEtatSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner un etat
+            </span> -->
           </div>
         </div>
 
@@ -246,12 +252,12 @@
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('marque')?.hasError('required')">
-              Marque (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('marque')?.hasError('invalideMarqueSelection')">
-              Veuillez sélectionner une marque
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('marque')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Marque (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('marque')?.hasError('invalideMarqueSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner une marque
+            </span> -->
           </div>
         </div>
 
@@ -266,7 +272,7 @@
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateCommande')?.errors?.['required']">
-              Date commande (Obligatoire)
+              <sup class="fw-bold">*</sup> Date commande (Obligatoire)
             </span>
           </div>
         </div>
@@ -293,12 +299,12 @@
           </select>
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('typeVehicule')?.hasError('required')">
-              Type du vehicule (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('typeVehicule')?.hasError('invalideTypeVehiculeSelection')">
-              Veuillez sélectionner un type du vehicule
-            </span>
+            <!-- <span *ngIf="vehiculeForm.get('typeVehicule')?.hasError('required')">
+              <sup class="fw-bold">*</sup> Type du vehicule (Obligatoire)
+            </span> -->
+            <!-- <span *ngIf="vehiculeForm.get('typeVehicule')?.hasError('invalideTypeVehiculeSelection')">
+              <sup class="fw-bold">*</sup> Veuillez sélectionner un type du vehicule
+            </span> -->
           </div>
         </div>
 

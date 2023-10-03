@@ -4,12 +4,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { VehiculeAjouterComponent } from '../vehicule-ajouter/vehicule-ajouter.component';
 import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
-import { MatIconModule } from '@angular/material/icon';
-import { ServicesService } from 'src/app/services/services.service';
+import { VehiculeService } from 'src/app/services/vehicule.service';
 import { IVehicule } from 'src/app/models/vehicule';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
-import { ValidationsService } from 'src/app/services/validations.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -77,8 +75,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     // private route: ActivatedRoute,
-    private validationsService: ValidationsService,
-    private servicesService: ServicesService,
+    private vehiculeService: VehiculeService,
     private matDialog: MatDialog,
     private el: ElementRef, private renderer: Renderer2
   ) { }
@@ -116,7 +113,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       // {......"ab"...."ab"...."abc"......}
       distinctUntilChanged(),
       // {......"ab"..........."abc"......}
-      switchMap((term) => this.validationsService.searchVehiculeList(term, this.vehicules))
+      switchMap((term) => this.vehiculeService.searchVehiculeList(term, this.vehicules))
       // {.....List(ab)............List(abc)......}
     );
     /* ----------------------------------------------------------------------------------------- */
@@ -128,7 +125,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   }
 
   recupererVehicules() {
-    this.servicesService.getVehicules().subscribe({
+    this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
         this.vehicules = donnees;
 
@@ -152,9 +149,9 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.matDialog.open(
       VehiculeAjouterComponent,
       {
-        width: '75%',
-        enterAnimationDuration: '1000ms',
-        exitAnimationDuration: '2000ms'
+        width: '80%',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms'
       }
     );
   }
@@ -163,9 +160,9 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.matDialog.open(
       VehiculeDetailComponent,
       {
-        width: '75%',
-        enterAnimationDuration: '1000ms',
-        exitAnimationDuration: '2000ms',
+        width: '80%',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms',
         data: {
           element
         }
@@ -178,7 +175,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['gestion-vehicule']);
-
   }
 
 }

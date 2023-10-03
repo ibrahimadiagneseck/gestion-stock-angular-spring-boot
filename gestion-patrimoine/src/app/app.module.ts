@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+
 import localeFr from '@angular/common/locales/fr';
 
 
@@ -65,6 +66,7 @@ registerLocaleData(localeFr, 'fr');
     MatIconModule,
     MatDividerModule,
     MatDialogModule,
+
 
     // MDCDialog
   ],

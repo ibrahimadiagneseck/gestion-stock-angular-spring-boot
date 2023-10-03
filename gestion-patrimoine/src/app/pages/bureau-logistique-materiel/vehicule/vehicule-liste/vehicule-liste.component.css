@@ -191,9 +191,10 @@ li a {
   cursor: pointer;
   width: 52px;
   height: 52px;
+  margin-left: 10px;
   /* font-size: 48px; */
-  background-color: white;
-  color: #000;
+  /* background-color: white; */
+  /* color: #000; */
 }
 
 .icon-button:hover {

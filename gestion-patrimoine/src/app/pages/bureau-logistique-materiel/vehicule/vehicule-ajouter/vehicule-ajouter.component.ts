@@ -4,8 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectEnum } from 'src/app/enum/select-enum';
 import { IVehicule } from 'src/app/models/vehicule';
-import { ServicesService } from 'src/app/services/services.service';
-import { ValidationsService } from 'src/app/services/validations.service';
+import { VehiculeService } from 'src/app/services/vehicule.service';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-ajouter',
@@ -25,17 +25,16 @@ export class VehiculeAjouterComponent implements OnInit {
   public vehiculeForm!: FormGroup;
 
   constructor(
-    private router: Router,
-    private serviceService: ServicesService,
-    private validationsService: ValidationsService,
+    // private router: Router,
+    private vehiculeService: VehiculeService,
+    private validationService: ValidationService,
     public dialogRef: MatDialogRef<VehiculeAjouterComponent>
   ) {}
 
   AjouterVehicule() {
-    this.serviceService.postVehicule(this.vehiculeForm.value).subscribe({
+    this.vehiculeService.postVehicule(this.vehiculeForm.value).subscribe({
       next: (donnee: IVehicule) => {
         this.popupFermer();
-        this.actualiserPage();
       },
       error: (erreurs: any) => {
         console.log(erreurs);
@@ -45,9 +44,6 @@ export class VehiculeAjouterComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.selectCouleur);
-
-
     this.vehiculeForm = new FormGroup({
 
       numeroChassis: new FormControl(null, [
@@ -56,7 +52,7 @@ export class VehiculeAjouterComponent implements OnInit {
       ]),
       couleur: new FormControl(this.selectCouleur, [
         Validators.required,
-        this.validationsService.validateCouleurSelection
+        this.validationService.validateCouleurSelection
       ]),
       dateLivraison: new FormControl('', [
         Validators.required
@@ -67,11 +63,11 @@ export class VehiculeAjouterComponent implements OnInit {
       ]),
       transmission: new FormControl(this.selectTransmission, [
         Validators.required,
-        this.validationsService.validateTransmissionSelection
+        this.validationService.validateTransmissionSelection
       ]),
       energie: new FormControl(this.selectEnergie, [
         Validators.required,
-        this.validationsService.validateEnergieSelection
+        this.validationService.validateEnergieSelection
       ]),
       modele: new FormControl('', [
         Validators.required
@@ -81,18 +77,18 @@ export class VehiculeAjouterComponent implements OnInit {
       ]),
       etat: new FormControl(this.selectEtat, [
         Validators.required,
-        this.validationsService.validateEtatSelection
+        this.validationService.validateEtatSelection
       ]),
       marque: new FormControl(this.selectMarque, [
         Validators.required,
-        this.validationsService.validateMarqueSelection
+        this.validationService.validateMarqueSelection
       ]),
       dateCommande: new FormControl('', [
         Validators.required
       ]),
       typeVehicule: new FormControl(this.selectTypeVehicule, [
         Validators.required,
-        this.validationsService.validateTypeVehiculeSelection
+        this.validationService.validateTypeVehiculeSelection
       ])
     });
   }
@@ -106,10 +102,4 @@ export class VehiculeAjouterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  actualiserPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['gestion-vehicule']);
-
-  }
 }
