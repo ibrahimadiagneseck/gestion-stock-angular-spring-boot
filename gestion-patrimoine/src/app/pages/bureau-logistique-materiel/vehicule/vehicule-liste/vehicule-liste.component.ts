@@ -171,11 +171,11 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   }
 
 
-  actualiserPage() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['gestion-vehicule']);
-  }
+  // actualiserPage() {
+  //   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  //   this.router.onSameUrlNavigation = 'reload';
+  //   this.router.navigate(['gestion-vehicule']);
+  // }
 
 }
 

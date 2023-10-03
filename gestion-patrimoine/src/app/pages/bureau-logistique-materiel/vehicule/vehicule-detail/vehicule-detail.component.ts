@@ -16,7 +16,6 @@ export class VehiculeDetailComponent implements OnInit {
 
   constructor(
     // private router: Router,
-    // private dialogService: DialogService,
     private vehiculeService: VehiculeService,
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
@@ -31,7 +30,7 @@ export class VehiculeDetailComponent implements OnInit {
   supprimerVehiculeById(idVehicule: number) {
     this.vehiculeService.deleteVehicule(idVehicule).subscribe({
       next: () => {
-        this.fermerPopup();
+
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
@@ -46,6 +45,8 @@ export class VehiculeDetailComponent implements OnInit {
       VehiculeModifierComponent,
       {
         width:'80%',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms',
         data: {
           element
         }

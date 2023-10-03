@@ -31,19 +31,19 @@ export class VehiculeModifierComponent {
   vehicule: any;
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private vehiculeService: VehiculeService,
     private validationService: ValidationService,
-    public dialogRef: MatDialogRef<VehiculeAjouterComponent>,
+    public dialogRef: MatDialogRef<VehiculeModifierComponent>,
+    public dialogRef1: MatDialogRef<VehiculeAjouterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 
   ModifierVehicule() {
-    this.vehiculeService
-      .putVehicule(this.vehiculeForm.value, this.vehicule.element.id)
-      .subscribe({
+    this.vehiculeService.putVehicule(this.vehiculeForm.value, this.vehicule.element.id).subscribe({
         next: (donnee: IVehicule) => {
-          this.popupFermer();
+          this.dialogRef.close();
+
         },
         error: (erreurs: any) => {
           console.log(erreurs);
@@ -108,9 +108,15 @@ export class VehiculeModifierComponent {
     this.ModifierVehicule();
   }
 
-  popupFermer() {
+  fermerPopup() {
     this.dialogRef.close();
   }
+
+  // goToGestionVehicule() {
+  //   this.router.navigate(['gestion-vehicule']);
+  // }
+
+
 
   formatDate(date: string): string {
     // const dateString = '2023-09-21T00:00:00.000+00:00';
