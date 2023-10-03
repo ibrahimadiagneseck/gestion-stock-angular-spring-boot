@@ -57,14 +57,12 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
-    "id",
     "numeroChassis",
     "numeroMatricule",
     "modele",
     "couleur"
   ];
   displayedColumnsCustom: string[] = [
-    "N°",
     "N° châssis",
     "N° matricule",
     "Modele",

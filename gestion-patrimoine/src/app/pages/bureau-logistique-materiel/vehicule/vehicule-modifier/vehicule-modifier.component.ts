@@ -12,6 +12,7 @@ import { IVehicule } from 'src/app/models/vehicule';
 import { ValidationService } from 'src/app/services/validation.service';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { VehiculeAjouterComponent } from '../vehicule-ajouter/vehicule-ajouter.component';
+import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
 
 @Component({
   selector: 'app-modifier',
@@ -19,6 +20,7 @@ import { VehiculeAjouterComponent } from '../vehicule-ajouter/vehicule-ajouter.c
   styleUrls: ['./vehicule-modifier.component.css'],
 })
 export class VehiculeModifierComponent {
+
   selectCouleur: string = SelectEnum.COULEUR;
   selectTransmission: string = SelectEnum.TRANSMISSION;
   selectEnergie: string = SelectEnum.ENERGIE;
@@ -31,24 +33,24 @@ export class VehiculeModifierComponent {
   vehicule: any;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private vehiculeService: VehiculeService,
     private validationService: ValidationService,
     public dialogRef: MatDialogRef<VehiculeModifierComponent>,
-    public dialogRef1: MatDialogRef<VehiculeAjouterComponent>,
+    public dialogRef1: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 
   ModifierVehicule() {
     this.vehiculeService.putVehicule(this.vehiculeForm.value, this.vehicule.element.id).subscribe({
-        next: (donnee: IVehicule) => {
-          this.dialogRef.close();
-
-        },
-        error: (erreurs: any) => {
-          console.log(erreurs);
-        },
-      });
+      next: (donnee: IVehicule) => {
+        this.dialogRef.close();
+        this.dialogRef1.close();
+      },
+      error: (erreurs: any) => {
+        console.log(erreurs);
+      },
+    });
   }
 
   ngOnInit(): void {
@@ -99,7 +101,7 @@ export class VehiculeModifierComponent {
       typeVehicule: new FormControl(this.vehicule.element.typeVehicule, [
         Validators.required,
         this.validationService.validateTypeVehiculeSelection,
-      ]),
+      ])
     });
   }
 

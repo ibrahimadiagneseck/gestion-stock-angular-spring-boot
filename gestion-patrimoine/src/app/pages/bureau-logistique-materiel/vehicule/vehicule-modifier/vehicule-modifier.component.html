@@ -11,22 +11,8 @@
       <div class="row g-4 mb-3">
 
         <div class="col-3 mx-auto">
-          <label for="numeroChassis" class="form-label fw-bold">
-            N° de châssis
-          </label>
-
-          <input id="numeroChassis" name="numeroChassis" type="number" formControlName="numeroChassis" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroChassis')?.touched || vehiculeForm.get('numeroChassis')?.dirty) && !vehiculeForm.get('numeroChassis')?.valid,
-          'is-valid': vehiculeForm.get('numeroChassis')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase" placeholder="Entrer le N° de châssis">
-
-            <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('numeroChassis')?.errors?.['required']">
-              <sup class="fw-bold">*</sup> N° de châssis (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('numeroChassis')?.hasError('pattern')">
-              <sup class="fw-bold">*</sup> 5 chiffres au minimum
-            </span>
-          </div>
+          <span class="fw-bold">N° chassis:</span>
+          <div class="text-input"> {{ vehicule.element.numeroChassis }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -83,22 +69,8 @@
       <div class="row g-4 mb-3">
 
         <div class="col-3 mx-auto">
-          <label for="numeroMatricule" class="form-label fw-bold">
-            N° matricule
-          </label>
-
-          <input id="numeroMatricule" name="numeroMatricule" type="number" formControlName="numeroMatricule" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroMatricule')?.touched || vehiculeForm.get('numeroMatricule')?.dirty) && !vehiculeForm.get('numeroMatricule')?.valid,
-          'is-valid': vehiculeForm.get('numeroMatricule')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase" placeholder="Entrer le N° de matricule">
-
-          <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('numeroMatricule')?.errors?.['required']">
-              <sup class="fw-bold">*</sup> N° matricule (Obligatoire)
-            </span>
-            <span *ngIf="vehiculeForm.get('numeroChassis')?.hasError('pattern')">
-              <sup class="fw-bold">*</sup> 5 chiffres au minimum
-            </span>
-          </div>
+          <span class="fw-bold">N° matricule:</span>
+          <div class="text-input"> {{ vehicule.element.numeroMatricule }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -176,19 +148,8 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="dateFabrication" class="form-label fw-bold">
-            Date fabrication
-          </label>
-
-          <input id="dateFabrication" name="dateFabrication" type="date" formControlName="dateFabrication" [ngClass]="{'is-invalid': (vehiculeForm.get('dateFabrication')?.touched || vehiculeForm.get('dateFabrication')?.dirty) && !vehiculeForm.get('dateFabrication')?.valid,
-          'is-valid': vehiculeForm.get('dateFabrication')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
-
-          <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('dateFabrication')?.errors?.['required']">
-              <sup class="fw-bold">*</sup> Date fabrication (Obligatoire)
-            </span>
-          </div>
+          <span class="fw-bold">Date fabrication:</span>
+          <div class="text-input text-uppercase"> {{ vehicule.element.dateFabrication | date: 'dd MMM yy' }} </div>
         </div>
 
         <div class="col-3 mx-auto">
