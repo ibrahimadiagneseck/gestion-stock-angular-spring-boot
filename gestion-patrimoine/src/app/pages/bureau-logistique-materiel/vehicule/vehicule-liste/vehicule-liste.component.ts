@@ -54,15 +54,18 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
   /* ----------------------------------------------------------------------------------------- */
   // tableau
+  rowNumber: number = 1; // Initialize it with 1
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
+    "N°",
     "numeroChassis",
     "numeroMatricule",
     "modele",
     "couleur"
   ];
   displayedColumnsCustom: string[] = [
+    "N°",
     "N° châssis",
     "N° matricule",
     "Modele",
@@ -127,10 +130,14 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       next: (donnees: IVehicule[]) => {
         this.vehicules = donnees;
 
-        this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
+        // this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
+        this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules.map((item) => ({
+          ...item,
+          rowNumber: this.rowNumber++
+        })));
+
         this.dataSource.paginator = this.paginator;
 
-        // this.actualiserPage();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
