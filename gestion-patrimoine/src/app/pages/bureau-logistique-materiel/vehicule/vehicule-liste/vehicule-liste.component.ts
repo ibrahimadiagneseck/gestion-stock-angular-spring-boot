@@ -62,14 +62,16 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     "numeroChassis",
     "numeroMatricule",
     "modele",
-    "couleur"
+    "couleur",
+    "transmission"
   ];
   displayedColumnsCustom: string[] = [
     "N°",
     "N° châssis",
     "N° matricule",
     "Modele",
-    "Couleur"
+    "Couleur",
+    "Transmission"
   ];
   /* ----------------------------------------------------------------------------------------- */
 
@@ -174,6 +176,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
 
 
   // actualiserPage() {
