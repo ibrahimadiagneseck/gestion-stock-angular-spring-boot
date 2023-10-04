@@ -55,6 +55,11 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   /* ----------------------------------------------------------------------------------------- */
   // tableau
   rowNumber: number = 1; // Initialize it with 1
+  columnsDateFormat: string[] = [
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison"
+  ];
   columnsToHide: string[] = [
     "transmission",
     "dateFabrication",
