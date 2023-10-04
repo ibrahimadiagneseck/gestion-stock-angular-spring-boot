@@ -55,6 +55,15 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   /* ----------------------------------------------------------------------------------------- */
   // tableau
   rowNumber: number = 1; // Initialize it with 1
+  columnsToHide: string[] = [
+    "transmission",
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison",
+    "energie",
+    "etat",
+    "typeVehicule"
+  ];
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
@@ -62,17 +71,33 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     "numeroChassis",
     "numeroMatricule",
     "modele",
+    "marque",
     "couleur",
-    "transmission"
+    "transmission",
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison",
+    "energie",
+    "etat",
+    "typeVehicule"
   ];
   displayedColumnsCustom: string[] = [
     "N°",
     "N° châssis",
     "N° matricule",
     "Modele",
+    "Marque",
     "Couleur",
-    "Transmission"
+    "Transmission",
+    "Date Fabrication",
+    "Date Commande",
+    "Date Livraison",
+    "Energie",
+    "Etat",
+    "Type Vehicule"
+
   ];
+
   /* ----------------------------------------------------------------------------------------- */
 
   constructor(
