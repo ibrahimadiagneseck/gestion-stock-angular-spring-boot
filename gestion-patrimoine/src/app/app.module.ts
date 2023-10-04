@@ -27,6 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import localeFr from '@angular/common/locales/fr';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 
 // the second parameter 'fr' is optional
@@ -67,6 +68,7 @@ registerLocaleData(localeFr, 'fr');
     MatDividerModule,
     MatDialogModule,
 
+    MatTableExporterModule
 
     // MDCDialog
   ],
