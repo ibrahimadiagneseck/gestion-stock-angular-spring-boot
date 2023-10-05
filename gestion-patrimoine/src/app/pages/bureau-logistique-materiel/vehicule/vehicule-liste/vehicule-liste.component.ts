@@ -90,17 +90,16 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     "N°",
     "N° châssis",
     "N° matricule",
-    "Modele",
+    "Modèle",
     "Marque",
     "Couleur",
     "Transmission",
     "Date Fabrication",
     "Date Commande",
     "Date Livraison",
-    "Energie",
-    "Etat",
-    "Type Vehicule"
-
+    "Énergie",
+    "État",
+    "Type Véhicule"
   ];
 
   /* ----------------------------------------------------------------------------------------- */
@@ -134,6 +133,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+
     /* ----------------------------------------------------------------------------------------- */
     this.recupererVehicules();
     /* ----------------------------------------------------------------------------------------- */
@@ -160,7 +160,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   recupererVehicules() {
     this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
-        this.vehicules = donnees;
+        this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
 
         // this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
         this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules.map((item) => ({
@@ -200,9 +200,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         width: '80%',
         enterAnimationDuration: '100ms',
         exitAnimationDuration: '100ms',
-        data: {
-          element
-        }
+        data: element
       }
     );
   }

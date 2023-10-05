@@ -156,7 +156,7 @@
 
           <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
             <a *ngFor="let vehicle of vehicules$ | async" (click)="popupDetail(vehicle)"
-              style="cursor: pointer; display: block; color: #f0dd99; background-color: #fff; margin: 5px; text-decoration: none;">
+              style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
               {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
             </a>
           </div>
@@ -213,7 +213,7 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table> -->
 
-        <table mat-table [dataSource]="dataSource" matTableExporter  #exporter="matTableExporter">
+        <table mat-table [dataSource]="dataSource" matTableExporter #exporter="matTableExporter">
           <!-- Define columns and cells for IVehicule properties -->
           <ng-container *ngFor="let column of displayedColumns let i = index" [matColumnDef]="column">
             <!-- <th mat-header-cell *matHeaderCellDef class="fw-bold"> {{ column }} </th> -->

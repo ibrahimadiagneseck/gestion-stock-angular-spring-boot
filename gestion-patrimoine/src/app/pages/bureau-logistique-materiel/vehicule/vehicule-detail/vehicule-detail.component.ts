@@ -41,15 +41,14 @@ export class VehiculeDetailComponent implements OnInit {
 
 
   popupModifier(element: any) {
+    this.dialogRef.close(); // fermer le popup detail avant
     this.matDialog.open(
       VehiculeModifierComponent,
       {
         width:'80%',
         enterAnimationDuration: '100ms',
         exitAnimationDuration: '100ms',
-        data: {
-          element
-        }
+        data: element
       }
     );
   }
