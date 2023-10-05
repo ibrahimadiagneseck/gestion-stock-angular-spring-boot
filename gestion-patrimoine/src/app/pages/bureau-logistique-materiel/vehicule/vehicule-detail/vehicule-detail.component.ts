@@ -30,7 +30,7 @@ export class VehiculeDetailComponent implements OnInit {
   supprimerVehiculeById(idVehicule: number) {
     this.vehiculeService.deleteVehicule(idVehicule).subscribe({
       next: () => {
-
+        this.dialogRef.close();
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);

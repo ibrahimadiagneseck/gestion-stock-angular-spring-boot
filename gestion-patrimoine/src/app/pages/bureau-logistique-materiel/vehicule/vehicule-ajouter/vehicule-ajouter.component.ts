@@ -48,7 +48,7 @@ export class VehiculeAjouterComponent implements OnInit {
 
       numeroChassis: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^[0-9]{4}$'),
+        Validators.pattern('^[0-9]{5}$'),
       ]),
       couleur: new FormControl(this.selectCouleur, [
         Validators.required,
@@ -59,7 +59,7 @@ export class VehiculeAjouterComponent implements OnInit {
       ]),
       numeroMatricule: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^[0-9]{4}$'),
+        Validators.pattern('^[0-9]{5}$'),
       ]),
       transmission: new FormControl(this.selectTransmission, [
         Validators.required,

@@ -111,7 +111,7 @@ export class VehiculeModifierComponent {
 
   fermerPopup() {
     this.dialogRef.close();
-    this.matDialog.open(
+    const dialogRef = this.matDialog.open(
       VehiculeDetailComponent,
       {
         width: '80%',
@@ -120,6 +120,10 @@ export class VehiculeModifierComponent {
         data: this.vehicule
       }
     );
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   // goToGestionVehicule() {

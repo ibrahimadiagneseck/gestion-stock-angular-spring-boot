@@ -174,10 +174,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       'DÉC.'
     ];
 
-    // const day = date.getDate();
-    // const month = months[date.getMonth()];
-    // const year = date.getFullYear() % 100;
-
     const vehiculesData = this.vehicules.map((vehicule) => {
       return [
         vehicule.numeroChassis,
@@ -198,7 +194,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     const documentDefinition = {
 
       pageSize: { width: 1000, height: 1000 },
-
       content: [
         { text: 'Liste des véhicules', style: 'header', absolutePosition: { x:35, y:10 }, },
         {
@@ -261,10 +256,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         })));
 
         // console.log(this.dataSource.data);
-
-
         this.dataSource.paginator = this.paginator;
-
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
@@ -278,7 +270,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
 
   popupAjouter() {
-    this.matDialog.open(
+    const dialogRef = this.matDialog.open(
       VehiculeAjouterComponent,
       {
         width: '80%',
@@ -286,10 +278,14 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         exitAnimationDuration: '100ms'
       }
     );
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   popupDetail(element: any) {
-    this.matDialog.open(
+    const dialogRef = this.matDialog.open(
       VehiculeDetailComponent,
       {
         width: '80%',
@@ -298,6 +294,10 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         data: element
       }
     );
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
 
