@@ -194,15 +194,15 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
     const documentDefinition = {
 
-      pageSize: { width: 1000, height: 1000 },
+      pageSize: { width: 1200, height: 1200 },
       content: [
-        { text: 'Liste des véhicules', style: 'header', absolutePosition: { x:35, y:10 }, },
+        { text: 'Liste des véhicules', style: 'header', absolutePosition: { x:20, y:10 }, },
         {
           table: {
             style:'tableStyle',
             headerRows: 1,
-            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
-            // margin: [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80],
+            // widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+            margin: [82],
             body: [
               [
                 { text: 'N° Châssis', style: 'header' },
@@ -226,14 +226,14 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
       ],
       styles: {
         header: {
-          fontSize: 15,
+          fontSize: 10,
           bold: true
         },
       },
       tableStyle: {
         tableWidth: 'auto', // Largeur du tableau (utilisez 'auto' pour l'ajuster automatiquement)
-        cellPadding: 6, // Rembourrage des cellules
-        // margin: [null, 40, null, null],
+        cellPadding: 3, // Rembourrage des cellules
+        margin: [null, 20, null, 20],
       },
     };
 
