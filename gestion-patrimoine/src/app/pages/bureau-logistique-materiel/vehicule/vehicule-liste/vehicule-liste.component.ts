@@ -59,7 +59,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
   /* ----------------------------------------------------------------------------------------- */
   // tableau
-  rowNumber: number = 1; // Initialize it with 1
+  rowNumber!: number; // numéro de ligne pour le tableau
   columnsDateFormat: string[] = [
     "dateFabrication",
     "dateCommande",
@@ -138,6 +138,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+
 
     /* ----------------------------------------------------------------------------------------- */
     this.recupererVehicules();
@@ -248,6 +249,8 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
         this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
+
+        this.rowNumber = 1;
 
         // this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules);
         this.dataSource = new MatTableDataSource<IVehicule>(this.vehicules.map((item) => ({
