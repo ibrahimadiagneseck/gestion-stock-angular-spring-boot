@@ -2,10 +2,10 @@ import { IVehicule } from "./vehicule";
 
 export interface IUtilisateur {
 
-  user_id: number;
+  utilisateurid: string;
   username: string;
   email: string;
-  date_naissance: Date;
-  lieu_naissance: string;
+  datenaissance: Date;
+  lieunaissance: string;
   vehicules: IVehicule[];
 }

@@ -61,35 +61,35 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   // tableau
   rowNumber!: number; // numéro de ligne pour le tableau
   columnsDateFormat: string[] = [
-    "dateFabrication",
-    "dateCommande",
-    "dateLivraison"
+    "datefabrication",
+    "datecommande",
+    "datelivraison"
   ];
   columnsToHide: string[] = [
     "transmission",
-    "dateFabrication",
-    "dateCommande",
-    "dateLivraison",
+    "datefabrication",
+    "datecommande",
+    "datelivraison",
     "energie",
     "etat",
-    "typeVehicule"
+    "typevehicule"
   ];
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
     "N°",
-    "numeroChassis",
-    "numeroMatricule",
+    "numerochassis",
+    "numeromatricule",
     "modele",
     "marque",
     "couleur",
     "transmission",
-    "dateFabrication",
-    "dateCommande",
-    "dateLivraison",
+    "datefabrication",
+    "datecommande",
+    "datelivraison",
     "energie",
     "etat",
-    "typeVehicule"
+    "typevehicule"
   ];
   displayedColumnsCustom: string[] = [
     "N°",
@@ -110,7 +110,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   /* ----------------------------------------------------------------------------------------- */
 
   constructor(
-    private router: Router,
+    // private router: Router,
     // private route: ActivatedRoute,
     private vehiculeService: VehiculeService,
     private matDialog: MatDialog,
@@ -177,18 +177,18 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
     const vehiculesData = this.vehicules.map((vehicule) => {
       return [
-        vehicule.numeroChassis,
-        vehicule.numeroMatricule,
+        vehicule.numerochassis,
+        vehicule.numeromatricule,
         vehicule.modele,
         vehicule.marque,
         vehicule.couleur,
         vehicule.transmission,
-        `${new Date(vehicule.dateFabrication).getDate()} ${months[new Date(vehicule.dateFabrication).getMonth()]} ${new Date(vehicule.dateFabrication).getFullYear() % 100}`,
-        `${new Date(vehicule.dateCommande).getDate()} ${months[new Date(vehicule.dateCommande).getMonth()]} ${new Date(vehicule.dateCommande).getFullYear() % 100}`,
-        `${new Date(vehicule.dateLivraison).getDate()} ${months[new Date(vehicule.dateLivraison).getMonth()]} ${new Date(vehicule.dateLivraison).getFullYear() % 100}`,
+        `${new Date(vehicule.datefabrication).getDate()} ${months[new Date(vehicule.datefabrication).getMonth()]} ${new Date(vehicule.datefabrication).getFullYear() % 100}`,
+        `${new Date(vehicule.datecommande).getDate()} ${months[new Date(vehicule.datecommande).getMonth()]} ${new Date(vehicule.datecommande).getFullYear() % 100}`,
+        `${new Date(vehicule.datelivraison).getDate()} ${months[new Date(vehicule.datelivraison).getMonth()]} ${new Date(vehicule.datelivraison).getFullYear() % 100}`,
         vehicule.energie,
         vehicule.etat,
-        vehicule.typeVehicule
+        vehicule.typevehicule
       ];
     });
 
@@ -248,7 +248,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   recupererVehicules() {
     this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
-        this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
+        this.vehicules = donnees.sort((a, b) => a.numerochassis - b.numerochassis);
 
         this.rowNumber = 1;
 

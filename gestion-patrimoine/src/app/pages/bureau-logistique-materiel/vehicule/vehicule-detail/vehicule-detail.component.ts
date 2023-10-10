@@ -27,8 +27,8 @@ export class VehiculeDetailComponent implements OnInit {
     this.vehicule = this.data;
   }
 
-  supprimerVehiculeById(idVehicule: number) {
-    this.vehiculeService.deleteVehicule(idVehicule).subscribe({
+  supprimerVehiculeById(vehiculeid: String) {
+    this.vehiculeService.deleteVehicule(vehiculeid).subscribe({
       next: () => {
         this.dialogRef.close();
       },

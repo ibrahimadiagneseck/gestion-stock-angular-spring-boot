@@ -10,7 +10,7 @@
       <div class="row g-4 mb-3">
         <div class="col-3 mx-auto">
           <span class="fw-bold">N° chassis:</span>
-          <div class="text-input"> {{ vehicule.numeroChassis }} </div>
+          <div class="text-input"> {{ vehicule.numerochassis }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -20,7 +20,7 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">Date livraison:</span>
-          <div class="text-input text-uppercase"> {{ vehicule.dateLivraison | date: 'dd MMM yy' }} </div>
+          <div class="text-input text-uppercase"> {{ vehicule.datelivraison | date: 'dd MMM yy' }} </div>
         </div>
       </div>
 
@@ -28,7 +28,7 @@
       <div class="row g-4 mb-3">
         <div class="col-3 mx-auto">
           <span class="fw-bold">N° matricule:</span>
-          <div class="text-input"> {{ vehicule.numeroMatricule }} </div>
+          <div class="text-input"> {{ vehicule.numeromatricule }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -51,7 +51,7 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">Date fabrication:</span>
-          <div class="text-input text-uppercase"> {{ vehicule.dateFabrication | date: 'dd MMM yy' }} </div>
+          <div class="text-input text-uppercase"> {{ vehicule.datefabrication | date: 'dd MMM yy' }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -69,18 +69,18 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">Date commande:</span>
-          <div class="text-input text-uppercase"> {{ vehicule.dateCommande | date: 'dd MMM yy' }} </div>
+          <div class="text-input text-uppercase"> {{ vehicule.datecommande | date: 'dd MMM yy' }} </div>
         </div>
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">Type vehicule:</span>
-          <div class="text-input text-uppercase"> {{ vehicule.typeVehicule }} </div>
+          <div class="text-input text-uppercase"> {{ vehicule.typevehicule }} </div>
         </div>
       </div>
 
       <div class="row mt-5">
         <div class="col-12 text-end">
-          <button (click)="supprimerVehiculeById(vehicule.id)" type="button" class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+          <button (click)="supprimerVehiculeById(vehicule.vehiculeid)" type="button" class="btn btn-myprimary fw-bold w-25 mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
             SUPPRIMER
           </button>
 

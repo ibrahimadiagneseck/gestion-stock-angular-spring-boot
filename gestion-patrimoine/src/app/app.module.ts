@@ -28,6 +28,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import localeFr from '@angular/common/locales/fr';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import { UtilisateurAjouterComponent } from './pages/utilisateur/utilisateur-ajouter/utilisateur-ajouter.component';
+import { UtilisateurListeComponent } from './pages/utilisateur/utilisateur-liste/utilisateur-liste.component';
+import { UtilisateurModifierComponent } from './pages/utilisateur/utilisateur-modifier/utilisateur-modifier.component';
+import { UtilisateurDetailComponent } from './pages/utilisateur/utilisateur-detail/utilisateur-detail.component';
+import { BureauLogistiqueMaterielModule } from './pages/bureau-logistique-materiel/bureau-logistique-materiel.module';
 
 
 // the second parameter 'fr' is optional
@@ -38,10 +43,10 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
     ConnexionComponent,
     ErreurComponent,
-    VehiculeListeComponent,
-    VehiculeAjouterComponent,
-    VehiculeDetailComponent,
-    VehiculeModifierComponent
+    UtilisateurAjouterComponent,
+    UtilisateurListeComponent,
+    UtilisateurModifierComponent,
+    UtilisateurDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,7 @@ registerLocaleData(localeFr, 'fr');
 
     NgbModule, // dropdown
 
+    BureauLogistiqueMaterielModule,
     AppRoutingModule,
 
 

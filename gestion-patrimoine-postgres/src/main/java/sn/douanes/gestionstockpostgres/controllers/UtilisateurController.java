@@ -13,38 +13,37 @@ import java.util.List;
 public class UtilisateurController {
 
     @Autowired
-    UtilisateurService userService;
+    UtilisateurService utilisateurService;
 
-    @GetMapping("/Users")
+    @GetMapping("/Utilisateurs")
     @ResponseBody
     public List<Utilisateur> getAllUsers() {
-        List<Utilisateur> list = userService.getAllUsers();
+        List<Utilisateur> list = utilisateurService.getAllUtilisateurs();
         return list;
     }
 
-    @GetMapping("/UserById/{id}")
+    @GetMapping("/UtilisateurByUtilisateurId/{utilisateurId}")
     @ResponseBody
-    public Utilisateur UserById(@PathVariable long id) {
-        Utilisateur user = userService.getUser(id);
+    public Utilisateur UtilisateurByUtilisateurId(@PathVariable String utilisateurId) {
+        Utilisateur user = utilisateurService.findByUtilisateurid(utilisateurId);
         return user;
     }
 
-    @PostMapping("/AjouterUser")
+    @PostMapping("/AjouterUtilisateur")
     @ResponseBody
-    public Utilisateur AjouterUser(@RequestBody Utilisateur u) {
-        return userService.saveUser(u);
+    public Utilisateur AjouterUtilisateur(@RequestBody Utilisateur u) {
+        return utilisateurService.saveUtilisateur(u);
     }
 
-    @PutMapping("/ModifierUser/{id}")
+    @PutMapping("/ModifierUtilisateur")
     @ResponseBody
-    public Utilisateur ModifierUser(@PathVariable long id, @RequestBody Utilisateur u) {
-        u.setId(id);
-        return userService.updateUser(u);
+    public Utilisateur ModifierUtilisateur(@RequestBody Utilisateur u) {
+        return utilisateurService.updateUtilisateur(u);
     }
 
-    @DeleteMapping("SupprimerUser/{id}")
-    public void SupprimerUser(@PathVariable("id") Long Id_user) {
-        userService.deleteUserById(Id_user);
+    @DeleteMapping("SupprimerUtilisateurByUtilisateurId/{utilisateurId}")
+    public void SupprimerUtilisateurByUtilisateurId(@PathVariable("utilisateurId") String utilisateurId) {
+        utilisateurService.deleteUtilisateurById(utilisateurService.findByUtilisateurid(utilisateurId).getId());
     }
 
 }

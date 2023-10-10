@@ -1,5 +1,6 @@
 package sn.douanes.gestionstockpostgres.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -7,24 +8,29 @@ import java.util.List;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur{
+public class Utilisateur {
 
     @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "identifiant_utilisateur", nullable = false, updatable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
 
-    @Column(name = "username")
+    //@Column(name = "utilisateur_id")
+    private String utilisateurid;
+
+    //@Column(name = "username")
     private String username;
 
-    @Column(name = "email")
+    //@Column(name = "email")
     private String email;
 
-    @Column(name = "date_naissance")
-    private Date dateNaissance;
+    //@Column(name = "date_naissance")
+    private Date datenaissance;
 
-    @Column(name = "lieu_naissance")
-    private Date lieuNaissance;
+    //@Column(name = "lieu_naissance")
+        private String lieunaissance;
 
     @OneToMany(cascade = {
             CascadeType.PERSIST,
@@ -32,9 +38,9 @@ public class Utilisateur{
     })
     @JoinTable(	name = "utilisateurvehicule",
             joinColumns = {
-                    @JoinColumn(name = "user_id")
+                    @JoinColumn(name = "identifiant_utilisateur")
             }, inverseJoinColumns = {
-            @JoinColumn(name = "vehicule_id")
+            @JoinColumn(name = "identifiant_vehicule")
     }
     )
     private List<Vehicule> vehicules;
@@ -42,12 +48,13 @@ public class Utilisateur{
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id, String username, String email, Date dateNaissance, Date lieuNaissance, List<Vehicule> vehicules) {
+    public Utilisateur(Long id, String utilisateurid, String username, String email, Date datenaissance, String lieunaissance, List<Vehicule> vehicules) {
         this.id = id;
+        this.utilisateurid = utilisateurid;
         this.username = username;
         this.email = email;
-        this.dateNaissance = dateNaissance;
-        this.lieuNaissance = lieuNaissance;
+        this.datenaissance = datenaissance;
+        this.lieunaissance = lieunaissance;
         this.vehicules = vehicules;
     }
 
@@ -57,6 +64,14 @@ public class Utilisateur{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUtilisateurid() {
+        return utilisateurid;
+    }
+
+    public void setUtilisateurid(String utilisateurid) {
+        this.utilisateurid = utilisateurid;
     }
 
     public String getUsername() {
@@ -75,20 +90,20 @@ public class Utilisateur{
         this.email = email;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
+    public Date getDatenaissance() {
+        return datenaissance;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setDatenaissance(Date datenaissance) {
+        this.datenaissance = datenaissance;
     }
 
-    public Date getLieuNaissance() {
-        return lieuNaissance;
+    public String getLieunaissance() {
+        return lieunaissance;
     }
 
-    public void setLieuNaissance(Date lieuNaissance) {
-        this.lieuNaissance = lieuNaissance;
+    public void setLieunaissance(String lieunaissance) {
+        this.lieunaissance = lieunaissance;
     }
 
     public List<Vehicule> getVehicules() {
@@ -98,6 +113,4 @@ public class Utilisateur{
     public void setVehicules(List<Vehicule> vehicules) {
         this.vehicules = vehicules;
     }
-
-
 }

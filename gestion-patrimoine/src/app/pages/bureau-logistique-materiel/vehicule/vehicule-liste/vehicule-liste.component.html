@@ -191,12 +191,12 @@
         <!-- <table mat-table matTableExporter [dataSource]="dataSource"  #exporter="matTableExporter" class="mat-elevation-z8">
           <ng-container matColumnDef="numeroChassis">
             <th mat-header-cell *matHeaderCellDef>N°</th>
-            <td mat-cell *matCellDef="let element"> {{element.numeroChassis}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.numerochassis}} </td>
           </ng-container>
 
           <ng-container matColumnDef="numeroMatricule">
             <th mat-header-cell *matHeaderCellDef> Numéro matricule </th>
-            <td mat-cell *matCellDef="let element"> {{element.numeroMatricule}}</td>
+            <td mat-cell *matCellDef="let element"> {{element.numeromatricule}}</td>
           </ng-container>
 
           <ng-container matColumnDef="couleur">
@@ -236,8 +236,8 @@
                 <ng-container *ngIf="column === 'N°'; else normalCell">{{ element.rowNumber }}</ng-container>
                 <ng-template #normalCell>{{ element[column] }}</ng-template>
               </ng-template>
-
             </td>
+
           </ng-container>
 
           <!-- Header row -->

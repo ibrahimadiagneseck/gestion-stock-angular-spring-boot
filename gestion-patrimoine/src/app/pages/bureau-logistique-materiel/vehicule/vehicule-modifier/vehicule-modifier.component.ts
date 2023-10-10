@@ -12,6 +12,7 @@ import { ValidationService } from 'src/app/services/validation.service';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
 import { VehiculeListeComponent } from '../vehicule-liste/vehicule-liste.component';
+import { IVehicule } from 'src/app/models/vehicule';
 
 
 @Component({
@@ -43,7 +44,8 @@ export class VehiculeModifierComponent implements OnInit {
   ) {}
 
   ModifierVehicule() {
-    this.vehiculeService.putVehicule(this.vehiculeForm.value, this.vehicule.id).subscribe({
+
+    this.vehiculeService.putVehicule(this.vehiculeForm.value).subscribe({
       next: () => {
         this.dialogRef.close();
         this.actualiserPage();
@@ -59,7 +61,7 @@ export class VehiculeModifierComponent implements OnInit {
 
     this.vehiculeForm = new FormGroup({
 
-      numeroChassis: new FormControl(this.vehicule.numeroChassis, [
+      numerochassis: new FormControl(this.vehicule.numerochassis, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -67,10 +69,10 @@ export class VehiculeModifierComponent implements OnInit {
         Validators.required,
         this.validationService.validateCouleurSelection,
       ]),
-      dateLivraison: new FormControl(this.formatDate(this.vehicule.dateLivraison), [
+      datelivraison: new FormControl(this.formatDate(this.vehicule.datelivraison), [
         Validators.required,
       ]),
-      numeroMatricule: new FormControl(this.vehicule.numeroMatricule, [
+      numeromatricule: new FormControl(this.vehicule.numeromatricule, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -85,7 +87,7 @@ export class VehiculeModifierComponent implements OnInit {
       modele: new FormControl(this.vehicule.modele, [
         Validators.required,
       ]),
-      dateFabrication: new FormControl(this.formatDate(this.vehicule.dateFabrication), [
+      datefabrication: new FormControl(this.formatDate(this.vehicule.datefabrication), [
         Validators.required,
       ]),
       etat: new FormControl(this.vehicule.etat, [
@@ -96,10 +98,10 @@ export class VehiculeModifierComponent implements OnInit {
         Validators.required,
         this.validationService.validateMarqueSelection,
       ]),
-      dateCommande: new FormControl(this.formatDate(this.vehicule.dateCommande), [
+      datecommande: new FormControl(this.formatDate(this.vehicule.datecommande), [
         Validators.required,
       ]),
-      typeVehicule: new FormControl(this.vehicule.typeVehicule, [
+      typevehicule: new FormControl(this.vehicule.typevehicule, [
         Validators.required,
         this.validationService.validateTypeVehiculeSelection,
       ])

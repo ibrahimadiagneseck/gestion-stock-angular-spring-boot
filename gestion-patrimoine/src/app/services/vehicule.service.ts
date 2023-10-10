@@ -56,24 +56,23 @@ export class VehiculeService {
   }
 
   public putVehicule(
-    vehicule: IVehicule,
-    idVehicule: number
+    vehicule: IVehicule
   ): Observable<IVehicule> {
     return this.httpClient.put<IVehicule>(
-      `${this.urlServeur}/ModifierVehicule/${idVehicule}`,
+      `${this.urlServeur}/ModifierVehicule`,
       vehicule
     );
   }
 
-  public deleteVehicule(idVehicule: number): Observable<void> {
+  public deleteVehicule(vehiculeId: String): Observable<void> {
     return this.httpClient.delete<void>(
-      `${this.urlServeur}/SupprimerVehicule/${idVehicule}`
+      `${this.urlServeur}/SupprimerVehiculeByVehiculeId/${vehiculeId}`
     );
   }
 
-  public getVehiculeByIdvehicule(idVehicule: number): Observable<IVehicule> {
+  public getVehiculeByVehiculeId(vehiculeId: String): Observable<IVehicule> {
     return this.httpClient.get<IVehicule>(
-      `${this.urlServeur}/VehiculeById/${idVehicule}`
+      `${this.urlServeur}/VehiculeByVehiculeId/${vehiculeId}`
     );
   }
 }

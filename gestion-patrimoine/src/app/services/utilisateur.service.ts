@@ -26,16 +26,16 @@ export class UtilisateurService {
     return this.httpClient.post<IUtilisateur>(`${this.urlServeur}/AjouterUtilisateur`, utilisateur);
   }
 
-  public putUtilisateur(utilisateur: IUtilisateur, idUtilisateur: number): Observable<IUtilisateur> {
-    return this.httpClient.put<IUtilisateur>(`${this.urlServeur}/ModifierUtilisateur/${idUtilisateur}`, utilisateur);
+  public putUtilisateur(utilisateur: IUtilisateur): Observable<IUtilisateur> {
+    return this.httpClient.put<IUtilisateur>(`${this.urlServeur}/ModifierUtilisateur`, utilisateur);
   }
 
-  public deleteUtilisateur(idUtilisateur: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.urlServeur}/SupprimerUtilisateur/${idUtilisateur}`);
+  public deleteUtilisateur(utilisateurId: String): Observable<void> {
+    return this.httpClient.delete<void>(`${this.urlServeur}/SupprimerUtilisateurByUtilisateurId/${utilisateurId}`);
   }
 
-  public getUtilisateurByIdutilisateur(idUtilisateur: number):Observable<IUtilisateur> {
-    return this.httpClient.get<IUtilisateur>(`${this.urlServeur}/UtilisateurById/${idUtilisateur}`);
+  public getUtilisateurByUtilisateurId(utilisateurId: String):Observable<IUtilisateur> {
+    return this.httpClient.get<IUtilisateur>(`${this.urlServeur}/UtilisateurByUtilisateurId/${utilisateurId}`);
   }
 
 

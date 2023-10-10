@@ -33,7 +33,7 @@ export class VehiculeAjouterComponent implements OnInit {
 
   AjouterVehicule() {
     this.vehiculeService.postVehicule(this.vehiculeForm.value).subscribe({
-      next: (donnee: IVehicule) => {
+      next: () => {
         this.popupFermer();
       },
       error: (erreurs: any) => {
@@ -46,7 +46,7 @@ export class VehiculeAjouterComponent implements OnInit {
 
     this.vehiculeForm = new FormGroup({
 
-      numeroChassis: new FormControl(null, [
+      numerochassis: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -54,10 +54,10 @@ export class VehiculeAjouterComponent implements OnInit {
         Validators.required,
         this.validationService.validateCouleurSelection
       ]),
-      dateLivraison: new FormControl('', [
+      datelivraison: new FormControl('', [
         Validators.required
       ]),
-      numeroMatricule: new FormControl(null, [
+      numeromatricule: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -72,7 +72,7 @@ export class VehiculeAjouterComponent implements OnInit {
       modele: new FormControl('', [
         Validators.required
       ]),
-      dateFabrication: new FormControl('', [
+      datefabrication: new FormControl('', [
         Validators.required
       ]),
       etat: new FormControl(this.selectEtat, [
@@ -83,10 +83,10 @@ export class VehiculeAjouterComponent implements OnInit {
         Validators.required,
         this.validationService.validateMarqueSelection
       ]),
-      dateCommande: new FormControl('', [
+      datecommande: new FormControl('', [
         Validators.required
       ]),
-      typeVehicule: new FormControl(this.selectTypeVehicule, [
+      typevehicule: new FormControl(this.selectTypeVehicule, [
         Validators.required,
         this.validationService.validateTypeVehiculeSelection
       ])
