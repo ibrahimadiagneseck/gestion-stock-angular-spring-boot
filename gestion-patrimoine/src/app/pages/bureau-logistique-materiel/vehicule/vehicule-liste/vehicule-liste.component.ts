@@ -61,35 +61,35 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   // tableau
   rowNumber!: number; // numéro de ligne pour le tableau
   columnsDateFormat: string[] = [
-    "datefabrication",
-    "datecommande",
-    "datelivraison"
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison"
   ];
   columnsToHide: string[] = [
     "transmission",
-    "datefabrication",
-    "datecommande",
-    "datelivraison",
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison",
     "energie",
     "etat",
-    "typevehicule"
+    "typeVehicule"
   ];
   dataSource = new MatTableDataSource<IVehicule>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   displayedColumns: string[] = [
     "N°",
-    "numerochassis",
-    "numeromatricule",
+    "numeroChassis",
+    "numeroMatricule",
     "modele",
     "marque",
     "couleur",
     "transmission",
-    "datefabrication",
-    "datecommande",
-    "datelivraison",
+    "dateFabrication",
+    "dateCommande",
+    "dateLivraison",
     "energie",
     "etat",
-    "typevehicule"
+    "typeVehicule"
   ];
   displayedColumnsCustom: string[] = [
     "N°",
@@ -177,18 +177,18 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
     const vehiculesData = this.vehicules.map((vehicule) => {
       return [
-        vehicule.numerochassis,
-        vehicule.numeromatricule,
+        vehicule.numeroChassis,
+        vehicule.numeroMatricule,
         vehicule.modele,
         vehicule.marque,
         vehicule.couleur,
         vehicule.transmission,
-        `${new Date(vehicule.datefabrication).getDate()} ${months[new Date(vehicule.datefabrication).getMonth()]} ${new Date(vehicule.datefabrication).getFullYear() % 100}`,
-        `${new Date(vehicule.datecommande).getDate()} ${months[new Date(vehicule.datecommande).getMonth()]} ${new Date(vehicule.datecommande).getFullYear() % 100}`,
-        `${new Date(vehicule.datelivraison).getDate()} ${months[new Date(vehicule.datelivraison).getMonth()]} ${new Date(vehicule.datelivraison).getFullYear() % 100}`,
+        `${new Date(vehicule.dateFabrication).getDate()} ${months[new Date(vehicule.dateFabrication).getMonth()]} ${new Date(vehicule.dateFabrication).getFullYear() % 100}`,
+        `${new Date(vehicule.dateCommande).getDate()} ${months[new Date(vehicule.dateCommande).getMonth()]} ${new Date(vehicule.dateCommande).getFullYear() % 100}`,
+        `${new Date(vehicule.dateLivraison).getDate()} ${months[new Date(vehicule.dateLivraison).getMonth()]} ${new Date(vehicule.dateLivraison).getFullYear() % 100}`,
         vehicule.energie,
         vehicule.etat,
-        vehicule.typevehicule
+        vehicule.typeVehicule
       ];
     });
 
@@ -248,7 +248,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   recupererVehicules() {
     this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
-        this.vehicules = donnees.sort((a, b) => a.numerochassis - b.numerochassis);
+        this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
 
         this.rowNumber = 1;
 

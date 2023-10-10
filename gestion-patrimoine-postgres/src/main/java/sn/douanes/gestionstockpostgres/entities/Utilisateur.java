@@ -17,20 +17,20 @@ public class Utilisateur {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
 
-    //@Column(name = "utilisateur_id")
-    private String utilisateurid;
+    @Column(name = "utilisateur_id")
+    private String utilisateurId;
 
-    //@Column(name = "username")
+    @Column(name = "username")
     private String username;
 
-    //@Column(name = "email")
+    @Column(name = "email")
     private String email;
 
-    //@Column(name = "date_naissance")
-    private Date datenaissance;
+    @Column(name = "date_naissance")
+    private Date dateNaissance;
 
-    //@Column(name = "lieu_naissance")
-        private String lieunaissance;
+    @Column(name = "lieu_naissance")
+    private String lieuNaissance;
 
     @OneToMany(cascade = {
             CascadeType.PERSIST,
@@ -48,13 +48,13 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id, String utilisateurid, String username, String email, Date datenaissance, String lieunaissance, List<Vehicule> vehicules) {
+    public Utilisateur(Long id, String utilisateurId, String username, String email, Date dateNaissance, String lieuNaissance, List<Vehicule> vehicules) {
         this.id = id;
-        this.utilisateurid = utilisateurid;
+        this.utilisateurId = utilisateurId;
         this.username = username;
         this.email = email;
-        this.datenaissance = datenaissance;
-        this.lieunaissance = lieunaissance;
+        this.dateNaissance = dateNaissance;
+        this.lieuNaissance = lieuNaissance;
         this.vehicules = vehicules;
     }
 
@@ -66,12 +66,12 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public String getUtilisateurid() {
-        return utilisateurid;
+    public String getUtilisateurId() {
+        return utilisateurId;
     }
 
-    public void setUtilisateurid(String utilisateurid) {
-        this.utilisateurid = utilisateurid;
+    public void setUtilisateurId(String utilisateurId) {
+        this.utilisateurId = utilisateurId;
     }
 
     public String getUsername() {
@@ -90,20 +90,20 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public Date getDatenaissance() {
-        return datenaissance;
+    public Date getDateNaissance() {
+        return dateNaissance;
     }
 
-    public void setDatenaissance(Date datenaissance) {
-        this.datenaissance = datenaissance;
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
-    public String getLieunaissance() {
-        return lieunaissance;
+    public String getLieuNaissance() {
+        return lieuNaissance;
     }
 
-    public void setLieunaissance(String lieunaissance) {
-        this.lieunaissance = lieunaissance;
+    public void setLieuNaissance(String lieuNaissance) {
+        this.lieuNaissance = lieuNaissance;
     }
 
     public List<Vehicule> getVehicules() {
@@ -112,5 +112,18 @@ public class Utilisateur {
 
     public void setVehicules(List<Vehicule> vehicules) {
         this.vehicules = vehicules;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "id=" + id +
+                ", utilisateurId='" + utilisateurId + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                ", lieuNaissance='" + lieuNaissance + '\'' +
+                ", vehicules=" + vehicules +
+                '}';
     }
 }

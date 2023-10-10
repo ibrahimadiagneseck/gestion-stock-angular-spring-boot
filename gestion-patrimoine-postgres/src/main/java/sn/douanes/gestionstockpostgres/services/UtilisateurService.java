@@ -14,6 +14,6 @@ public interface UtilisateurService {
     List<Utilisateur> getAllUtilisateurs();
 
 
-    Utilisateur findByUtilisateurid(String utilisateurid);
+    Utilisateur findByUtilisateurId(String utilisateurId);
 
 }

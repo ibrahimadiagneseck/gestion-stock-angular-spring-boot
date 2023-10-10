@@ -25,7 +25,7 @@ public class UtilisateurController {
     @GetMapping("/UtilisateurByUtilisateurId/{utilisateurId}")
     @ResponseBody
     public Utilisateur UtilisateurByUtilisateurId(@PathVariable String utilisateurId) {
-        Utilisateur user = utilisateurService.findByUtilisateurid(utilisateurId);
+        Utilisateur user = utilisateurService.findByUtilisateurId(utilisateurId);
         return user;
     }
 
@@ -43,7 +43,7 @@ public class UtilisateurController {
 
     @DeleteMapping("SupprimerUtilisateurByUtilisateurId/{utilisateurId}")
     public void SupprimerUtilisateurByUtilisateurId(@PathVariable("utilisateurId") String utilisateurId) {
-        utilisateurService.deleteUtilisateurById(utilisateurService.findByUtilisateurid(utilisateurId).getId());
+        utilisateurService.deleteUtilisateurById(utilisateurService.findByUtilisateurId(utilisateurId).getId());
     }
 
 }

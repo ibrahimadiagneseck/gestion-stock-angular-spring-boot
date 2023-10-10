@@ -1,17 +1,17 @@
 
 export interface IVehicule {
 
-  vehiculeid: string;
-  numerochassis: number;
-  numeromatricule: number;
+  vehiculeId: string;
+  numeroChassis: number;
+  numeroMatricule: number;
   modele: string;
   marque: string;
   couleur: string;
   transmission: string;
-  datefabrication: Date;
-  datecommande: Date;
-  datelivraison: Date;
+  dateFabrication: Date;
+  dateCommande: Date;
+  dateLivraison: Date;
   energie: string;
   etat: string;
-  typevehicule: string;
+  typeVehicule: string;
 }

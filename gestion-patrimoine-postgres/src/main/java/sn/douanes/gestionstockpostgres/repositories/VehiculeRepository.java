@@ -8,6 +8,5 @@ import sn.douanes.gestionstockpostgres.entities.Vehicule;
 @Repository
 public interface VehiculeRepository extends JpaRepository<Vehicule, Long> {
 
-    Vehicule findByVehiculeid(String vehiculeid);
-    Vehicule findVehiculeByCouleur(String vehiculeid);
+    Vehicule findByVehiculeId(String vehiculeId);
 }

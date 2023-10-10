@@ -17,9 +17,6 @@ import java.util.List;
 public class UtilisateurVehiculeController {
 
     @Autowired
-    UtilisateurVehiculeRepository utilisateurVehiculeRepository;
-
-    @Autowired
     UtilisateurVehiculeService utilisateurVehiculeService;
 
     @Autowired
@@ -43,6 +40,6 @@ public class UtilisateurVehiculeController {
         Vehicule vehicule = vehiculeService.getVehicule(vehicule_id);
 
         if(user != null && vehicule != null)
-            utilisateurVehiculeRepository.save(new UtilisateurVehicule(user.getId(), user, vehicule));
+            utilisateurVehiculeService.saveUtilisateurVehicule(new UtilisateurVehicule(user.getId(), user, vehicule));
     }
 }

@@ -13,5 +13,5 @@ public interface VehiculeService {
     Vehicule getVehicule(Long id);
     List<Vehicule> getAllVehicules();
 
-    Vehicule findByVehiculeid(String vehiculeid);
+    Vehicule findByVehiculeId(String vehiculeId);
 }

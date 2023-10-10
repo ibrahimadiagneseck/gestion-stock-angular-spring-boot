@@ -18,22 +18,28 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public Utilisateur saveUtilisateur(Utilisateur u) {
-        u.setUtilisateurid(generateUtilisateurid());
+        u.setUtilisateurId(generateUtilisateurId());
         return utilisateurRepository.save(u);
     }
 
     @Override
     public Utilisateur updateUtilisateur(Utilisateur u) {
 
-        Utilisateur utilisateur = this.findByUtilisateurid(u.getUtilisateurid());
+        System.out.println(u);
 
-        utilisateur.setUsername(u.getUsername());
-        utilisateur.setEmail(u.getEmail());
-        utilisateur.setDatenaissance(u.getDatenaissance());
-        utilisateur.setLieunaissance(u.getLieunaissance());
-        utilisateur.setVehicules(u.getVehicules());
+        Utilisateur utilisateur = this.findByUtilisateurId(u.getUtilisateurId());
 
-        return utilisateurRepository.save(utilisateur);
+        if (utilisateur != null) {
+            utilisateur.setUsername(u.getUsername());
+            utilisateur.setEmail(u.getEmail());
+            utilisateur.setDateNaissance(u.getDateNaissance());
+            utilisateur.setLieuNaissance(u.getLieuNaissance());
+            utilisateur.setVehicules(u.getVehicules());
+
+            return utilisateurRepository.save(utilisateur);
+        }
+
+        return null;
     }
 
     @Override
@@ -60,12 +66,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 
     @Override
-    public Utilisateur findByUtilisateurid(String utilisateurid) {
-        return utilisateurRepository.findByUtilisateurid(utilisateurid);
+    public Utilisateur findByUtilisateurId(String utilisateurId) {
+        return utilisateurRepository.findByUtilisateurId(utilisateurId);
     }
 
 
-    private String generateUtilisateurid() {
+    private String generateUtilisateurId() {
         return RandomStringUtils.randomNumeric(10);
     }
 }

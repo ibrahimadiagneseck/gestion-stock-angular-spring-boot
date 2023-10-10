@@ -10,69 +10,69 @@ import java.util.Date;
 public class Vehicule {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "identifiant_vehicule", nullable = false, updatable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
 
-    //@Column(name = "vehiculeid")
-    private String vehiculeid;
+    @Column(name = "vehicule_id")
+    private String vehiculeId;
 
-    //@Column(name = "numero_chassis")
-    private Integer numerochassis;
+    @Column(name = "numero_chassis")
+    private Integer numeroChassis;
 
-    //@Column(name = "numero_matricule")
-    private Integer numeromatricule;
+    @Column(name = "numero_matricule")
+    private Integer numeroMatricule;
 
-    //@Column(name = "modele")
+    @Column(name = "modele")
     private String modele;
 
-    //@Column(name = "marque")
+    @Column(name = "marque")
     private String marque;
 
-    //@Column(name = "transmission")
+    @Column(name = "transmission")
     private String transmission;
 
-    //@Column(name = "couleur")
+    @Column(name = "couleur")
     private String couleur;
 
-    //@Column(name = "date_fabrication")
-    private Date  datefabrication;
+    @Column(name = "date_fabrication")
+    private Date  dateFabrication;
 
-    //@Column(name = "date_commande")
-    private Date  datecommande;
+    @Column(name = "date_commande")
+    private Date  dateCommande;
 
-    //@Column(name = "date_livraison")
-    private Date datelivraison;
+    @Column(name = "date_livraison")
+    private Date dateLivraison;
 
-    //@Column(name = "energie")
+    @Column(name = "energie")
     private String energie;
 
-    //@Column(name = "etat")
+    @Column(name = "etat")
     private String  etat;
 
-    //@Column(name = "type_vehicule")
-    private String typevehicule;
+    @Column(name = "type_vehicule")
+    private String typeVehicule;
 
-    public Vehicule(Long id, String vehiculeid, Integer numerochassis, Integer numeromatricule, String modele, String marque, String transmission, String couleur, Date datefabrication, Date datecommande, Date datelivraison, String energie, String etat, String typevehicule) {
+    public Vehicule() {
+    }
+
+    public Vehicule(Long id, String vehiculeId, Integer numeroChassis, Integer numeroMatricule, String modele, String marque, String transmission, String couleur, Date dateFabrication, Date dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
         this.id = id;
-        this.vehiculeid = vehiculeid;
-        this.numerochassis = numerochassis;
-        this.numeromatricule = numeromatricule;
+        this.vehiculeId = vehiculeId;
+        this.numeroChassis = numeroChassis;
+        this.numeroMatricule = numeroMatricule;
         this.modele = modele;
         this.marque = marque;
         this.transmission = transmission;
         this.couleur = couleur;
-        this.datefabrication = datefabrication;
-        this.datecommande = datecommande;
-        this.datelivraison = datelivraison;
+        this.dateFabrication = dateFabrication;
+        this.dateCommande = dateCommande;
+        this.dateLivraison = dateLivraison;
         this.energie = energie;
         this.etat = etat;
-        this.typevehicule = typevehicule;
-    }
-
-    public Vehicule() {
+        this.typeVehicule = typeVehicule;
     }
 
     public Long getId() {
@@ -83,28 +83,28 @@ public class Vehicule {
         this.id = id;
     }
 
-    public String getVehiculeid() {
-        return vehiculeid;
+    public String getVehiculeId() {
+        return vehiculeId;
     }
 
-    public void setVehiculeid(String vehiculeid) {
-        this.vehiculeid = vehiculeid;
+    public void setVehiculeId(String vehiculeId) {
+        this.vehiculeId = vehiculeId;
     }
 
-    public Integer getNumerochassis() {
-        return numerochassis;
+    public Integer getNumeroChassis() {
+        return numeroChassis;
     }
 
-    public void setNumerochassis(Integer numerochassis) {
-        this.numerochassis = numerochassis;
+    public void setNumeroChassis(Integer numeroChassis) {
+        this.numeroChassis = numeroChassis;
     }
 
-    public Integer getNumeromatricule() {
-        return numeromatricule;
+    public Integer getNumeroMatricule() {
+        return numeroMatricule;
     }
 
-    public void setNumeromatricule(Integer numeromatricule) {
-        this.numeromatricule = numeromatricule;
+    public void setNumeroMatricule(Integer numeroMatricule) {
+        this.numeroMatricule = numeroMatricule;
     }
 
     public String getModele() {
@@ -139,28 +139,28 @@ public class Vehicule {
         this.couleur = couleur;
     }
 
-    public Date getDatefabrication() {
-        return datefabrication;
+    public Date getDateFabrication() {
+        return dateFabrication;
     }
 
-    public void setDatefabrication(Date datefabrication) {
-        this.datefabrication = datefabrication;
+    public void setDateFabrication(Date dateFabrication) {
+        this.dateFabrication = dateFabrication;
     }
 
-    public Date getDatecommande() {
-        return datecommande;
+    public Date getDateCommande() {
+        return dateCommande;
     }
 
-    public void setDatecommande(Date datecommande) {
-        this.datecommande = datecommande;
+    public void setDateCommande(Date dateCommande) {
+        this.dateCommande = dateCommande;
     }
 
-    public Date getDatelivraison() {
-        return datelivraison;
+    public Date getDateLivraison() {
+        return dateLivraison;
     }
 
-    public void setDatelivraison(Date datelivraison) {
-        this.datelivraison = datelivraison;
+    public void setDateLivraison(Date dateLivraison) {
+        this.dateLivraison = dateLivraison;
     }
 
     public String getEnergie() {
@@ -179,11 +179,31 @@ public class Vehicule {
         this.etat = etat;
     }
 
-    public String getTypevehicule() {
-        return typevehicule;
+    public String getTypeVehicule() {
+        return typeVehicule;
     }
 
-    public void setTypevehicule(String typevehicule) {
-        this.typevehicule = typevehicule;
+    public void setTypeVehicule(String typeVehicule) {
+        this.typeVehicule = typeVehicule;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicule{" +
+                "id=" + id +
+                ", vehiculeId='" + vehiculeId + '\'' +
+                ", numeroChassis=" + numeroChassis +
+                ", numeroMatricule=" + numeroMatricule +
+                ", modele='" + modele + '\'' +
+                ", marque='" + marque + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", couleur='" + couleur + '\'' +
+                ", dateFabrication=" + dateFabrication +
+                ", dateCommande=" + dateCommande +
+                ", dateLivraison=" + dateLivraison +
+                ", energie='" + energie + '\'' +
+                ", etat='" + etat + '\'' +
+                ", typeVehicule='" + typeVehicule + '\'' +
+                '}';
     }
 }

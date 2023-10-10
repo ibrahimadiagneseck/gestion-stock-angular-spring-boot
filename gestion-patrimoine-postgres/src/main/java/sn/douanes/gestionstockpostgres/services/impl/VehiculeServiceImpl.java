@@ -18,18 +18,34 @@ public class VehiculeServiceImpl  implements VehiculeService {
 
     @Override
     public Vehicule saveVehicule(Vehicule v) {
-        v.setVehiculeid(generateVehiculeid());
+        v.setVehiculeId(generateVehiculeId());
         return vehiculeRepository.save(v);
     }
 
     @Override
     public Vehicule updateVehicule(Vehicule v) {
 
-        Vehicule vehicule = vehiculeRepository.findByVehiculeid(v.getVehiculeid());
-        System.out.println(vehicule.getMarque());
-        if(vehicule != null) {
+        System.out.println(v);
+
+        Vehicule vehicule = this.findByVehiculeId(v.getVehiculeId());
+
+        if (vehicule != null) {
+            vehicule.setNumeroChassis(v.getNumeroChassis());
+            vehicule.setNumeroMatricule(v.getNumeroMatricule());
+            vehicule.setModele(v.getModele());
+            vehicule.setMarque(v.getMarque());
+            vehicule.setTransmission(v.getTransmission());
+            vehicule.setCouleur(v.getCouleur());
+            vehicule.setDateFabrication(v.getDateFabrication());
+            vehicule.setDateCommande(v.getDateCommande());
+            vehicule.setDateLivraison(v.getDateLivraison());
+            vehicule.setEnergie(v.getEnergie());
+            vehicule.setEtat(v.getEtat());
+            vehicule.setTypeVehicule(v.getTypeVehicule());
+
             return vehiculeRepository.save(vehicule);
         }
+
         return null;
     }
 
@@ -57,13 +73,14 @@ public class VehiculeServiceImpl  implements VehiculeService {
 
 
 
-    @Override
-    public Vehicule findByVehiculeid(String vehiculeid) {
-        return vehiculeRepository.findByVehiculeid(vehiculeid);
+
+    public Vehicule findByVehiculeId(String vehiculeId) {
+        return vehiculeRepository.findByVehiculeId(vehiculeId);
     }
 
 
-    private String generateVehiculeid() {
+    private String generateVehiculeId() {
         return RandomStringUtils.randomNumeric(10);
     }
+
 }

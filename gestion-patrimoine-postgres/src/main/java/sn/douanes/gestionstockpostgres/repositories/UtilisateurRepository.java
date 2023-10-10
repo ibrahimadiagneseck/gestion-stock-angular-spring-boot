@@ -7,5 +7,5 @@ import sn.douanes.gestionstockpostgres.entities.Utilisateur;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
-    Utilisateur findByUtilisateurid(String utilisateurid);
+    Utilisateur findByUtilisateurId(String utilisateurId);
 }

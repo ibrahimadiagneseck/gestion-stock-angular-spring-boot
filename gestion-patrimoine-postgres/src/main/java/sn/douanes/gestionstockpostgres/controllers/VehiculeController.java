@@ -25,7 +25,7 @@ public class VehiculeController {
     @GetMapping("/VehiculeByVehiculeId/{vehiculeId}")
     @ResponseBody
     public Vehicule VehiculeByVehiculeId(@PathVariable String vehiculeId) {
-        Vehicule vehicule = vehiculeService.findByVehiculeid(vehiculeId);
+        Vehicule vehicule = vehiculeService.findByVehiculeId(vehiculeId);
         return vehicule;
     }
 
@@ -35,6 +35,7 @@ public class VehiculeController {
         return vehiculeService.saveVehicule(v);
     }
 
+
     @PutMapping("/ModifierVehicule")
     @ResponseBody
     public Vehicule ModifierVehicule(@RequestBody Vehicule v) {
@@ -43,7 +44,7 @@ public class VehiculeController {
 
     @DeleteMapping("SupprimerVehiculeByVehiculeId/{vehiculeId}")
     public void SupprimerVehiculeByVehiculeId(@PathVariable("vehiculeId") String vehiculeId) {
-        vehiculeService.deleteVehiculeById(vehiculeService.findByVehiculeid(vehiculeId).getId());
+        vehiculeService.deleteVehiculeById(vehiculeService.findByVehiculeId(vehiculeId).getId());
     }
 
 

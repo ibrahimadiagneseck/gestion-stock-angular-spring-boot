@@ -46,7 +46,7 @@ export class VehiculeAjouterComponent implements OnInit {
 
     this.vehiculeForm = new FormGroup({
 
-      numerochassis: new FormControl(null, [
+      numeroChassis: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -54,10 +54,10 @@ export class VehiculeAjouterComponent implements OnInit {
         Validators.required,
         this.validationService.validateCouleurSelection
       ]),
-      datelivraison: new FormControl('', [
+      dateLivraison: new FormControl('', [
         Validators.required
       ]),
-      numeromatricule: new FormControl(null, [
+      numeroMatricule: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -72,7 +72,7 @@ export class VehiculeAjouterComponent implements OnInit {
       modele: new FormControl('', [
         Validators.required
       ]),
-      datefabrication: new FormControl('', [
+      dateFabrication: new FormControl('', [
         Validators.required
       ]),
       etat: new FormControl(this.selectEtat, [
@@ -83,10 +83,10 @@ export class VehiculeAjouterComponent implements OnInit {
         Validators.required,
         this.validationService.validateMarqueSelection
       ]),
-      datecommande: new FormControl('', [
+      dateCommande: new FormControl('', [
         Validators.required
       ]),
-      typevehicule: new FormControl(this.selectTypeVehicule, [
+      typeVehicule: new FormControl(this.selectTypeVehicule, [
         Validators.required,
         this.validationService.validateTypeVehiculeSelection
       ])

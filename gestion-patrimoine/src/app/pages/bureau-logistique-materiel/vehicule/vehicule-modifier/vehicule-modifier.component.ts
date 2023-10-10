@@ -61,7 +61,11 @@ export class VehiculeModifierComponent implements OnInit {
 
     this.vehiculeForm = new FormGroup({
 
-      numerochassis: new FormControl(this.vehicule.numerochassis, [
+      vehiculeId: new FormControl(this.vehicule.vehiculeId, [
+        Validators.required,
+        Validators.pattern('^[0-9]{5}$'),
+      ]),
+      numeroChassis: new FormControl(this.vehicule.numeroChassis, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -69,10 +73,10 @@ export class VehiculeModifierComponent implements OnInit {
         Validators.required,
         this.validationService.validateCouleurSelection,
       ]),
-      datelivraison: new FormControl(this.formatDate(this.vehicule.datelivraison), [
+      dateLivraison: new FormControl(this.formatDate(this.vehicule.dateLivraison), [
         Validators.required,
       ]),
-      numeromatricule: new FormControl(this.vehicule.numeromatricule, [
+      numeroMatricule: new FormControl(this.vehicule.numeroMatricule, [
         Validators.required,
         Validators.pattern('^[0-9]{5}$'),
       ]),
@@ -87,7 +91,7 @@ export class VehiculeModifierComponent implements OnInit {
       modele: new FormControl(this.vehicule.modele, [
         Validators.required,
       ]),
-      datefabrication: new FormControl(this.formatDate(this.vehicule.datefabrication), [
+      dateFabrication: new FormControl(this.formatDate(this.vehicule.dateFabrication), [
         Validators.required,
       ]),
       etat: new FormControl(this.vehicule.etat, [
@@ -98,10 +102,10 @@ export class VehiculeModifierComponent implements OnInit {
         Validators.required,
         this.validationService.validateMarqueSelection,
       ]),
-      datecommande: new FormControl(this.formatDate(this.vehicule.datecommande), [
+      dateCommande: new FormControl(this.formatDate(this.vehicule.dateCommande), [
         Validators.required,
       ]),
-      typevehicule: new FormControl(this.vehicule.typevehicule, [
+      typeVehicule: new FormControl(this.vehicule.typeVehicule, [
         Validators.required,
         this.validationService.validateTypeVehiculeSelection,
       ])

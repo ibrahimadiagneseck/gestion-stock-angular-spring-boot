@@ -8,22 +8,30 @@
   <div class="card-body">
     <form class="container px-3 py-2" novalidate (ngSubmit)="onSubmit()" [formGroup]="vehiculeForm">
 
+      <div class="row g-4 mb-3 d-none">
+
+        <div class="col-3 mx-auto">
+          <input id="vehiculeId" name="vehiculeId" type="text" formControlName="vehiculeId">
+        </div>
+
+      </div>
+
       <div class="row g-4 mb-3">
 
         <div class="col-3 mx-auto">
-          <label for="numerochassis" class="form-label fw-bold">
+          <label for="numeroChassis" class="form-label fw-bold">
             N° châssis
           </label>
 
-          <input id="numerochassis" name="numerochassis" type="number" formControlName="numerochassis" [ngClass]="{'is-invalid': (vehiculeForm.get('numerochassis')?.touched || vehiculeForm.get('numerochassis')?.dirty) && !vehiculeForm.get('numerochassis')?.valid,
-          'is-valid': vehiculeForm.get('numerochassis')?.valid}"
+          <input id="numeroChassis" name="numeroChassis" type="number" formControlName="numeroChassis" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroChassis')?.touched || vehiculeForm.get('numeroChassis')?.dirty) && !vehiculeForm.get('numeroChassis')?.valid,
+          'is-valid': vehiculeForm.get('numeroChassis')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase" placeholder="Entrer le N° de châssis">
 
             <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('numerochassis')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('numeroChassis')?.errors?.['required']">
               <sup class="fw-bold">*</sup> N° de châssis (Obligatoire)
             </span>
-            <span *ngIf="vehiculeForm.get('numerochassis')?.hasError('pattern')">
+            <span *ngIf="vehiculeForm.get('numeroChassis')?.hasError('pattern')">
               <sup class="fw-bold">*</sup> 5 chiffres
             </span>
           </div>
@@ -62,16 +70,16 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="datelivraison" class="form-label fw-bold">
+          <label for="dateLivraison" class="form-label fw-bold">
             Date livraison
           </label>
 
-          <input id="datelivraison" name="datelivraison" type="date" formControlName="datelivraison" [ngClass]="{'is-invalid': (vehiculeForm.get('datelivraison')?.touched || vehiculeForm.get('datelivraison')?.dirty) && !vehiculeForm.get('datelivraison')?.valid,
-          'is-valid': vehiculeForm.get('datelivraison')?.valid}"
+          <input id="dateLivraison" name="dateLivraison" type="date" formControlName="dateLivraison" [ngClass]="{'is-invalid': (vehiculeForm.get('dateLivraison')?.touched || vehiculeForm.get('dateLivraison')?.dirty) && !vehiculeForm.get('dateLivraison')?.valid,
+          'is-valid': vehiculeForm.get('dateLivraison')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('datelivraison')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('dateLivraison')?.errors?.['required']">
               <sup class="fw-bold">*</sup> Date livraison (Obligatoire)
             </span>
           </div>
@@ -83,19 +91,19 @@
       <div class="row g-4 mb-3">
 
         <div class="col-3 mx-auto">
-          <label for="numeromatricule" class="form-label fw-bold">
+          <label for="numeroMatricule" class="form-label fw-bold">
             N° matricule
           </label>
 
-          <input id="numeromatricule" name="numeromatricule" type="number" formControlName="numeromatricule" [ngClass]="{'is-invalid': (vehiculeForm.get('numeromatricule')?.touched || vehiculeForm.get('numeromatricule')?.dirty) && !vehiculeForm.get('numeromatricule')?.valid,
-          'is-valid': vehiculeForm.get('numeromatricule')?.valid}"
+          <input id="numeroMatricule" name="numeroMatricule" type="number" formControlName="numeroMatricule" [ngClass]="{'is-invalid': (vehiculeForm.get('numeroMatricule')?.touched || vehiculeForm.get('numeroMatricule')?.dirty) && !vehiculeForm.get('numeroMatricule')?.valid,
+          'is-valid': vehiculeForm.get('numeroMatricule')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase" placeholder="Entrer le N° de matricule">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('numeromatricule')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('numeroMatricule')?.errors?.['required']">
               <sup class="fw-bold">*</sup> N° matricule (Obligatoire)
             </span>
-            <span *ngIf="vehiculeForm.get('numeromatricule')?.hasError('pattern')">
+            <span *ngIf="vehiculeForm.get('numeroMatricule')?.hasError('pattern')">
               <sup class="fw-bold">*</sup> 5 chiffres
             </span>
           </div>
@@ -176,16 +184,16 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="datefabrication" class="form-label fw-bold">
+          <label for="dateFabrication" class="form-label fw-bold">
             Date fabrication
           </label>
 
-          <input id="datefabrication" name="datefabrication" type="date" formControlName="datefabrication" [ngClass]="{'is-invalid': (vehiculeForm.get('datefabrication')?.touched || vehiculeForm.get('datefabrication')?.dirty) && !vehiculeForm.get('datefabrication')?.valid,
-          'is-valid': vehiculeForm.get('datefabrication')?.valid}"
+          <input id="dateFabrication" name="dateFabrication" type="date" formControlName="dateFabrication" [ngClass]="{'is-invalid': (vehiculeForm.get('dateFabrication')?.touched || vehiculeForm.get('dateFabrication')?.dirty) && !vehiculeForm.get('dateFabrication')?.valid,
+          'is-valid': vehiculeForm.get('dateFabrication')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('datefabrication')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('dateFabrication')?.errors?.['required']">
               <sup class="fw-bold">*</sup> Date fabrication (Obligatoire)
             </span>
           </div>
@@ -262,27 +270,27 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="datecommande" class="form-label fw-bold">
+          <label for="dateCommande" class="form-label fw-bold">
             Date commande
           </label>
 
-          <input id="datecommande" name="datecommande" type="date" formControlName="datecommande" [ngClass]="{'is-invalid': (vehiculeForm.get('datecommande')?.touched || vehiculeForm.get('datecommande')?.dirty) && !vehiculeForm.get('datecommande')?.valid,
-          'is-valid': vehiculeForm.get('datecommande')?.valid}"
+          <input id="dateCommande" name="dateCommande" type="date" formControlName="dateCommande" [ngClass]="{'is-invalid': (vehiculeForm.get('dateCommande')?.touched || vehiculeForm.get('dateCommande')?.dirty) && !vehiculeForm.get('dateCommande')?.valid,
+          'is-valid': vehiculeForm.get('dateCommande')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('datecommande')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('dateCommande')?.errors?.['required']">
               <sup class="fw-bold">*</sup> Date commande (Obligatoire)
             </span>
           </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="typevehicule" class="form-label fw-bold">
+          <label for="typeVehicule" class="form-label fw-bold">
             Type vehicule
           </label>
 
-          <select formControlName="typevehicule" id="typevehicule"
+          <select formControlName="typeVehicule" id="typeVehicule"
             class="text-input form-select px-1 bg-mywhite border border-myprimary text-uppercase">
             <option [value]="selectTypeVehicule" selected>{{ selectTypeVehicule }}</option>
             <option value="Voiture">Voiture</option>

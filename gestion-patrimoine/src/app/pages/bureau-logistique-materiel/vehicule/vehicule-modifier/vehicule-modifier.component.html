@@ -4,7 +4,6 @@
     Modifier un vehicule
   </div>
 
-
   <div class="card-body">
     <form class="container px-3 py-2" novalidate (ngSubmit)="onSubmit()" [formGroup]="vehiculeForm">
 
@@ -12,7 +11,7 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">N° chassis:</span>
-          <div class="text-input"> {{ vehicule.numerochassis }} </div>
+          <div class="text-input"> {{ vehicule.numeroChassis }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -48,16 +47,16 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="datelivraison" class="form-label fw-bold">
+          <label for="dateLivraison" class="form-label fw-bold">
             Date livraison
           </label>
 
-          <input id="datelivraison" name="datelivraison" type="date" formControlName="datelivraison" [ngClass]="{'is-invalid': (vehiculeForm.get('datelivraison')?.touched || vehiculeForm.get('datelivraison')?.dirty) && !vehiculeForm.get('datelivraison')?.valid,
-          'is-valid': vehiculeForm.get('datelivraison')?.valid}"
+          <input id="dateLivraison" name="dateLivraison" type="date" formControlName="dateLivraison" [ngClass]="{'is-invalid': (vehiculeForm.get('dateLivraison')?.touched || vehiculeForm.get('dateLivraison')?.dirty) && !vehiculeForm.get('dateLivraison')?.valid,
+          'is-valid': vehiculeForm.get('dateLivraison')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('datelivraison')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('dateLivraison')?.errors?.['required']">
               <sup class="fw-bold">*</sup> Date livraison (Obligatoire)
             </span>
           </div>
@@ -70,7 +69,7 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">N° matricule:</span>
-          <div class="text-input"> {{ vehicule.numeromatricule }} </div>
+          <div class="text-input"> {{ vehicule.numeroMatricule }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -149,7 +148,7 @@
 
         <div class="col-3 mx-auto">
           <span class="fw-bold">Date fabrication:</span>
-          <div class="text-input text-uppercase"> {{ vehicule.datefabrication | date: 'dd MMM yy' }} </div>
+          <div class="text-input text-uppercase"> {{ vehicule.dateFabrication | date: 'dd MMM yy' }} </div>
         </div>
 
         <div class="col-3 mx-auto">
@@ -223,27 +222,27 @@
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="datecommande" class="form-label fw-bold">
+          <label for="dateCommande" class="form-label fw-bold">
             Date commande
           </label>
 
-          <input id="datecommande" name="datecommande" type="date" formControlName="datecommande" [ngClass]="{'is-invalid': (vehiculeForm.get('datecommande')?.touched || vehiculeForm.get('datecommande')?.dirty) && !vehiculeForm.get('datecommande')?.valid,
-          'is-valid': vehiculeForm.get('datecommande')?.valid}"
+          <input id="dateCommande" name="dateCommande" type="date" formControlName="dateCommande" [ngClass]="{'is-invalid': (vehiculeForm.get('dateCommande')?.touched || vehiculeForm.get('dateCommande')?.dirty) && !vehiculeForm.get('dateCommande')?.valid,
+          'is-valid': vehiculeForm.get('dateCommande')?.valid}"
             class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
 
           <div class="invalid-feedback">
-            <span *ngIf="vehiculeForm.get('datecommande')?.errors?.['required']">
+            <span *ngIf="vehiculeForm.get('dateCommande')?.errors?.['required']">
               <sup class="fw-bold">*</sup> Date commande (Obligatoire)
             </span>
           </div>
         </div>
 
         <div class="col-3 mx-auto">
-          <label for="typevehicule" class="form-label fw-bold">
+          <label for="typeVehicule" class="form-label fw-bold">
             Type vehicule
           </label>
 
-          <select formControlName="typevehicule" id="typevehicule"
+          <select formControlName="typeVehicule" id="typeVehicule"
             class="text-input form-select px-1 bg-mywhite border border-myprimary text-uppercase">
             <option [value]="selectTypeVehicule" selected>{{ selectTypeVehicule }}</option>
             <option value="Voiture">Voiture</option>
