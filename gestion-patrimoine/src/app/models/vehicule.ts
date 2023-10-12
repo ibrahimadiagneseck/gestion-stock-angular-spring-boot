@@ -2,6 +2,7 @@
 export interface IVehicule {
 
   vehiculeId: string;
+  dateEnregistrement: Date;
   numeroChassis: number;
   numeroMatricule: number;
   modele: string;

@@ -247,7 +247,9 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   recupererVehicules() {
     this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
-        this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
+        // this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
+        this.vehicules = donnees.sort((a, b) => new Date(b.dateEnregistrement).getTime() - new Date(a.dateEnregistrement).getTime());
+
 
         this.rowNumber = 1;
 
