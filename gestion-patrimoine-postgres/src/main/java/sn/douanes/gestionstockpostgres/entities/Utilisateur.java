@@ -20,6 +20,9 @@ public class Utilisateur {
     @Column(name = "utilisateur_id")
     private String utilisateurId;
 
+    @Column(name = "date_enregistrement")
+    private Date dateEnregistrement = new Date();
+
     @Column(name = "username")
     private String username;
 
@@ -48,9 +51,10 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id, String utilisateurId, String username, String email, Date dateNaissance, String lieuNaissance, List<Vehicule> vehicules) {
+    public Utilisateur(Long id, String utilisateurId, Date dateEnregistrement, String username, String email, Date dateNaissance, String lieuNaissance, List<Vehicule> vehicules) {
         this.id = id;
         this.utilisateurId = utilisateurId;
+        this.dateEnregistrement = dateEnregistrement;
         this.username = username;
         this.email = email;
         this.dateNaissance = dateNaissance;
@@ -72,6 +76,14 @@ public class Utilisateur {
 
     public void setUtilisateurId(String utilisateurId) {
         this.utilisateurId = utilisateurId;
+    }
+
+    public Date getDateEnregistrement() {
+        return dateEnregistrement;
+    }
+
+    public void setDateEnregistrement(Date dateEnregistrement) {
+        this.dateEnregistrement = dateEnregistrement;
     }
 
     public String getUsername() {
@@ -119,6 +131,7 @@ public class Utilisateur {
         return "Utilisateur{" +
                 "id=" + id +
                 ", utilisateurId='" + utilisateurId + '\'' +
+                ", dateEnregistrement=" + dateEnregistrement +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", dateNaissance=" + dateNaissance +

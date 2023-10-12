@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { SelectEnum } from 'src/app/enum/select-enum';
+import { SelectEnum } from 'src/app/enum/select-enum.enum';
 import { ValidationService } from 'src/app/services/validation.service';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
@@ -62,8 +62,7 @@ export class VehiculeModifierComponent implements OnInit {
     this.vehiculeForm = new FormGroup({
 
       vehiculeId: new FormControl(this.vehicule.vehiculeId, [
-        Validators.required,
-        Validators.pattern('^[0-9]{5}$'),
+        Validators.required
       ]),
       numeroChassis: new FormControl(this.vehicule.numeroChassis, [
         Validators.required,

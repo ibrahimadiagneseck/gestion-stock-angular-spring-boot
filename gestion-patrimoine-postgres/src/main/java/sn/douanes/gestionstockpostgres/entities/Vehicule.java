@@ -19,6 +19,9 @@ public class Vehicule {
     @Column(name = "vehicule_id")
     private String vehiculeId;
 
+    @Column(name = "date_enregistrement")
+    private Date dateEnregistrement = new Date();
+
     @Column(name = "numero_chassis")
     private Integer numeroChassis;
 
@@ -58,9 +61,10 @@ public class Vehicule {
     public Vehicule() {
     }
 
-    public Vehicule(Long id, String vehiculeId, Integer numeroChassis, Integer numeroMatricule, String modele, String marque, String transmission, String couleur, Date dateFabrication, Date dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
+    public Vehicule(Long id, String vehiculeId, Date dateEnregistrement, Integer numeroChassis, Integer numeroMatricule, String modele, String marque, String transmission, String couleur, Date dateFabrication, Date dateCommande, Date dateLivraison, String energie, String etat, String typeVehicule) {
         this.id = id;
         this.vehiculeId = vehiculeId;
+        this.dateEnregistrement = dateEnregistrement;
         this.numeroChassis = numeroChassis;
         this.numeroMatricule = numeroMatricule;
         this.modele = modele;
@@ -89,6 +93,14 @@ public class Vehicule {
 
     public void setVehiculeId(String vehiculeId) {
         this.vehiculeId = vehiculeId;
+    }
+
+    public Date getDateEnregistrement() {
+        return dateEnregistrement;
+    }
+
+    public void setDateEnregistrement(Date dateEnregistrement) {
+        this.dateEnregistrement = dateEnregistrement;
     }
 
     public Integer getNumeroChassis() {
@@ -192,6 +204,7 @@ public class Vehicule {
         return "Vehicule{" +
                 "id=" + id +
                 ", vehiculeId='" + vehiculeId + '\'' +
+                ", dateEnregistrement=" + dateEnregistrement +
                 ", numeroChassis=" + numeroChassis +
                 ", numeroMatricule=" + numeroMatricule +
                 ", modele='" + modele + '\'' +

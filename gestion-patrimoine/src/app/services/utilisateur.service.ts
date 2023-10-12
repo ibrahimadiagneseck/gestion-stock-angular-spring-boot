@@ -15,8 +15,39 @@ export class UtilisateurService {
   ) { }
 
 
+   // ----------------------------------------------------------------------------
+  // RECHERCHER Utilisateur
+  public searchUtilisateurList(
+    term: string,
+    listeUtilisateurs: IUtilisateur[]
+  ): Observable<IUtilisateur[]> {
+    if (term.length <= 1) {
+      return of([]);
+    }
+
+    // Filtrer la liste d' utilisateur en fonction du terme de recherche
+    const filteredUtilisateur = listeUtilisateurs.filter((utilisateur) =>
+      this.doesUtilisateurMatchTerm(utilisateur, term)
+    );
+
+    return of(filteredUtilisateur);
+  }
+
+  private doesUtilisateurMatchTerm(utilisateur: IUtilisateur, term: string): boolean {
+    // Vérifier si le terme de recherche correspond à n'importe lequel des attributs du Pokémon
+    const termLowerCase = term.toLowerCase();
+    return (
+      utilisateur.username.toLowerCase().includes(termLowerCase) ||
+      utilisateur.email.toLowerCase().includes(termLowerCase) ||
+      utilisateur.lieuNaissance.toLowerCase().includes(termLowerCase)
+      // Ajoutez d'autres attributs à vérifier si nécessaire
+    );
+  }
+  // ----------------------------------------------------------------------------
 
 
+
+  // ----------------------------------------------------------------------------
   //  CRUD UTILISATEUR
   public getUtilisateurs():Observable<IUtilisateur[]> {
     return this.httpClient.get<IUtilisateur[]>(this.urlServeur+"/Utilisateurs");
@@ -37,6 +68,7 @@ export class UtilisateurService {
   public getUtilisateurByUtilisateurId(utilisateurId: String):Observable<IUtilisateur> {
     return this.httpClient.get<IUtilisateur>(`${this.urlServeur}/UtilisateurByUtilisateurId/${utilisateurId}`);
   }
+  // ----------------------------------------------------------------------------
 
 
 
