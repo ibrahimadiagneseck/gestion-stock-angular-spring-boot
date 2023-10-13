@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -6,13 +6,16 @@ import { SelectEnum } from 'src/app/enum/select-enum.enum';
 import { IVehicule } from 'src/app/models/vehicule';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { ValidationService } from 'src/app/services/validation.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ajouter',
   templateUrl: './vehicule-ajouter.component.html',
   styleUrls: ['./vehicule-ajouter.component.css'],
 })
-export class VehiculeAjouterComponent implements OnInit {
+export class VehiculeAjouterComponent implements OnInit, OnDestroy {
+
+  private subscriptions: Subscription[] = [];
 
 
   selectCouleur: string = SelectEnum.COULEUR;
@@ -31,8 +34,8 @@ export class VehiculeAjouterComponent implements OnInit {
     public dialogRef: MatDialogRef<VehiculeAjouterComponent>
   ) {}
 
-  AjouterVehicule() {
-    this.vehiculeService.postVehicule(this.vehiculeForm.value).subscribe({
+  AjouterVehicule(): void {
+    const subscription = this.vehiculeService.postVehicule(this.vehiculeForm.value).subscribe({
       next: () => {
         this.popupFermer();
       },
@@ -40,6 +43,8 @@ export class VehiculeAjouterComponent implements OnInit {
         console.log(erreurs);
       },
     });
+
+    this.subscriptions.push(subscription);
   }
 
   ngOnInit(): void {
@@ -98,8 +103,12 @@ export class VehiculeAjouterComponent implements OnInit {
     this.AjouterVehicule();
   }
 
-  popupFermer() {
+  popupFermer(): void {
     this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

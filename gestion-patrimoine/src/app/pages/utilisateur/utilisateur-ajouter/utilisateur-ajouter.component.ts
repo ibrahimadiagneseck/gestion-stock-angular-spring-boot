@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { IUtilisateur } from 'src/app/models/utilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { ValidationService } from 'src/app/services/validation.service';
@@ -10,7 +11,10 @@ import { ValidationService } from 'src/app/services/validation.service';
   templateUrl: './utilisateur-ajouter.component.html',
   styleUrls: ['./utilisateur-ajouter.component.css']
 })
-export class UtilisateurAjouterComponent implements OnInit {
+export class UtilisateurAjouterComponent implements OnInit, OnDestroy {
+
+  private subscriptions: Subscription[] = [];
+
 
   public utilisateurForm!: FormGroup;
 
@@ -21,8 +25,8 @@ export class UtilisateurAjouterComponent implements OnInit {
     public dialogRef: MatDialogRef<UtilisateurAjouterComponent>
   ) {}
 
-  AjouterUtilisateur() {
-    this.utilisateurService.postUtilisateur(this.utilisateurForm.value).subscribe({
+  AjouterUtilisateur(): void {
+    const subscription = this.utilisateurService.postUtilisateur(this.utilisateurForm.value).subscribe({
       next: () => {
         this.popupFermer();
       },
@@ -30,6 +34,8 @@ export class UtilisateurAjouterComponent implements OnInit {
         console.log(erreurs);
       },
     });
+
+    this.subscriptions.push(subscription);
   }
 
   ngOnInit(): void {
@@ -56,9 +62,12 @@ export class UtilisateurAjouterComponent implements OnInit {
     this.AjouterUtilisateur();
   }
 
-  popupFermer() {
+  popupFermer(): void {
     this.dialogRef.close();
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -13,6 +13,7 @@ import { VehiculeService } from 'src/app/services/vehicule.service';
 import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
 import { VehiculeListeComponent } from '../vehicule-liste/vehicule-liste.component';
 import { IVehicule } from 'src/app/models/vehicule';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,7 +21,9 @@ import { IVehicule } from 'src/app/models/vehicule';
   templateUrl: './vehicule-modifier.component.html',
   styleUrls: ['./vehicule-modifier.component.css'],
 })
-export class VehiculeModifierComponent implements OnInit {
+export class VehiculeModifierComponent implements OnInit, OnDestroy {
+
+  private subscriptions: Subscription[] = [];
 
   selectCouleur: string = SelectEnum.COULEUR;
   selectTransmission: string = SelectEnum.TRANSMISSION;
@@ -43,9 +46,9 @@ export class VehiculeModifierComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
 
-  ModifierVehicule() {
+  ModifierVehicule(): void {
 
-    this.vehiculeService.putVehicule(this.vehiculeForm.value).subscribe({
+    const subscription = this.vehiculeService.putVehicule(this.vehiculeForm.value).subscribe({
       next: () => {
         this.dialogRef.close();
         this.actualiserPage();
@@ -54,9 +57,12 @@ export class VehiculeModifierComponent implements OnInit {
         console.log(erreurs);
       },
     });
+
+    this.subscriptions.push(subscription);
   }
 
   ngOnInit(): void {
+
     this.vehicule = this.data;
 
     this.vehiculeForm = new FormGroup({
@@ -116,7 +122,7 @@ export class VehiculeModifierComponent implements OnInit {
     this.ModifierVehicule();
   }
 
-  fermerPopup() {
+  fermerPopup(): void {
     this.dialogRef.close();
     this.matDialog.open(
       VehiculeDetailComponent,
@@ -129,7 +135,7 @@ export class VehiculeModifierComponent implements OnInit {
     );
   }
 
-  // goToGestionVehicule() {
+  // goToGestionVehicule(): void {
   //   this.router.navigate(['gestion-vehicule']);
   // }
 
@@ -154,16 +160,17 @@ export class VehiculeModifierComponent implements OnInit {
   }
 
 
-  actualiserPage() {
+  actualiserPage(): void {
     //   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     //   this.router.onSameUrlNavigation = 'reload';
     //   this.router.navigate(['gestion-vehicule']);
-
     location.reload();
-
   }
 
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 
 
 }

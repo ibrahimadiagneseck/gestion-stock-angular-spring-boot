@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +7,7 @@ import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.comp
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { IVehicule } from 'src/app/models/vehicule';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, Subject, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
+import { Observable, Subject, Subscription, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 
 import * as pdfMake from 'pdfmake/build/pdfmake';
@@ -20,14 +20,16 @@ import { Margins } from 'pdfmake/interfaces';
   templateUrl: './vehicule-liste.component.html',
   styleUrls: ['./vehicule-liste.component.css']
 })
-export class VehiculeListeComponent implements OnInit, AfterViewInit {
+export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  private subscriptions: Subscription[] = [];
 
   /* ----------------------------------------------------------------------------------------- */
   focusOnInput: boolean = false;
 
   @ViewChild('monDiv', { static: true }) monDiv: ElementRef | undefined;
 
-  divClique() {
+  divClique(): void {
     // Code à exécuter lorsque l'élément <div> est cliqué
     // Par exemple, vous pouvez modifier une variable ou déclencher une action
     // console.log('L\'élément <div> a été cliqué !');
@@ -118,7 +120,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
   ) { }
 
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     /* ----------------------------------------------------------------------------------------- */
     // menu
     const coll = this.el.nativeElement.getElementsByClassName("collapsible");
@@ -139,7 +141,6 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-
     /* ----------------------------------------------------------------------------------------- */
     this.recupererVehicules();
     /* ----------------------------------------------------------------------------------------- */
@@ -158,7 +159,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     /* ----------------------------------------------------------------------------------------- */
   }
 
-  generatePDF() {
+  generatePDF(): void {
     const months = [
       'JANV.',
       'FÉVR.',
@@ -239,13 +240,13 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     pdfMake.createPdf(documentDefinition).open();
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  recupererVehicules() {
-    this.vehiculeService.getVehicules().subscribe({
+  recupererVehicules(): void {
+    const subscription = this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
         // this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
         this.vehicules = donnees.sort((a, b) => new Date(b.dateEnregistrement).getTime() - new Date(a.dateEnregistrement).getTime());
@@ -266,14 +267,16 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
         console.log(erreurs);
       }
     });
+
+    this.subscriptions.push(subscription);
   }
 
-  search(term: string) {
+  search(term: string): void {
     this.searchTerms.next(term);
   }
 
 
-  popupAjouter() {
+  popupAjouter(): void {
     const dialogRef = this.matDialog.open(
       VehiculeAjouterComponent,
       {
@@ -288,7 +291,7 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  popupDetail(element: any) {
+  popupDetail(element: any): void {
     const dialogRef = this.matDialog.open(
       VehiculeDetailComponent,
       {
@@ -304,6 +307,11 @@ export class VehiculeListeComponent implements OnInit, AfterViewInit {
     });
   }
 
+
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 
 
 }

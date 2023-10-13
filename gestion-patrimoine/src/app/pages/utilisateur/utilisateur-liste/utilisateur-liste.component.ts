@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -15,6 +16,7 @@ import * as pdfMake from 'pdfmake/build/pdfmake';
 import {
   Observable,
   Subject,
+  Subscription,
   debounceTime,
   distinctUntilChanged,
   of,
@@ -29,13 +31,17 @@ import { UtilisateurAjouterComponent } from '../utilisateur-ajouter/utilisateur-
   templateUrl: './utilisateur-liste.component.html',
   styleUrls: ['./utilisateur-liste.component.css'],
 })
-export class UtilisateurListeComponent implements OnInit {
+export class UtilisateurListeComponent implements OnInit, OnDestroy {
+
+  private subscriptions: Subscription[] = [];
+
+
   /* ----------------------------------------------------------------------------------------- */
   focusOnInput: boolean = false;
 
   @ViewChild('monDiv', { static: true }) monDiv: ElementRef | undefined;
 
-  divClique() {
+  divClique(): void {
     // Code à exécuter lorsque l'élément <div> est cliqué
     // Par exemple, vous pouvez modifier une variable ou déclencher une action
     // console.log('L\'élément <div> a été cliqué !');
@@ -94,7 +100,7 @@ export class UtilisateurListeComponent implements OnInit {
     private renderer: Renderer2
   ) {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     /* ----------------------------------------------------------------------------------------- */
     // menu
     const coll = this.el.nativeElement.getElementsByClassName('collapsible');
@@ -135,7 +141,7 @@ export class UtilisateurListeComponent implements OnInit {
 
   /* ----------------------------------------------------------------------------------------- */
   //  générer un pdf avec Pdfmake
-  generatePDF() {
+  generatePDF(): void {
     const months = [
       'JANV.',
       'FÉVR.',
@@ -203,13 +209,13 @@ export class UtilisateurListeComponent implements OnInit {
     pdfMake.createPdf(documentDefinition).open();
   }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  recupererUtilisateurs() {
-    this.utilisateurService.getUtilisateurs().subscribe({
+  recupererUtilisateurs(): void {
+    const subscription = this.utilisateurService.getUtilisateurs().subscribe({
       next: (donnees: IUtilisateur[]) => {
         this.utilisateurs = donnees.sort((a, b) =>
           a.utilisateurId.localeCompare(b.utilisateurId)
@@ -230,15 +236,17 @@ export class UtilisateurListeComponent implements OnInit {
       },
       error: (erreurs: HttpErrorResponse) => {
         console.log(erreurs);
-      },
+      }
     });
+
+    this.subscriptions.push(subscription);
   }
 
-  search(term: string) {
+  search(term: string): void {
     this.searchTerms.next(term);
   }
 
-  popupAjouter() {
+  popupAjouter(): void {
     const dialogRef = this.matDialog.open(UtilisateurAjouterComponent, {
       width: '80%',
       enterAnimationDuration: '100ms',
@@ -250,7 +258,11 @@ export class UtilisateurListeComponent implements OnInit {
     });
   }
 
-  goTo() {
+  goToDetailUtilisateur(utilisateur: IUtilisateur): void {
+    this.router.navigate(['/gestion-utilisateur/detail', utilisateur.utilisateurId]);
+  }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

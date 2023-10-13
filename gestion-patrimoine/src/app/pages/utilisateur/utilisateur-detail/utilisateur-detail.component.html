@@ -1,1 +1,56 @@
-<p>utilisateur-detail works!</p>
+<div class="container">
+  <div *ngIf="utilisateur" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ utilisateur.username }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <!-- <img [src]="utilisateur.picture"> -->
+        <img src="../../../../assets/profil.png" alt="profil">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ utilisateur.username }}</strong></td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td><strong>{{ utilisateur.email }}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ utilisateur.dateNaissance }}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ utilisateur.lieuNaissance }}</strong></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  <span *ngFor="let vehicule of utilisateur.vehicules">{{ vehicule }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ utilisateur.dateEnregistrement | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goToUtilisateurList()">Retour</a>
+          <a (click)="goToModifierUtilisateur(utilisateur.utilisateurId)">Éditer</a>
+          <a (click)="supprimerUtilisateurById(utilisateur.utilisateurId)">Supprimer</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf='!utilisateur' style="display: flex; align-items: center; justify-content: center; height: 100%;">
+  <app-loader></app-loader>
+</div>

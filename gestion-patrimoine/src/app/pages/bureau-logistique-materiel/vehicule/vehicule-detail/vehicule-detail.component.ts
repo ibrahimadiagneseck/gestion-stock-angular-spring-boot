@@ -1,16 +1,19 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { VehiculeModifierComponent } from '../vehicule-modifier/vehicule-modifier.component';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './vehicule-detail.component.html',
   styleUrls: ['./vehicule-detail.component.css']
 })
-export class VehiculeDetailComponent implements OnInit {
+export class VehiculeDetailComponent implements OnInit, OnDestroy {
+
+  private subscriptions: Subscription[] = [];
 
   vehicule: any;
 
@@ -27,20 +30,22 @@ export class VehiculeDetailComponent implements OnInit {
     this.vehicule = this.data;
   }
 
-  supprimerVehiculeById(vehiculeId: String) {
-    this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
-      next: () => {
-        this.dialogRef.close();
-      },
-      error: (erreurs: HttpErrorResponse) => {
-        console.log(erreurs);
-      }
-    });
+  supprimerVehiculeById(vehiculeId: String): void {
+    this.subscriptions.push(
+      this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
+        next: () => {
+          this.dialogRef.close();
+        },
+        error: (erreurs: HttpErrorResponse) => {
+          console.log(erreurs);
+        }
+      })
+    );
   }
 
 
 
-  popupModifier(element: any) {
+  popupModifier(element: any): void {
     this.dialogRef.close(); // fermer le popup detail avant
     this.matDialog.open(
       VehiculeModifierComponent,
@@ -53,8 +58,12 @@ export class VehiculeDetailComponent implements OnInit {
     );
   }
 
-  fermerPopup() {
+  fermerPopup(): void {
     this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

@@ -33,6 +33,7 @@ import { UtilisateurListeComponent } from './pages/utilisateur/utilisateur-liste
 import { UtilisateurModifierComponent } from './pages/utilisateur/utilisateur-modifier/utilisateur-modifier.component';
 import { UtilisateurDetailComponent } from './pages/utilisateur/utilisateur-detail/utilisateur-detail.component';
 import { BureauLogistiqueMaterielModule } from './pages/bureau-logistique-materiel/bureau-logistique-materiel.module';
+import { LoaderComponent } from './pages/loader.component';
 
 
 // the second parameter 'fr' is optional
@@ -46,7 +47,8 @@ registerLocaleData(localeFr, 'fr');
     UtilisateurAjouterComponent,
     UtilisateurListeComponent,
     UtilisateurModifierComponent,
-    UtilisateurDetailComponent
+    UtilisateurDetailComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
