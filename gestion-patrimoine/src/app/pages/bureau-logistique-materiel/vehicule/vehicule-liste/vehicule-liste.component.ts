@@ -10,10 +10,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, Subscription, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { Margins } from 'pdfmake/interfaces';
-(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+// import * as pdfMake from 'pdfmake/build/pdfmake';
+// import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+// import { Margins } from 'pdfmake/interfaces';
+// (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-interface1',
@@ -160,85 +160,91 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   generatePDF(): void {
-    const months = [
-      'JANV.',
-      'FÉVR.',
-      'MARS',
-      'AVR.',
-      'MAI',
-      'JUIN',
-      'JUIL.',
-      'AOÛT',
-      'SEPT.',
-      'OCT.',
-      'NOV.',
-      'DÉC.'
-    ];
 
-    const vehiculesData = this.vehicules.map((vehicule) => {
-      return [
-        vehicule.numeroChassis,
-        vehicule.numeroMatricule,
-        vehicule.modele,
-        vehicule.marque,
-        vehicule.couleur,
-        vehicule.transmission,
-        `${new Date(vehicule.dateFabrication).getDate()} ${months[new Date(vehicule.dateFabrication).getMonth()]} ${new Date(vehicule.dateFabrication).getFullYear() % 100}`,
-        `${new Date(vehicule.dateCommande).getDate()} ${months[new Date(vehicule.dateCommande).getMonth()]} ${new Date(vehicule.dateCommande).getFullYear() % 100}`,
-        `${new Date(vehicule.dateLivraison).getDate()} ${months[new Date(vehicule.dateLivraison).getMonth()]} ${new Date(vehicule.dateLivraison).getFullYear() % 100}`,
-        vehicule.energie,
-        vehicule.etat,
-        vehicule.typeVehicule
-      ];
-    });
+  }
 
-    const documentDefinition = {
+/* ----------------------------------------------------------------------------------------- */
+//  générer un pdf avec Pdfmake
+//   generatePDF(): void {
+//     const months = [
+//       'JANV.',
+//       'FÉVR.',
+//       'MARS',
+//       'AVR.',
+//       'MAI',
+//       'JUIN',
+//       'JUIL.',
+//       'AOÛT',
+//       'SEPT.',
+//       'OCT.',
+//       'NOV.',
+//       'DÉC.'
+//     ];
 
-      pageSize: { width: 1200, height: 1200 },
-      content: [
-        { text: 'Liste des véhicules', style: 'header', absolutePosition: { x:20, y:10 }, },
-        {
-          table: {
-            style:'tableStyle',
-            headerRows: 1,
-            // widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
-            margin: [82],
-            body: [
-              [
-                { text: 'N° Châssis', style: 'header' },
-                { text: 'N° Matricule', style: 'header' },
-                { text: 'Modèle', style: 'header' },
-                { text: 'Marque', style: 'header' },
-                { text: 'Couleur', style: 'header' },
-                { text: 'Transmission', style: 'header' },
-                { text: 'Date Fabrication', style: 'header' },
-                { text: 'Date Commande', style: 'header' },
-                { text: 'Date Livraison', style: 'header' },
-                { text: 'Énergie', style: 'header' },
-                { text: 'État', style: 'header' },
-                { text: 'Type Véhicule', style: 'header' },
-              ],
-              ...vehiculesData,
-            ]
-          },
-          layout: 'lightHorizontalLines', // Option de mise en forme du tableau
-        }
-      ],
-      styles: {
-        header: {
-          fontSize: 10,
-          bold: true
-        },
-      },
-      tableStyle: {
-        tableWidth: 'auto', // Largeur du tableau (utilisez 'auto' pour l'ajuster automatiquement)
-        cellPadding: 3, // Rembourrage des cellules
-        margin: [null, 20, null, 20],
-      },
-    };
+//     const vehiculesData = this.vehicules.map((vehicule) => {
+//       return [
+//         vehicule.numeroChassis,
+//         vehicule.numeroMatricule,
+//         vehicule.modele,
+//         vehicule.marque,
+//         vehicule.couleur,
+//         vehicule.transmission,
+//         `${new Date(vehicule.dateFabrication).getDate()} ${months[new Date(vehicule.dateFabrication).getMonth()]} ${new Date(vehicule.dateFabrication).getFullYear() % 100}`,
+//         `${new Date(vehicule.dateCommande).getDate()} ${months[new Date(vehicule.dateCommande).getMonth()]} ${new Date(vehicule.dateCommande).getFullYear() % 100}`,
+//         `${new Date(vehicule.dateLivraison).getDate()} ${months[new Date(vehicule.dateLivraison).getMonth()]} ${new Date(vehicule.dateLivraison).getFullYear() % 100}`,
+//         vehicule.energie,
+//         vehicule.etat,
+//         vehicule.typeVehicule
+//       ];
+//     });
 
-    pdfMake.createPdf(documentDefinition).open();
-  }
+//     const documentDefinition = {
+
+//       pageSize: { width: 1200, height: 1200 },
+//       content: [
+//         { text: 'Liste des véhicules', style: 'header', absolutePosition: { x:20, y:10 }, },
+//         {
+//           table: {
+//             style:'tableStyle',
+//             headerRows: 1,
+//             // widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+//             margin: [82],
+//             body: [
+//               [
+//                 { text: 'N° Châssis', style: 'header' },
+//                 { text: 'N° Matricule', style: 'header' },
+//                 { text: 'Modèle', style: 'header' },
+//                 { text: 'Marque', style: 'header' },
+//                 { text: 'Couleur', style: 'header' },
+//                 { text: 'Transmission', style: 'header' },
+//                 { text: 'Date Fabrication', style: 'header' },
+//                 { text: 'Date Commande', style: 'header' },
+//                 { text: 'Date Livraison', style: 'header' },
+//                 { text: 'Énergie', style: 'header' },
+//                 { text: 'État', style: 'header' },
+//                 { text: 'Type Véhicule', style: 'header' },
+//               ],
+//               ...vehiculesData,
+//             ]
+//           },
+//           layout: 'lightHorizontalLines', // Option de mise en forme du tableau
+//         }
+//       ],
+//       styles: {
+//         header: {
+//           fontSize: 10,
+//           bold: true
+//         },
+//       },
+//       tableStyle: {
+//         tableWidth: 'auto', // Largeur du tableau (utilisez 'auto' pour l'ajuster automatiquement)
+//         cellPadding: 3, // Rembourrage des cellules
+//         margin: [null, 20, null, 20],
+//       },
+//     };
+
+//     pdfMake.createPdf(documentDefinition).open();
+//   }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;

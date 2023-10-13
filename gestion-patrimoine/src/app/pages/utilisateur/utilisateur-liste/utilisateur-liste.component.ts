@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import * as pdfMake from 'pdfmake/build/pdfmake';
+// import * as pdfMake from 'pdfmake/build/pdfmake';
 import {
   Observable,
   Subject,
@@ -139,75 +139,80 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
     /* ----------------------------------------------------------------------------------------- */
   }
 
+
+  generatePDF(): void {
+
+  }
+
   /* ----------------------------------------------------------------------------------------- */
   //  générer un pdf avec Pdfmake
-  generatePDF(): void {
-    const months = [
-      'JANV.',
-      'FÉVR.',
-      'MARS',
-      'AVR.',
-      'MAI',
-      'JUIN',
-      'JUIL.',
-      'AOÛT',
-      'SEPT.',
-      'OCT.',
-      'NOV.',
-      'DÉC.',
-    ];
+  // generatePDF(): void {
+  //   const months = [
+  //     'JANV.',
+  //     'FÉVR.',
+  //     'MARS',
+  //     'AVR.',
+  //     'MAI',
+  //     'JUIN',
+  //     'JUIL.',
+  //     'AOÛT',
+  //     'SEPT.',
+  //     'OCT.',
+  //     'NOV.',
+  //     'DÉC.',
+  //   ];
 
-    const utilisateursData = this.utilisateurs.map((utilisateur) => {
-      return [
-        utilisateur.username,
-        utilisateur.email,
-        `${new Date(utilisateur.dateNaissance).getDate()} ${months[new Date(utilisateur.dateNaissance).getMonth()]} ${new Date(utilisateur.dateNaissance).getFullYear() % 100}`,
-        utilisateur.lieuNaissance,
-      ];
-    });
+  //   const utilisateursData = this.utilisateurs.map((utilisateur) => {
+  //     return [
+  //       utilisateur.username,
+  //       utilisateur.email,
+  //       `${new Date(utilisateur.dateNaissance).getDate()} ${months[new Date(utilisateur.dateNaissance).getMonth()]} ${new Date(utilisateur.dateNaissance).getFullYear() % 100}`,
+  //       utilisateur.lieuNaissance,
+  //     ];
+  //   });
 
-    const documentDefinition = {
-      pageSize: { width: 460, height: 460 },
+  //   const documentDefinition = {
+  //     pageSize: { width: 460, height: 460 },
 
-      content: [
-        {
-          text: 'Liste des utilisateurs',
-          style: 'header',
-          absolutePosition: { x: 20, y: 17 },
-        },
-        {
-          table: {
-            style: 'tableStyle',
-            headerRows: 1,
+  //     content: [
+  //       {
+  //         text: 'Liste des utilisateurs',
+  //         style: 'header',
+  //         absolutePosition: { x: 20, y: 17 },
+  //       },
+  //       {
+  //         table: {
+  //           style: 'tableStyle',
+  //           headerRows: 1,
 
-            widths: [82],
+  //           widths: [82],
 
-            body: [
-              [
-                { text: 'Username', style: 'header' },
-                { text: 'Email', style: 'header' },
-                { text: 'Date Naissance', style: 'header' },
-                { text: 'Lieu Naissancee', style: 'header' },
-              ],
-              ...utilisateursData,
-            ],
-          },
-          layout: 'lightHorizontalLines',
-        },
-      ],
-      styles: {
-        header: {
-          fontSize: 10,
-          bold: true,
-        },
-      },
-      tableStyle: {
-        tableWidth: 'auto',
-      },
-    };
+  //           body: [
+  //             [
+  //               { text: 'Username', style: 'header' },
+  //               { text: 'Email', style: 'header' },
+  //               { text: 'Date Naissance', style: 'header' },
+  //               { text: 'Lieu Naissancee', style: 'header' },
+  //             ],
+  //             ...utilisateursData,
+  //           ],
+  //         },
+  //         layout: 'lightHorizontalLines',
+  //       },
+  //     ],
+  //     styles: {
+  //       header: {
+  //         fontSize: 10,
+  //         bold: true,
+  //       },
+  //     },
+  //     tableStyle: {
+  //       tableWidth: 'auto',
+  //     },
+  //   };
 
-    pdfMake.createPdf(documentDefinition).open();
-  }
+  //   pdfMake.createPdf(documentDefinition).open();
+  // }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
