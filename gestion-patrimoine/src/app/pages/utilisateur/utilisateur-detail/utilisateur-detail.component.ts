@@ -41,7 +41,7 @@ export class UtilisateurDetailComponent implements OnInit {
         });
 
         this.subscriptions.push(subscription);
-      }, 3000);
+      }, 1500);
 
 
     }
