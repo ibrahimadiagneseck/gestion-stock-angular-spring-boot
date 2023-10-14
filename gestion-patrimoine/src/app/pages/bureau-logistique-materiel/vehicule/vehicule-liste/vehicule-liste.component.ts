@@ -22,7 +22,10 @@ import { Router } from '@angular/router';
 })
 export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit {
 
+
   private subscriptions: Subscription[] = [];
+
+
 
   /* ----------------------------------------------------------------------------------------- */
   focusOnInput: boolean = false;
@@ -48,12 +51,18 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
   /* ----------------------------------------------------------------------------------------- */
 
 
-
+  /* ----------------------------------------------------------------------------------------- */
+  @ViewChild('myInputSearch') myInputSearch!: ElementRef;
+  /* ----------------------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------------------- */
   // rechercher
   searchTerms = new Subject<string>();
   vehicules$: Observable<IVehicule[]> = of();
+  // recherche custom
+  searchTermsFilterDoubleMatriculeMarque = new Subject<string>();
+  termeRechercheMatriculeMarque: string = "";
+  vehiculeFilterDoubleMatriculeMarque$: Observable<IVehicule[]> = of();
   /* ----------------------------------------------------------------------------------------- */
 
 
@@ -136,6 +145,7 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
       });
     }
     /* ----------------------------------------------------------------------------------------- */
+
   }
 
 
@@ -156,6 +166,16 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
       switchMap((term) => this.vehiculeService.searchVehiculeList(term, this.vehicules))
       // {.....List(ab)............List(abc)......}
     );
+    this.vehiculeFilterDoubleMatriculeMarque$ = this.searchTermsFilterDoubleMatriculeMarque.pipe(
+      // {...."ab"..."abz"."ab"...."abc"......}
+      debounceTime(300),
+      // {......"ab"...."ab"...."abc"......}
+      distinctUntilChanged(),
+      // {......"ab"..........."abc"......}
+      switchMap((term) => this.vehiculeService.searchVehiculeListFilterDouble(term, this.vehicules))
+      // {.....List(ab)............List(abc)......}
+    );
+
     /* ----------------------------------------------------------------------------------------- */
   }
 
@@ -246,17 +266,32 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
 //     pdfMake.createPdf(documentDefinition).open();
 //   }
 
+
+  search(term: string): void {
+    this.termeRechercheMatriculeMarque = term;
+    this.searchTerms.next(term);
+    this.searchTermsFilterDoubleMatriculeMarque.next(term);
+  }
+
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+
+  FilterDoubleMatriculeMarque(termeRechercheMatriculeMarque: string) {
+    this.termeRechercheMatriculeMarque = termeRechercheMatriculeMarque;
+    this.myInputSearch.nativeElement.value = termeRechercheMatriculeMarque;
+    this.dataSource.filter = termeRechercheMatriculeMarque.trim().toLowerCase();
+    this.focusOnInput = false;
+  }
+
 
   recupererVehicules(): void {
     const subscription = this.vehiculeService.getVehicules().subscribe({
       next: (donnees: IVehicule[]) => {
         // this.vehicules = donnees.sort((a, b) => a.numeroChassis - b.numeroChassis);
         this.vehicules = donnees.sort((a, b) => new Date(b.dateEnregistrement).getTime() - new Date(a.dateEnregistrement).getTime());
-
 
         this.rowNumber = 1;
 
@@ -277,8 +312,10 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
     this.subscriptions.push(subscription);
   }
 
-  search(term: string): void {
-    this.searchTerms.next(term);
+
+
+  isNumber(termeRechercheMatriculeMarque: string): boolean {
+    return !isNaN(Number(termeRechercheMatriculeMarque))
   }
 
 

@@ -147,18 +147,56 @@
               aria-label="Search"
               style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;"> -->
 
-            <input matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
+            <input id="myInputSearch" #myInputSearch matInput (input)="applyFilter($event)" #searchBox (input)="search(searchBox.value)"
               class="form-control input-sm bg-mywhite border-0" type="search" placeholder="Rechercher"
               aria-label="Search"
               style="box-shadow: #F5E0A7 0px 50px 100px -20px, #F5E0A7 0px 30px 60px -30px, #F5E0A7 0px -2px 6px 0px inset; outline: none;">
           </div>
 
-          <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
-            <a *ngFor="let vehicle of vehicules$ | async" (click)="popupDetail(vehicle)"
-              style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
-              {{ vehicle.marque }} {{ vehicle.modele }} {{ vehicle.couleur }} {{ vehicle.etat }} {{ vehicle.energie }}
+          <!-- <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
+            <a *ngFor="let vehicle of vehicules$ | async" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
+              <span *ngIf="isNumber(termeRecherche)">
+                {{ vehicle?.numeroMatricule }}
+              </span>
+              <span *ngIf="!isNumber(termeRecherche)">
+                {{ vehicle?.marque }}
+              </span>
             </a>
+          </div> -->
+          <!-- <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
+            <a *ngFor="let vehicle of vehicules$ | async" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
+              <ng-container *ngIf="isNumber(termeRecherche); else nonNumeric">
+                <ng-container *ngIf="vehicle?.numeroMatricule as matricule;">
+                  {{ matricule }}
+                </ng-container>
+              </ng-container>
+              <ng-template #nonNumeric>
+                <ng-container *ngIf="vehicle?.marque as marque;">
+                  {{ marque }}
+                </ng-container>
+              </ng-template>
+            </a>
+          </div> -->
+          <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
+            <ng-container *ngFor="let vehicle of vehiculeFilterDoubleMatriculeMarque$ | async;" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
+              <ng-container *ngIf="isNumber(termeRechercheMatriculeMarque); else nonNumeric">
+                <ng-container (click)="FilterDoubleMatriculeMarque(matricule.toString())" *ngIf="vehicle?.numeroMatricule as matricule;">
+                    <a (click)="FilterDoubleMatriculeMarque(matricule.toString())" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
+                      {{ matricule }}
+                    </a>
+                </ng-container>
+              </ng-container>
+              <ng-template #nonNumeric>
+                <ng-container *ngIf="vehicle?.marque as marque;">
+                  <a (click)="FilterDoubleMatriculeMarque(marque)" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
+                    {{ marque }}
+                  </a>
+                </ng-container>
+              </ng-template>
+            </ng-container>
           </div>
+
+
         </div>
 
         <div class="col-5 text-center">
