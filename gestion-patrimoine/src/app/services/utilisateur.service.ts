@@ -2,17 +2,19 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IUtilisateur } from '../models/utilisateur';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
 
-  private urlServeur = "http://localhost:8081";
+  private urlServeur = environment.apiUrl;
 
   constructor(
     private httpClient: HttpClient
   ) { }
+
 
 
   // ----------------------------------------------------------------------------

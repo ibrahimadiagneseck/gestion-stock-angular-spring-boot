@@ -5,6 +5,8 @@ import { VehiculeService } from 'src/app/services/vehicule.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
 
 @Component({
   selector: 'app-detail',
@@ -22,7 +24,8 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
     private vehiculeService: VehiculeService,
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private notificationService: NotificationService
   ) { }
 
 
@@ -30,11 +33,20 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
     this.vehicule = this.data;
   }
 
+  private sendNotification(notificationType: NotificationType, message: string): void {
+    if (message) {
+      this.notificationService.notify(notificationType, message);
+    } else {
+      this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+    }
+  }
+
   supprimerVehiculeById(vehiculeId: String): void {
     this.subscriptions.push(
       this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
         next: () => {
           this.dialogRef.close();
+          // this.sendNotification(NotificationType.SUCCESS, response.message);
         },
         error: (erreurs: HttpErrorResponse) => {
           console.log(erreurs);
