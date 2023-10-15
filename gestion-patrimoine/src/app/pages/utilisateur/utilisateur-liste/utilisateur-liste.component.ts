@@ -59,10 +59,16 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
   }
   /* ----------------------------------------------------------------------------------------- */
 
+
   /* ----------------------------------------------------------------------------------------- */
+  @ViewChild('myInputSearch') myInputSearch!: ElementRef;
   // rechercher
   searchTerms = new Subject<string>();
   utilisateurs$: Observable<IUtilisateur[]> = of();
+  // recherche custom
+  searchTermsFilterDoubleUsernameEmail = new Subject<string>();
+  termeRechercheUsernameEmail: string = "";
+  utilisateurFilterDoubleUsernameEmail$: Observable<IUtilisateur[]> = of();
   /* ----------------------------------------------------------------------------------------- */
 
   utilisateurs: IUtilisateur[] = [];
@@ -134,6 +140,15 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
       switchMap((term) =>
         this.utilisateurService.searchUtilisateurList(term, this.utilisateurs)
       )
+      // {.....List(ab)............List(abc)......}
+    );
+    this.utilisateurFilterDoubleUsernameEmail$ = this.searchTermsFilterDoubleUsernameEmail.pipe(
+      // {...."ab"..."abz"."ab"...."abc"......}
+      debounceTime(300),
+      // {......"ab"...."ab"...."abc"......}
+      distinctUntilChanged(),
+      // {......"ab"..........."abc"......}
+      switchMap((term) => this.utilisateurService.searchUtilisateurListFilterDouble(term, this.utilisateurs))
       // {.....List(ab)............List(abc)......}
     );
     /* ----------------------------------------------------------------------------------------- */
@@ -214,9 +229,26 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
   //   pdfMake.createPdf(documentDefinition).open();
   // }
 
+  search(term: string): void {
+    this.termeRechercheUsernameEmail = term;
+    this.searchTerms.next(term);
+    this.searchTermsFilterDoubleUsernameEmail.next(term);
+  }
+
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  FilterDoubleUsernameEmail(termeRechercheUsernameEmail: string) {
+    this.termeRechercheUsernameEmail = termeRechercheUsernameEmail;
+    this.myInputSearch.nativeElement.value = termeRechercheUsernameEmail;
+    this.dataSource.filter = termeRechercheUsernameEmail.trim().toLowerCase(); // supprimer les espaces vide et mettre minuscule
+    this.focusOnInput = false;
+  }
+
+  isNumber(termeRechercheUsernameEmail: string): boolean {
+    return !isNaN(Number(termeRechercheUsernameEmail))
   }
 
   recupererUtilisateurs(): void {
@@ -247,9 +279,6 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
 
   popupAjouter(): void {
     const dialogRef = this.matDialog.open(UtilisateurAjouterComponent, {

@@ -15,12 +15,33 @@ export class UtilisateurService {
   ) { }
 
 
-   // ----------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------
+  // RECHERCHER UTILISATEUR SANS DOUBLONS
+  public searchUtilisateurListFilterDouble(term: string, listeUtilisateurs: IUtilisateur[]): Observable<IUtilisateur[]> {
+
+    if (term.length <= 1) {
+      return of([]);
+    }
+
+    // Filtrer la liste de utilisateur en fonction du terme de recherche
+    const filteredUtilisateurs = listeUtilisateurs.filter((utilisateur) =>
+    utilisateur.username.toString().includes(term.toLowerCase()) || utilisateur.email.toLowerCase().includes(term.toLowerCase())
+    );
+
+    // Utilisation de la méthode filter() pour éliminer les doublons
+    const filteredUtilisateurs1: IUtilisateur[] = filteredUtilisateurs.filter((item, index, self) =>
+      index === self.findIndex((t) => (
+          t.email === item.email || t.username === item.username
+      ))
+    );
+
+    return of(filteredUtilisateurs1);
+  }
+  // ----------------------------------------------------------------------------
+
   // RECHERCHER Utilisateur
-  public searchUtilisateurList(
-    term: string,
-    listeUtilisateurs: IUtilisateur[]
-  ): Observable<IUtilisateur[]> {
+  public searchUtilisateurList(term: string, listeUtilisateurs: IUtilisateur[]): Observable<IUtilisateur[]> {
+
     if (term.length <= 1) {
       return of([]);
     }

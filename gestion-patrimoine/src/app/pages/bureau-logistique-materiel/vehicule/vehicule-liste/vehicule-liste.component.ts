@@ -51,11 +51,9 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
   /* ----------------------------------------------------------------------------------------- */
 
 
-  /* ----------------------------------------------------------------------------------------- */
-  @ViewChild('myInputSearch') myInputSearch!: ElementRef;
-  /* ----------------------------------------------------------------------------------------- */
 
   /* ----------------------------------------------------------------------------------------- */
+  @ViewChild('myInputSearch') myInputSearch!: ElementRef;
   // rechercher
   searchTerms = new Subject<string>();
   vehicules$: Observable<IVehicule[]> = of();
@@ -117,7 +115,6 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
     "État",
     "Type Véhicule"
   ];
-
   /* ----------------------------------------------------------------------------------------- */
 
   constructor(
@@ -282,8 +279,13 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
   FilterDoubleMatriculeMarque(termeRechercheMatriculeMarque: string) {
     this.termeRechercheMatriculeMarque = termeRechercheMatriculeMarque;
     this.myInputSearch.nativeElement.value = termeRechercheMatriculeMarque;
-    this.dataSource.filter = termeRechercheMatriculeMarque.trim().toLowerCase();
+    this.dataSource.filter = termeRechercheMatriculeMarque.trim().toLowerCase(); // supprimer les espaces vide et mettre minuscule
     this.focusOnInput = false;
+  }
+
+
+  isNumber(termeRechercheMatriculeMarque: string): boolean {
+    return !isNaN(Number(termeRechercheMatriculeMarque))
   }
 
 
@@ -312,11 +314,6 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
     this.subscriptions.push(subscription);
   }
 
-
-
-  isNumber(termeRechercheMatriculeMarque: string): boolean {
-    return !isNaN(Number(termeRechercheMatriculeMarque))
-  }
 
 
   popupAjouter(): void {

@@ -180,7 +180,7 @@
           <div *ngIf="focusOnInput" style="position: absolute; background-color: #e7e7e7;">
             <ng-container *ngFor="let vehicle of vehiculeFilterDoubleMatriculeMarque$ | async;" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
               <ng-container *ngIf="isNumber(termeRechercheMatriculeMarque); else nonNumeric">
-                <ng-container (click)="FilterDoubleMatriculeMarque(matricule.toString())" *ngIf="vehicle?.numeroMatricule as matricule;">
+                <ng-container *ngIf="vehicle?.numeroMatricule as matricule;">
                     <a (click)="FilterDoubleMatriculeMarque(matricule.toString())" style="cursor: pointer; display: block; color: gray; background-color: #fff; margin: 5px; text-decoration: none;">
                       {{ matricule }}
                     </a>

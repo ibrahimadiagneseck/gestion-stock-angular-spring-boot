@@ -8,7 +8,6 @@ import { SelectEnum } from '../enum/select-enum.enum';
 })
 export class ValidationService {
 
-
   // ----------------------------------------------------------------------------
   // Fonction de validation personnalisée pour chaque select
   public validateCouleurSelection(control: { value: string; }) {
