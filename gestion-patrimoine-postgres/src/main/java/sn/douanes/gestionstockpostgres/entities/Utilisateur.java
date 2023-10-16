@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "utilisateur")
 public class Utilisateur {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // @GeneratedValue(strategy = GenerationType.SEQUENCE)

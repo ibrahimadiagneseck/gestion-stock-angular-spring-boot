@@ -24,7 +24,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 import localeFr from '@angular/common/locales/fr';
 import { MatTableExporterModule } from 'mat-table-exporter';
@@ -38,6 +38,47 @@ import { LoaderComponent } from './pages/loader.component';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
+
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'left',
+      distance: 12,
+    },
+    vertical: {
+      position: 'bottom',
+      distance: 12,
+      gap: 10,
+    },
+  },
+  theme: 'material',
+  behaviour: {
+    autoHide: 5000,
+    onClick: false,
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 4,
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease',
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50,
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease',
+    },
+    overlap: 150,
+  }
+};
 
 @NgModule({
   declarations: [
@@ -57,6 +98,10 @@ registerLocaleData(localeFr, 'fr');
     ReactiveFormsModule, // pour formGroup
     BrowserAnimationsModule,
     HttpClientModule, // pour le backend
+    NotifierModule.withConfig(
+      customNotifierOptions // Custom options in here
+    ),
+
 
     NgbModule, // dropdown
 
@@ -76,7 +121,9 @@ registerLocaleData(localeFr, 'fr');
     MatDividerModule,
     MatDialogModule,
 
-    MatTableExporterModule
+    MatTableExporterModule,
+
+
 
     // MDCDialog
   ],

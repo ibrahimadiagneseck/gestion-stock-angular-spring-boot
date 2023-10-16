@@ -1,8 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { Subject, Subscription, debounceTime } from 'rxjs';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 import { IUtilisateur } from 'src/app/models/utilisateur';
+import { NotificationService } from 'src/app/services/notification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
@@ -12,6 +16,10 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 })
 export class UtilisateurDetailComponent implements OnInit {
 
+  private _success = new Subject<string>();
+  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert!: NgbAlert;
+  successMessage = '';
+
   private subscriptions: Subscription[] = [];
 
   utilisateur!: IUtilisateur;
@@ -19,11 +27,19 @@ export class UtilisateurDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private utilisateurService: UtilisateurService
+    private utilisateurService: UtilisateurService,
+    private notificationService: NotificationService
   ) { }
 
 
   ngOnInit(): void {
+
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(debounceTime(3000)).subscribe(() => {
+      if(this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
 
     const utilisateurId: string|null = this.route.snapshot.paramMap.get('id');
 
@@ -47,11 +63,23 @@ export class UtilisateurDetailComponent implements OnInit {
     }
   }
 
+  private sendNotification(notificationType: NotificationType, message: string): void {
+    if (message) {
+      this.notificationService.notify(notificationType, message);
+    } else {
+      this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+    }
+  }
+
   supprimerUtilisateurById(utilisateurId: String): void {
     this.subscriptions.push(
       this.utilisateurService.deleteUtilisateur(utilisateurId).subscribe({
-        next: () => {
-          this.goToUtilisateurList();
+        next: (response: CustomHttpRespone) => {
+          console.log(response);
+
+          // this.goToUtilisateurList();
+          this.sendNotification(NotificationType.SUCCESS, response.message);
+          this._success.next(response.message);
         },
         error: (erreurs: HttpErrorResponse) => {
           console.log(erreurs);

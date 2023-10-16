@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IVehicule } from '../models/vehicule';
 import { environment } from 'src/environments/environment';
+import { CustomHttpRespone } from '../models/custom-http-response';
 
 @Injectable({
   providedIn: 'root',
@@ -84,8 +85,8 @@ export class VehiculeService {
     );
   }
 
-  public deleteVehicule(vehiculeId: String): Observable<void> {
-    return this.httpClient.delete<void>(
+  public deleteVehicule(vehiculeId: String): Observable<CustomHttpRespone> {
+    return this.httpClient.delete<CustomHttpRespone>(
       `${this.urlServeur}/SupprimerVehiculeByVehiculeId/${vehiculeId}`
     );
   }

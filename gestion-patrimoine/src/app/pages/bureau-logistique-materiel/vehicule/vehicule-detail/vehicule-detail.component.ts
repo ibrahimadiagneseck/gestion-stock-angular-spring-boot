@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
+import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 
 @Component({
   selector: 'app-detail',
@@ -37,15 +38,16 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
     if (message) {
       this.notificationService.notify(notificationType, message);
     } else {
-      this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+      this.notificationService.notify(notificationType, 'Une erreur s\'est produite. Veuillez réessayer.');
     }
   }
 
   supprimerVehiculeById(vehiculeId: String): void {
     this.subscriptions.push(
       this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
-        next: () => {
-          this.dialogRef.close();
+        next: (response: CustomHttpRespone) => {
+          console.log(response);
+          // this.dialogRef.close();
           // this.sendNotification(NotificationType.SUCCESS, response.message);
         },
         error: (erreurs: HttpErrorResponse) => {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IUtilisateur } from '../models/utilisateur';
 import { environment } from 'src/environments/environment';
+import { CustomHttpRespone } from '../models/custom-http-response';
 
 @Injectable({
   providedIn: 'root'
@@ -84,8 +85,8 @@ export class UtilisateurService {
     return this.httpClient.put<IUtilisateur>(`${this.urlServeur}/ModifierUtilisateur`, utilisateur);
   }
 
-  public deleteUtilisateur(utilisateurId: String): Observable<void> {
-    return this.httpClient.delete<void>(`${this.urlServeur}/SupprimerUtilisateurByUtilisateurId/${utilisateurId}`);
+  public deleteUtilisateur(utilisateurId: String): Observable<CustomHttpRespone> {
+    return this.httpClient.delete<CustomHttpRespone>(`${this.urlServeur}/SupprimerUtilisateurByUtilisateurId/${utilisateurId}`);
   }
 
   public getUtilisateurByUtilisateurId(utilisateurId: String):Observable<IUtilisateur> {
