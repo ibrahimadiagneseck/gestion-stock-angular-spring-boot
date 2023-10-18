@@ -9,6 +9,8 @@ import { IVehicule } from 'src/app/models/vehicule';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, Subscription, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 // import * as pdfMake from 'pdfmake/build/pdfmake';
 // import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -176,9 +178,82 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
     /* ----------------------------------------------------------------------------------------- */
   }
 
+
+
   generatePDF(): void {
 
+    const data: IVehicule[] = this.dataSource.filteredData;
+
+    const months = [
+      'JANV.',
+      'FÉVR.',
+      'MARS',
+      'AVR.',
+      'MAI',
+      'JUIN',
+      'JUIL.',
+      'AOÛT',
+      'SEPT.',
+      'OCT.',
+      'NOV.',
+      'DÉC.'
+    ];
+
+    const doc = new jsPDF();
+
+    // Créez un tableau de données pour autoTable
+    const tableData = data.map((item: IVehicule) => [
+      item.rowNumber,
+      item.numeroChassis,
+      item.numeroMatricule,
+      item.modele,
+      item.marque,
+      item.couleur,
+      item.transmission,
+      `${new Date(item.dateFabrication).getDate()} ${months[new Date(item.dateFabrication).getMonth()]} ${new Date(item.dateFabrication).getFullYear() % 100}`,
+      `${new Date(item.dateCommande).getDate()} ${months[new Date(item.dateCommande).getMonth()]} ${new Date(item.dateCommande).getFullYear() % 100}`,
+      `${new Date(item.dateLivraison).getDate()} ${months[new Date(item.dateLivraison).getMonth()]} ${new Date(item.dateLivraison).getFullYear() % 100}`,
+      item.energie,
+      item.etat,
+      item.typeVehicule
+    ]);
+
+    // Configuration pour le PDF avec une taille de page personnalisée
+    const pageWidth = 1000; // Largeur de la page en mm (A4 par défaut)
+    const pageHeight = 1000; // Hauteur de la page en mm (A4 par défaut)
+    const marginLeft = 10;
+    const marginTop = 10;
+    const marginRight = 10;
+    const marginBottom = 10;
+
+    // Générer le tableau dans le PDF avec des styles de texte personnalisés
+    autoTable(doc, {
+      head: [
+        [
+          { content: 'N°', styles: { fontSize: 5 } },
+          { content: 'Châssis', styles: { fontSize: 5 } },
+          { content: 'Matricule', styles: { fontSize: 5 } },
+          { content: 'Modèle', styles: { fontSize: 5 } },
+          { content: 'Marque', styles: { fontSize: 5 } },
+          { content: 'Couleur', styles: { fontSize: 5 } },
+          { content: 'Transmission', styles: { fontSize: 5 } },
+          { content: 'Date Fabrication', styles: { fontSize: 5 } },
+          { content: 'Date Commande', styles: { fontSize: 5 } },
+          { content: 'Date Livraison', styles: { fontSize: 5 } },
+          { content: 'Énergie', styles: { fontSize: 5 } },
+          { content: 'État', styles: { fontSize: 5 } },
+          { content: 'Type Véhicule', styles: { fontSize: 5 } }
+        ]
+      ],
+      body: tableData.map(row => row.map(cell => ({ content: cell, styles: { fontSize: 6 } }))),
+      margin: { top: marginTop, right: marginRight, bottom: marginBottom, left: marginLeft },
+      theme: 'plain'
+    });
+
+    // Sauvegarder le PDF avec un nom de fichier
+    doc.save('vehicule-liste.pdf');
   }
+
 
 /* ----------------------------------------------------------------------------------------- */
 //  générer un pdf avec Pdfmake
@@ -273,6 +348,7 @@ export class VehiculeListeComponent implements OnInit, OnDestroy, AfterViewInit 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+
   }
 
 

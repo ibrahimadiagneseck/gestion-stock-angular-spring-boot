@@ -2,6 +2,7 @@ import { IVehicule } from "./vehicule";
 
 export interface IUtilisateur {
 
+  rowNumber: number;
   utilisateurId: string;
   dateEnregistrement: Date;
   username: string;

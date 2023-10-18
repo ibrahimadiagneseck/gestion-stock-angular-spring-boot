@@ -7,6 +7,8 @@ import { IVehicule } from 'src/app/models/vehicule';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
+import { NotificationType } from 'src/app/enum/notification-type.enum';
 
 @Component({
   selector: 'app-ajouter',
@@ -16,7 +18,6 @@ import { Subscription } from 'rxjs';
 export class VehiculeAjouterComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
-
 
   selectCouleur: string = SelectEnum.COULEUR;
   selectTransmission: string = SelectEnum.TRANSMISSION;
@@ -97,6 +98,7 @@ export class VehiculeAjouterComponent implements OnInit, OnDestroy {
       ])
     });
   }
+
 
   onSubmit(): void {
     // console.log(this.vehiculeForm.value);

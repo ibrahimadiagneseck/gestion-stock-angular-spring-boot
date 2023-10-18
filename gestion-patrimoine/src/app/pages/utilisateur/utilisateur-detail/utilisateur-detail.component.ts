@@ -16,9 +16,7 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 })
 export class UtilisateurDetailComponent implements OnInit {
 
-  private _success = new Subject<string>();
-  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert!: NgbAlert;
-  successMessage = '';
+
 
   private subscriptions: Subscription[] = [];
 
@@ -33,13 +31,6 @@ export class UtilisateurDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    this._success.subscribe(message => this.successMessage = message);
-    this._success.pipe(debounceTime(3000)).subscribe(() => {
-      if(this.selfClosingAlert) {
-        this.selfClosingAlert.close();
-      }
-    });
 
     const utilisateurId: string|null = this.route.snapshot.paramMap.get('id');
 
@@ -63,11 +54,19 @@ export class UtilisateurDetailComponent implements OnInit {
     }
   }
 
-  private sendNotification(notificationType: NotificationType, message: string): void {
+  // private sendNotification(notificationType: NotificationType, message: string): void {
+  //   if (message) {
+  //     this.notificationService.notify(notificationType, message);
+  //   } else {
+  //     this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+  //   }
+  // }
+
+  private sendNotification(type: NotificationType, message: string, titre?: string): void {
     if (message) {
-      this.notificationService.notify(notificationType, message);
+      this.notificationService.showAlert(type, message, titre);
     } else {
-      this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+      this.notificationService.showAlert(type, 'Une erreur s\'est produite. Veuillez réessayer.', titre);
     }
   }
 
@@ -75,11 +74,8 @@ export class UtilisateurDetailComponent implements OnInit {
     this.subscriptions.push(
       this.utilisateurService.deleteUtilisateur(utilisateurId).subscribe({
         next: (response: CustomHttpRespone) => {
-          console.log(response);
-
-          // this.goToUtilisateurList();
+          this.goToUtilisateurList();
           this.sendNotification(NotificationType.SUCCESS, response.message);
-          this._success.next(response.message);
         },
         error: (erreurs: HttpErrorResponse) => {
           console.log(erreurs);

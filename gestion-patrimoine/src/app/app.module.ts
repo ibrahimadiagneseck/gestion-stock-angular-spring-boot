@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnexionComponent } from './pages/connexion/connexion.component';
 import { ErreurComponent } from './pages/erreur/erreur.component';
-import { VehiculeListeComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-liste/vehicule-liste.component';
-import { VehiculeAjouterComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-ajouter/vehicule-ajouter.component';
-import { VehiculeDetailComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-detail/vehicule-detail.component';
-import { VehiculeModifierComponent } from './pages/bureau-logistique-materiel/vehicule/vehicule-modifier/vehicule-modifier.component';
+
+
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +22,7 @@ import { CommonModule, registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NotifierModule, NotifierOptions } from 'angular-notifier';
+// import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 import localeFr from '@angular/common/locales/fr';
 import { MatTableExporterModule } from 'mat-table-exporter';
@@ -34,51 +32,13 @@ import { UtilisateurModifierComponent } from './pages/utilisateur/utilisateur-mo
 import { UtilisateurDetailComponent } from './pages/utilisateur/utilisateur-detail/utilisateur-detail.component';
 import { BureauLogistiqueMaterielModule } from './pages/bureau-logistique-materiel/bureau-logistique-materiel.module';
 import { LoaderComponent } from './pages/loader.component';
+import { NgToastModule } from 'ng-angular-popup';
+
 
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
 
-const customNotifierOptions: NotifierOptions = {
-  position: {
-    horizontal: {
-      position: 'left',
-      distance: 12,
-    },
-    vertical: {
-      position: 'bottom',
-      distance: 12,
-      gap: 10,
-    },
-  },
-  theme: 'material',
-  behaviour: {
-    autoHide: 5000,
-    onClick: false,
-    onMouseover: 'pauseAutoHide',
-    showDismissButton: true,
-    stacking: 4,
-  },
-  animations: {
-    enabled: true,
-    show: {
-      preset: 'slide',
-      speed: 300,
-      easing: 'ease',
-    },
-    hide: {
-      preset: 'fade',
-      speed: 300,
-      easing: 'ease',
-      offset: 50,
-    },
-    shift: {
-      speed: 300,
-      easing: 'ease',
-    },
-    overlap: 150,
-  }
-};
 
 @NgModule({
   declarations: [
@@ -98,9 +58,10 @@ const customNotifierOptions: NotifierOptions = {
     ReactiveFormsModule, // pour formGroup
     BrowserAnimationsModule,
     HttpClientModule, // pour le backend
-    NotifierModule.withConfig(
-      customNotifierOptions // Custom options in here
-    ),
+    NgToastModule,
+    // NotifierModule.withConfig(
+    //   // customNotifierOptions1 // Custom options in here
+    // ),
 
 
     NgbModule, // dropdown
@@ -122,7 +83,6 @@ const customNotifierOptions: NotifierOptions = {
     MatDialogModule,
 
     MatTableExporterModule,
-
 
 
     // MDCDialog
