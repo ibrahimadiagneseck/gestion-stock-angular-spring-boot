@@ -26,7 +26,7 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
     private matDialog: MatDialog,
-    // private notificationService: NotificationService
+    private notificationService: NotificationService
   ) { }
 
 
@@ -42,13 +42,20 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
   //   }
   // }
 
+  private sendNotification(type: NotificationType, message: string, titre?: string): void {
+    if (message) {
+      this.notificationService.showAlert(type, message, titre);
+    } else {
+      this.notificationService.showAlert(type, 'Une erreur s\'est produite. Veuillez réessayer.', titre);
+    }
+  }
+
   supprimerVehiculeById(vehiculeId: String): void {
     this.subscriptions.push(
       this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
         next: (response: CustomHttpRespone) => {
-          console.log(response);
-          // this.dialogRef.close();
-          // this.sendNotification(NotificationType.SUCCESS, response.message);
+          this.dialogRef.close();
+          this.sendNotification(NotificationType.SUCCESS, response.message);
         },
         error: (erreurs: HttpErrorResponse) => {
           console.log(erreurs);

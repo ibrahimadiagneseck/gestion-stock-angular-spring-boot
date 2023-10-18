@@ -25,6 +25,8 @@ import {
 import { IUtilisateur } from 'src/app/models/utilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { UtilisateurAjouterComponent } from '../utilisateur-ajouter/utilisateur-ajouter.component';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-utilisateur-liste',
@@ -157,6 +159,62 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
 
   generatePDF(): void {
 
+    const data: IUtilisateur[] = this.dataSource.filteredData;
+
+    const months = [
+      'JANV.',
+      'FÉVR.',
+      'MARS',
+      'AVR.',
+      'MAI',
+      'JUIN',
+      'JUIL.',
+      'AOÛT',
+      'SEPT.',
+      'OCT.',
+      'NOV.',
+      'DÉC.'
+    ];
+
+    const doc = new jsPDF();
+
+    // Créez un tableau de données pour autoTable
+    const tableData = data.map((item: IUtilisateur) => [
+      item.rowNumber,
+      item.username,
+      item.email,
+      `${new Date(item.dateNaissance).getDate()} ${months[new Date(item.dateNaissance).getMonth()]} ${new Date(item.dateNaissance).getFullYear() % 100}`,
+      item.lieuNaissance,
+      JSON.stringify(item.vehicules)
+    ]);
+
+    // Configuration pour le PDF avec une taille de page personnalisée
+    const pageWidth = 1000; // Largeur de la page en mm (A4 par défaut)
+    const pageHeight = 1000; // Hauteur de la page en mm (A4 par défaut)
+    const marginLeft = 10;
+    const marginTop = 10;
+    const marginRight = 10;
+    const marginBottom = 10;
+
+    // Générer le tableau dans le PDF avec des styles de texte personnalisés
+    autoTable(doc, {
+      head: [
+        [
+          { content: 'N°', styles: { fontSize: 5 } },
+          { content: 'Utilisateur', styles: { fontSize: 5 } },
+          { content: 'Email', styles: { fontSize: 5 } },
+          { content: 'Date Naissance', styles: { fontSize: 5 } },
+          { content: 'Lieu Naissance', styles: { fontSize: 5 } },
+          { content: 'Véhicules', styles: { fontSize: 5 } }
+        ]
+      ],
+      body: tableData.map(row => row.map(cell => ({ content: cell, styles: { fontSize: 6 } }))),
+      margin: { top: marginTop, right: marginRight, bottom: marginBottom, left: marginLeft },
+      theme: 'plain'
+    });
+
+    // Sauvegarder le PDF avec un nom de fichier
+    doc.save('utilisateur-liste.pdf');
   }
 
   /* ----------------------------------------------------------------------------------------- */
