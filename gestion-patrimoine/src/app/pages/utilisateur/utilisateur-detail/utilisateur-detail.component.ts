@@ -35,7 +35,7 @@ export class UtilisateurDetailComponent implements OnInit {
     const utilisateurId: string|null = this.route.snapshot.paramMap.get('id');
 
     if(utilisateurId) {
-      
+
       // this.utilisateurService.getUtilisateurByUtilisateurId(+utilisateurId).subscribe(pokemon => this.pokemon = pokemon);
 
       const subscription = this.utilisateurService.getUtilisateurByUtilisateurId(utilisateurId).subscribe({

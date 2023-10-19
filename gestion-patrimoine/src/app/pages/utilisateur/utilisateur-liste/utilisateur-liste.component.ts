@@ -313,7 +313,7 @@ export class UtilisateurListeComponent implements OnInit, OnDestroy {
     const subscription = this.utilisateurService.getUtilisateurs().subscribe({
       next: (donnees: IUtilisateur[]) => {
         this.utilisateurs = donnees.sort((a, b) =>
-          a.utilisateurId.localeCompare(b.utilisateurId)
+          a.username.localeCompare(b.username)
         );
 
         this.rowNumber = 1;

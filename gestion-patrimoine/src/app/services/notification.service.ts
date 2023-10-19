@@ -28,16 +28,16 @@ export class NotificationService {
   showAlert(type: NotificationType, message: string, titre?: string): void {
     switch (type) {
         case 'success':
-            this.toast.success({ detail: titre || 'Réussi!', summary: message, duration: 5000, position: 'topRight' });
+            this.toast.success({ detail: titre || '', summary: message, duration: 5000, position: 'topRight' });
             break;
         case 'error':
-            this.toast.error({ detail: titre || 'Erreur!', summary: message, sticky: true, position: 'topRight' });
+            this.toast.error({ detail: titre || '', summary: message, sticky: true, position: 'topRight' });
             break;
         case 'info':
-            this.toast.info({ detail: titre || 'Info!', summary: message, sticky: true, position: 'topRight' });
+            this.toast.info({ detail: titre || '', summary: message, sticky: true, position: 'topRight' });
             break;
         case 'warning':
-            this.toast.warning({ detail: titre || 'Attention!', summary: message, duration: 5000, position: 'topRight' });
+            this.toast.warning({ detail: titre || '', summary: message, duration: 5000, position: 'topRight' });
             break;
         default:
             break;
