@@ -70,7 +70,7 @@
 
           <input id="dateLivraison" name="dateLivraison" type="date" formControlName="dateLivraison" [ngClass]="{'is-invalid': (vehiculeForm.get('dateLivraison')?.touched || vehiculeForm.get('dateLivraison')?.dirty) && !vehiculeForm.get('dateLivraison')?.valid,
             'is-valid': vehiculeForm.get('dateLivraison')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary px-1">
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateLivraison')?.errors?.['required']">
@@ -188,7 +188,7 @@
 
           <input id="dateFabrication" name="dateFabrication" type="date" formControlName="dateFabrication" [ngClass]="{'is-invalid': (vehiculeForm.get('dateFabrication')?.touched || vehiculeForm.get('dateFabrication')?.dirty) && !vehiculeForm.get('dateFabrication')?.valid,
             'is-valid': vehiculeForm.get('dateFabrication')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary px-1">
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateFabrication')?.errors?.['required']">
@@ -278,7 +278,7 @@
 
           <input id="dateCommande" name="dateCommande" type="date" formControlName="dateCommande" [ngClass]="{'is-invalid': (vehiculeForm.get('dateCommande')?.touched || vehiculeForm.get('dateCommande')?.dirty) && !vehiculeForm.get('dateCommande')?.valid,
           'is-valid': vehiculeForm.get('dateCommande')?.valid}"
-            class="text-input form-control bg-mywhite border border-myprimary  px-1 text-uppercase">
+            class="text-input form-control bg-mywhite border border-myprimary px-1">
 
           <div class="invalid-feedback">
             <span *ngIf="vehiculeForm.get('dateCommande')?.errors?.['required']">

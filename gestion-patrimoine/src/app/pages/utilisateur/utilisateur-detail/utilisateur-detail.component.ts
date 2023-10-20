@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, Subscription, debounceTime } from 'rxjs';
@@ -14,12 +15,16 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
   templateUrl: './utilisateur-detail.component.html',
   styleUrls: ['./utilisateur-detail.component.css']
 })
-export class UtilisateurDetailComponent implements OnInit {
+export class UtilisateurDetailComponent implements OnInit, OnDestroy {
 
-
+  afficherDetail: boolean = true;
 
   private subscriptions: Subscription[] = [];
 
+  // ----------------MODIFIER------------------------------
+  public utilisateurForm!: FormGroup;
+  // -------------------------------------------------------
+  
   utilisateur!: IUtilisateur;
 
   constructor(
@@ -28,6 +33,24 @@ export class UtilisateurDetailComponent implements OnInit {
     private utilisateurService: UtilisateurService,
     private notificationService: NotificationService
   ) { }
+
+
+  // ----------------MODIFIER------------------------------
+  ModifierUtilisateur(): void {
+    const subscription = this.utilisateurService.putUtilisateur(this.utilisateurForm.value).subscribe({
+      next: (utilisateur: IUtilisateur) => {
+        
+        this.goToUtilisateurList();
+        this.sendNotification(NotificationType.SUCCESS, `Modification réussie de ${utilisateur.username}`);
+      },
+      error: (erreurs: any) => {
+        console.log(erreurs);
+      },
+    });
+
+    this.subscriptions.push(subscription);
+  }
+  // -------------------------------------------------------
 
 
   ngOnInit(): void {
@@ -41,6 +64,24 @@ export class UtilisateurDetailComponent implements OnInit {
       const subscription = this.utilisateurService.getUtilisateurByUtilisateurId(utilisateurId).subscribe({
         next: (donnee: IUtilisateur) => {
           this.utilisateur = donnee;
+          
+          // ----------------MODIFIER------------------------------
+          this.utilisateurForm = new FormGroup({
+
+            username: new FormControl(donnee.username, [
+              Validators.required
+            ]),
+            email: new FormControl(donnee.email, [
+              Validators.required
+            ]),
+            dateNaissance: new FormControl(this.formatDate(donnee.dateNaissance.toString()), [
+              Validators.required
+            ]),
+            lieuNaissance: new FormControl(donnee.lieuNaissance, [
+              Validators.required
+            ])
+          });
+          // -------------------------------------------------------
         },
         error: (erreurs: any) => {
           console.log(erreurs);
@@ -49,6 +90,26 @@ export class UtilisateurDetailComponent implements OnInit {
 
       this.subscriptions.push(subscription);
     }
+
+    
+    // ----------------MODIFIER------------------------------
+    // this.utilisateurForm = new FormGroup({
+
+    //   username: new FormControl("", [
+    //     Validators.required
+    //   ]),
+    //   email: new FormControl("", [
+    //     Validators.required
+    //   ]),
+    //   dateNaissance: new FormControl("", [
+    //     Validators.required
+    //   ]),
+    //   lieuNaissance: new FormControl("", [
+    //     Validators.required
+    //   ])
+    // });
+    // -------------------------------------------------------
+
   }
 
   // private sendNotification(notificationType: NotificationType, message: string): void {
@@ -81,12 +142,54 @@ export class UtilisateurDetailComponent implements OnInit {
     );
   }
 
+
+   // ----------------------MODIFIER-------------------------------
+   formatDate(date: string): string {
+    // const dateString = '2023-09-21T00:00:00.000+00:00';
+    const dateObject = new Date(date);
+
+    const year = dateObject.getFullYear();
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateObject.getDate().toString().padStart(2, '0');
+    // const hours = dateObject.getUTCHours().toString().padStart(2, '0');
+    // const minutes = dateObject.getUTCMinutes().toString().padStart(2, '0');
+    // const seconds = dateObject.getUTCSeconds().toString().padStart(2, '0');
+
+    // const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    // return formattedDate; // Affiche "2023-09-21 00:00:00"
+
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate; // Affiche "2023-09-21"
+  }
+  // --------------------------------------------------------------
+  
+
+  // ----------------MODIFIER------------------------------
+  onSubmit(): void {
+    // console.log(this.utilisateurForm.value);
+    this.ModifierUtilisateur();
+  }
+  // -------------------------------------------------------
+
+
   goToUtilisateurList() {
     this.router.navigate(['/gestion-utilisateur']);
   }
 
-  goToModifierUtilisateur(utilisateurId: String) {
-    this.router.navigate(['/gestion-utilisateur/modifier', utilisateurId]);
+  // goToModifierUtilisateur(utilisateurId: String) {
+  //   this.router.navigate(['/gestion-utilisateur/modifier', utilisateurId]);
+  // }
+
+  afficherModifier(): void {
+    this.afficherDetail = false;
+  }
+
+  retourDetail(): void {
+    this.afficherDetail = true;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
 }

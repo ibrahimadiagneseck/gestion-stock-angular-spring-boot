@@ -1,12 +1,14 @@
-<div class="container">
+<!-- <div class="container">
 
   <div *ngIf="utilisateur" class="row">
+
+    
+
     <div class="col-12 col-md-8 offset-md-2 mt-5">
       <h2 class="text-center">{{ utilisateur.username }}</h2>
       <div class="card shadow mb-3" style="border: 1px solid #E7C133;">
         <div class="row g-0">
           <div class="col-md-4">
-            <!-- <img [src]="utilisateur.picture"> -->
             <img src="../../../../assets/profil.png" alt="profil" class="img-fluid" style="height: 70%; width: 90%; margin: 6px;"/>
           </div>
           <div class="col-md-8">
@@ -43,9 +45,9 @@
               </table>
             </div>
             <div class="card-footer text-end" style="background-color: #fff; border-top: 1px solid #E7C133;">
-              <a (click)="supprimerUtilisateurById(utilisateur.utilisateurId)" class="btn btn-mybrown me-2">Supprimer</a>
-              <a (click)="goToModifierUtilisateur(utilisateur.utilisateurId)" class="btn btn-myprimary me-2">Modifier</a>
-              <a (click)="goToUtilisateurList()" class="btn btn-mysecondary">Retour</a>
+              <button (click)="supprimerUtilisateurById(utilisateur.utilisateurId)" class="btn btn-mybrown me-2">Supprimer</button>
+              <button (click)="goToModifierUtilisateur(utilisateur.utilisateurId)" class="btn btn-myprimary me-2">Modifier</button>
+              <button (click)="goToUtilisateurList()" class="btn btn-mysecondary">Retour</button>
             </div>
           </div>
         </div>
@@ -57,4 +59,4 @@
 
 <div *ngIf='!utilisateur' style="display: flex; align-items: center; justify-content: center; height: 100%;">
   <app-loader></app-loader>
-</div>
+</div> -->

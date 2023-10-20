@@ -12,7 +12,7 @@ const routes: Routes = [
 
   { path: 'gestion-utilisateur', component: UtilisateurListeComponent },
   { path: 'gestion-utilisateur/detail/:id', component: UtilisateurDetailComponent },
-  { path: 'gestion-utilisateur/modifier/:id', component: UtilisateurModifierComponent },
+  // { path: 'gestion-utilisateur/modifier/:id', component: UtilisateurModifierComponent },
 
   { path: 'erreur', component: ErreurComponent },
   { path: '', redirectTo: 'connexion', pathMatch: 'full' },
