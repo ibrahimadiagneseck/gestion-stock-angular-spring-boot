@@ -42,10 +42,10 @@
                 </tbody>
               </table>
             </div>
-            <div class="card-footer" style="background-color: #fff; border-top: 1px solid #E7C133;">
-              <a (click)="goToUtilisateurList()" class="btn btn-mysecondary me-2">Retour</a>
-              <a (click)="goToModifierUtilisateur(utilisateur.utilisateurId)" class="btn btn-myprimary me-2">Éditer</a>
-              <a (click)="supprimerUtilisateurById(utilisateur.utilisateurId)" class="btn btn-mybrown">Supprimer</a>
+            <div class="card-footer text-end" style="background-color: #fff; border-top: 1px solid #E7C133;">
+              <a (click)="supprimerUtilisateurById(utilisateur.utilisateurId)" class="btn btn-mybrown me-2">Supprimer</a>
+              <a (click)="goToModifierUtilisateur(utilisateur.utilisateurId)" class="btn btn-myprimary me-2">Modifier</a>
+              <a (click)="goToUtilisateurList()" class="btn btn-mysecondary">Retour</a>
             </div>
           </div>
         </div>

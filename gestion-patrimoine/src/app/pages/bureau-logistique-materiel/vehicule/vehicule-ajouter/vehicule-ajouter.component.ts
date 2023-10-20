@@ -32,13 +32,23 @@ export class VehiculeAjouterComponent implements OnInit, OnDestroy {
     // private router: Router,
     private vehiculeService: VehiculeService,
     private validationService: ValidationService,
-    public dialogRef: MatDialogRef<VehiculeAjouterComponent>
+    public dialogRef: MatDialogRef<VehiculeAjouterComponent>,
+    private notificationService: NotificationService
   ) {}
+
+  private sendNotification(type: NotificationType, message: string, titre?: string): void {
+    if (message) {
+      this.notificationService.showAlert(type, message, titre);
+    } else {
+      this.notificationService.showAlert(type, 'Une erreur s\'est produite. Veuillez réessayer.', titre);
+    }
+  }
 
   AjouterVehicule(): void {
     const subscription = this.vehiculeService.postVehicule(this.vehiculeForm.value).subscribe({
-      next: () => {
+      next: (vehicule: IVehicule) => {
         this.popupFermer();
+        this.sendNotification(NotificationType.SUCCESS, `Ajout réussie de ${vehicule.marque}`);
       },
       error: (erreurs: any) => {
         console.log(erreurs);
