@@ -32,9 +32,11 @@ export class NotificationService {
             break;
         case 'error':
             this.toast.error({ detail: titre || '', summary: message, sticky: true, position: 'topRight' });
+            // this.toast.error({ detail: titre || '', summary: message, duration: 5000, position: 'topRight' });
             break;
         case 'info':
             this.toast.info({ detail: titre || '', summary: message, sticky: true, position: 'topRight' });
+            // this.toast.info({ detail: titre || '', summary: message, duration: 5000, position: 'topRight' });
             break;
         case 'warning':
             this.toast.warning({ detail: titre || '', summary: message, duration: 5000, position: 'topRight' });

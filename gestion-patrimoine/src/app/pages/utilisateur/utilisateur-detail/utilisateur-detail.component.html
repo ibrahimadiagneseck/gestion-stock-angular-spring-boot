@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="card-footer text-end" style="background-color: #fff; border-top: 1px solid #E7C133;">
-                  <button type="submit" class="btn btn-myprimary me-2">Sauvegarder</button>
+                  <button type="submit" [disabled]="utilisateurForm.invalid" class="btn btn-myprimary me-2">Sauvegarder</button>
                   <button type="button" (click)="retourDetail()" class="btn btn-mysecondary">Retour</button>
                 </div>
 

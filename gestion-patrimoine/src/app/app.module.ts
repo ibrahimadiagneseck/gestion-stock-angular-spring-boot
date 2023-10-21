@@ -33,6 +33,7 @@ import { UtilisateurDetailComponent } from './pages/utilisateur/utilisateur-deta
 import { BureauLogistiqueMaterielModule } from './pages/bureau-logistique-materiel/bureau-logistique-materiel.module';
 import { LoaderComponent } from './pages/loader.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { PopupConfirmationSupprimerComponent } from './pages/popup-confirmation-supprimer/popup-confirmation-supprimer.component';
 
 
 
@@ -49,7 +50,8 @@ registerLocaleData(localeFr, 'fr');
     UtilisateurListeComponent,
     UtilisateurModifierComponent,
     UtilisateurDetailComponent,
-    LoaderComponent
+    LoaderComponent,
+    PopupConfirmationSupprimerComponent
   ],
   imports: [
     BrowserModule,
@@ -66,8 +68,8 @@ registerLocaleData(localeFr, 'fr');
 
     NgbModule, // dropdown
 
-    BureauLogistiqueMaterielModule,
-    AppRoutingModule,
+    
+    
 
 
     MatTableModule, MatPaginatorModule,
@@ -84,8 +86,11 @@ registerLocaleData(localeFr, 'fr');
 
     MatTableExporterModule,
 
-
     // MDCDialog
+
+    BureauLogistiqueMaterielModule,
+    AppRoutingModule,
+    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "fr-FR" }

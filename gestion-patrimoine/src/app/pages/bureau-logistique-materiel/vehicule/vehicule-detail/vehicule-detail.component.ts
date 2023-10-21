@@ -12,6 +12,7 @@ import { SelectEnum } from 'src/app/enum/select-enum.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IVehicule } from 'src/app/models/vehicule';
 import { ValidationService } from 'src/app/services/validation.service';
+import { PopupConfirmationSupprimerComponent } from 'src/app/pages/popup-confirmation-supprimer/popup-confirmation-supprimer.component';
 
 @Component({
   selector: 'app-detail',
@@ -44,7 +45,7 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<VehiculeDetailComponent>,
     private validationService: ValidationService,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    // private matDialog: MatDialog,
+    private matDialog: MatDialog,
     private notificationService: NotificationService
   ) { }
 
@@ -141,17 +142,35 @@ export class VehiculeDetailComponent implements OnInit, OnDestroy {
   }
 
   supprimerVehiculeById(vehiculeId: String): void {
-    this.subscriptions.push(
-      this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
-        next: (response: CustomHttpRespone) => {
-          this.popupFermer();
-          this.sendNotification(NotificationType.SUCCESS, response.message);
-        },
-        error: (erreurs: HttpErrorResponse) => {
-          console.log(erreurs);
+    // this.subscriptions.push(
+    //   this.vehiculeService.deleteVehicule(vehiculeId).subscribe({
+    //     next: (response: CustomHttpRespone) => {
+    //       this.popupFermer();
+    //       this.sendNotification(NotificationType.SUCCESS, response.message);
+    //     },
+    //     error: (erreurs: HttpErrorResponse) => {
+    //       console.log(erreurs);
+    //     }
+    //   })
+    // );
+
+    const dialogRef = this.matDialog.open(
+      PopupConfirmationSupprimerComponent,
+      {
+        width: '40%',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms',
+        data: {
+          id: vehiculeId,
+          categorie: "vehicule",
+          message: "Voulez-vous supprimer ce véhicule?"
         }
-      })
+      }
     );
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.popupFermer();
+    });
   }
 
 

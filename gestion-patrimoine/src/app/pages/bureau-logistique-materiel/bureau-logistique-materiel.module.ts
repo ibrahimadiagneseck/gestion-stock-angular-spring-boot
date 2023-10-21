@@ -57,8 +57,6 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 
     // MDCDialog
 
-
-
     BureauLogistiqueMaterielRoutingModule
   ]
 })

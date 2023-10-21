@@ -9,6 +9,8 @@ import { CustomHttpRespone } from 'src/app/models/custom-http-response';
 import { IUtilisateur } from 'src/app/models/utilisateur';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { PopupConfirmationSupprimerComponent } from '../../popup-confirmation-supprimer/popup-confirmation-supprimer.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-utilisateur-detail',
@@ -28,6 +30,7 @@ export class UtilisateurDetailComponent implements OnInit, OnDestroy {
   utilisateur!: IUtilisateur;
 
   constructor(
+    private matDialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
     private utilisateurService: UtilisateurService,
@@ -41,7 +44,7 @@ export class UtilisateurDetailComponent implements OnInit, OnDestroy {
       next: (utilisateur: IUtilisateur) => {
         
         this.goToUtilisateurList();
-        this.sendNotification(NotificationType.SUCCESS, `Modification réussie de ${utilisateur.username}`);
+        this.sendNotification(NotificationType.SUCCESS, `Modification réussie de ${utilisateur?.username}`);
       },
       error: (erreurs: any) => {
         console.log(erreurs);
@@ -68,6 +71,9 @@ export class UtilisateurDetailComponent implements OnInit, OnDestroy {
           // ----------------MODIFIER------------------------------
           this.utilisateurForm = new FormGroup({
 
+            utilisateurId: new FormControl(donnee.utilisateurId, [
+              Validators.required
+            ]),
             username: new FormControl(donnee.username, [
               Validators.required
             ]),
@@ -92,10 +98,11 @@ export class UtilisateurDetailComponent implements OnInit, OnDestroy {
     }
 
     
+    
     // ----------------MODIFIER------------------------------
     // this.utilisateurForm = new FormGroup({
 
-    //   username: new FormControl("", [
+    //   username: new FormControl("ibrahima", [
     //     Validators.required
     //   ]),
     //   email: new FormControl("", [
@@ -129,17 +136,35 @@ export class UtilisateurDetailComponent implements OnInit, OnDestroy {
   }
 
   supprimerUtilisateurById(utilisateurId: String): void {
-    this.subscriptions.push(
-      this.utilisateurService.deleteUtilisateur(utilisateurId).subscribe({
-        next: (response: CustomHttpRespone) => {
-          this.goToUtilisateurList();
-          this.sendNotification(NotificationType.SUCCESS, response.message);
-        },
-        error: (erreurs: HttpErrorResponse) => {
-          console.log(erreurs);
+    // this.subscriptions.push(
+    //   this.utilisateurService.deleteUtilisateur(utilisateurId).subscribe({
+    //     next: (response: CustomHttpRespone) => {
+    //       this.goToUtilisateurList();
+    //       this.sendNotification(NotificationType.SUCCESS, response.message);
+    //     },
+    //     error: (erreurs: HttpErrorResponse) => {
+    //       console.log(erreurs);
+    //     }
+    //   })
+    // );
+
+    const dialogRef = this.matDialog.open(
+      PopupConfirmationSupprimerComponent,
+      {
+        width: '40%',
+        enterAnimationDuration: '100ms',
+        exitAnimationDuration: '100ms',
+        data: {
+          id: utilisateurId,
+          categorie: "utilisateur",
+          message: "Voulez-vous supprimer cet utilisateur?"
         }
-      })
+      }
     );
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.goToUtilisateurList();
+    });
   }
 
 
