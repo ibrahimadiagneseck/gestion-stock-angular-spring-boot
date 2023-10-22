@@ -83,22 +83,22 @@
         <div class="row mt-5">
           <div class="col-12 text-end">
             <button (click)="supprimerVehiculeById(vehicule.vehiculeId)" type="button"
-              class="btn btn-mybrown fw-bold mx-2" data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              class="btn btn-mybrown fw-bold mx-2" data-bs-toggle="tooltip" title="cliquer ici pour supprimer">
               Supprimer
             </button>
 
             <!-- <button (click)="popupModifier(vehicule)" type="button" class="btn btn-myprimary fw-bold w-25 mx-2"
-              data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              data-bs-toggle="tooltip" title="cliquer ici pour modifier">
               MODIFIER
             </button> -->
 
             <button (click)="popupModifier()" type="button" class="btn btn-myprimary fw-bold mx-2"
-              data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              data-bs-toggle="tooltip" title="cliquer ici pour modifier">
               Modifier
             </button>
 
             <button (click)="popupFermer()" type="button" class="btn btn-mysecondary fw-bold mx-2"
-              data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              data-bs-toggle="tooltip" title="cliquer ici pour retourner">
               Retour
             </button>
           </div>
@@ -399,7 +399,7 @@
 
           <div class="col-12 text-end">
             <button type="submit" [disabled]="vehiculeForm.invalid" class="btn btn-myprimary fw-bold mx-2"
-              data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              data-bs-toggle="tooltip" title="cliquer ici pour modifier">
               Valider
             </button>
 
@@ -409,7 +409,7 @@
             </button> -->
 
             <button (click)="PopupDetail()" type="button" class="btn btn-mysecondary fw-bold mx-2"
-              data-bs-toggle="tooltip" title="cliquer ici pour ajouter">
+              data-bs-toggle="tooltip" title="cliquer ici pour retourner">
               Retour
             </button>
           </div>
