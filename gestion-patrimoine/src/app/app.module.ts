@@ -34,6 +34,7 @@ import { BureauLogistiqueMaterielModule } from './pages/bureau-logistique-materi
 import { LoaderComponent } from './pages/loader.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { PopupConfirmationSupprimerComponent } from './pages/popup-confirmation-supprimer/popup-confirmation-supprimer.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 
 
 
@@ -51,7 +52,8 @@ registerLocaleData(localeFr, 'fr');
     UtilisateurModifierComponent,
     UtilisateurDetailComponent,
     LoaderComponent,
-    PopupConfirmationSupprimerComponent
+    PopupConfirmationSupprimerComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,

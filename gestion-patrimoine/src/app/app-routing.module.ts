@@ -6,9 +6,12 @@ import { VehiculeListeComponent } from './pages/bureau-logistique-materiel/vehic
 import { UtilisateurListeComponent } from './pages/utilisateur/utilisateur-liste/utilisateur-liste.component';
 import { UtilisateurDetailComponent } from './pages/utilisateur/utilisateur-detail/utilisateur-detail.component';
 import { UtilisateurModifierComponent } from './pages/utilisateur/utilisateur-modifier/utilisateur-modifier.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 
 const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
+
+  { path: 'accueil', component: AccueilComponent },
 
   { path: 'gestion-utilisateur', component: UtilisateurListeComponent },
   { path: 'gestion-utilisateur/detail/:id', component: UtilisateurDetailComponent },
