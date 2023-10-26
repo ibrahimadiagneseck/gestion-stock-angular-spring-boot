@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
-import { CustomHttpRespone } from 'src/app/models/custom-http-response';
+import { CustomHttpRespone } from 'src/app/model/custom-http-response.model';
 import { SelectEnum } from 'src/app/enum/select-enum.enum';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IVehicule } from 'src/app/models/vehicule';
+import { IVehicule } from 'src/app/model/vehicule.model';
 import { ValidationService } from 'src/app/services/validation.service';
 import { PopupConfirmationSupprimerComponent } from 'src/app/pages/popup-confirmation-supprimer/popup-confirmation-supprimer.component';
 

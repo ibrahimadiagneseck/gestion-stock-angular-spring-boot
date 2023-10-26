@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
-import { CustomHttpRespone } from 'src/app/models/custom-http-response';
-import { IUtilisateur } from 'src/app/models/utilisateur';
+import { CustomHttpRespone } from 'src/app/model/custom-http-response.model';
+import { IUtilisateur } from 'src/app/model/utilisateur.model';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 

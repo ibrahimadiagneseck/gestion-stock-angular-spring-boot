@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { VehiculeAjouterComponent } from '../vehicule-ajouter/vehicule-ajouter.component';
 import { VehiculeDetailComponent } from '../vehicule-detail/vehicule-detail.component';
 import { VehiculeService } from 'src/app/services/vehicule.service';
-import { IVehicule } from 'src/app/models/vehicule';
+import { IVehicule } from 'src/app/model/vehicule.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject, Subscription, debounceTime, distinctUntilChanged, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';

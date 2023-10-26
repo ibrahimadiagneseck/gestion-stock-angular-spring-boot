@@ -3,7 +3,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
-import { CustomHttpRespone } from 'src/app/models/custom-http-response';
+import { CustomHttpRespone } from 'src/app/model/custom-http-response.model';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { VehiculeService } from 'src/app/services/vehicule.service';

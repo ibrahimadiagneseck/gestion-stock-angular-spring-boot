@@ -1,9 +1,9 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IUtilisateur } from '../models/utilisateur';
+import { IUtilisateur } from '../model/utilisateur.model';
 import { environment } from 'src/environments/environment';
-import { CustomHttpRespone } from '../models/custom-http-response';
+import { CustomHttpRespone } from '../model/custom-http-response.model';
 
 @Injectable({
   providedIn: 'root'

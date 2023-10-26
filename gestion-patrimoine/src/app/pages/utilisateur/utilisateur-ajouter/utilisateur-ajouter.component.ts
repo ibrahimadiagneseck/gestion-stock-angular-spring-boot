@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
-import { IUtilisateur } from 'src/app/models/utilisateur';
+import { IUtilisateur } from 'src/app/model/utilisateur.model';
 import { NotificationService } from 'src/app/services/notification.service';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { ValidationService } from 'src/app/services/validation.service';

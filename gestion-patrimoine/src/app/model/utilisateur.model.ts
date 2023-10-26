@@ -1,4 +1,4 @@
-import { IVehicule } from "./vehicule";
+import { IVehicule } from "./vehicule.model";
 
 export interface IUtilisateur {
 

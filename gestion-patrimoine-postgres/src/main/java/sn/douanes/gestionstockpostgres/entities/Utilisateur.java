@@ -1,12 +1,10 @@
 package sn.douanes.gestionstockpostgres.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "utilisateur")
@@ -22,16 +20,6 @@ public class Utilisateur {
 
     @Column(name = "utilisateur_id")
     private String utilisateurId;
-
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String pwd;
-
-    private String role;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
-//    private Set<Authority> authorities;
 
     @Column(name = "date_enregistrement")
     private Date dateEnregistrement = new Date();
@@ -64,11 +52,9 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(Long id, String utilisateurId, String pwd, String role, Date dateEnregistrement, String username, String email, Date dateNaissance, String lieuNaissance, List<Vehicule> vehicules) {
+    public Utilisateur(Long id, String utilisateurId, Date dateEnregistrement, String username, String email, Date dateNaissance, String lieuNaissance, List<Vehicule> vehicules) {
         this.id = id;
         this.utilisateurId = utilisateurId;
-        this.pwd = pwd;
-        this.role = role;
         this.dateEnregistrement = dateEnregistrement;
         this.username = username;
         this.email = email;
@@ -83,22 +69,6 @@ public class Utilisateur {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getUtilisateurId() {

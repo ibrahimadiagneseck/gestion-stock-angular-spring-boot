@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SelectEnum } from 'src/app/enum/select-enum.enum';
-import { IVehicule } from 'src/app/models/vehicule';
+import { IVehicule } from 'src/app/model/vehicule.model';
 import { VehiculeService } from 'src/app/services/vehicule.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { Subscription } from 'rxjs';

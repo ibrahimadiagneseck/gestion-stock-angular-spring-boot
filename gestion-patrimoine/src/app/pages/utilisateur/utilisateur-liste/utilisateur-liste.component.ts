@@ -22,7 +22,7 @@ import {
   of,
   switchMap,
 } from 'rxjs';
-import { IUtilisateur } from 'src/app/models/utilisateur';
+import { IUtilisateur } from 'src/app/model/utilisateur.model';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { UtilisateurAjouterComponent } from '../utilisateur-ajouter/utilisateur-ajouter.component';
 import jsPDF from 'jspdf';
